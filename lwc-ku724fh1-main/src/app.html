@@ -1,0 +1,28 @@
+<template>
+	<!--Div for buttons-->
+	<div id="buttonsDiv">
+		<lightning-button variant="base" label="Toggle List" title="btnToggle" onclick={handleClick}
+			class="slds-m-left_x-small"></lightning-button>
+		<lightning-button label="Add Prediction" onclick={addToList} title="Insert into List"></lightning-button>
+	</div>
+	<!-- data for LWC-->
+	<div id="iteration">
+		<template if:true={showchamplist}>
+
+		</template>
+		<template for:each={champList} for:item="currChamp">
+			<li key={currChamp.name}>
+				<div class="info">
+					{currChamp.name}
+				</div>
+				<div class="info">
+					<img src={currChamp.image}/>
+				</div>
+			</li>
+		</template>
+	</div>
+	<div id="input">
+		<lightning-input type="text" label="Who is going to win the 2021 NASCAR Cup Series Championship?"
+			onchange={handleChange}></lightning-input>
+	</div>
+</template>
