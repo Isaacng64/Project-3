@@ -99,7 +99,11 @@ Elements that occur **exactly once** inside a page should use IDs, otherwise, us
   * **Good** candidates for ids: header, footer, main.
   * **Bad** candidates for ids: navigation, item listings, buttons.
 
-When styling a component, prefer class names over ids, prefer direct descendant selectors by default, and use as little specificity as possible. Here is a good example:
+When the class of an HTML tag is used for SLDS the you can use the tag in exchange for the class name
+
+Example:
+
+`h1 { margin-bottom: 1px; }`.
 
 ## Declaration Order
 
