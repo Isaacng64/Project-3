@@ -10,7 +10,7 @@
     * [3.3 Statements](#33-statements)
     * [3.4 Whitespace](#34-whitespace)
     * [3.5 Parentheses](#35-parentheses)
-    * [3.6 Comments](#35-comments)
+    * [3.6 Comments](#36-comments)
 * [4. Language Features](#4-language-features)
     * [4.1 Local Variables](#41-local-variables)
     * [4.2 Arrays](#42-arrays)
@@ -122,7 +122,6 @@ doSomethingElser();
 * There should NOT be a space between a function or constructor and the parentheses that follow them.
 * There should be a single space on both sides of the ternary operator.
 * There should be a single space following every comma or semicolon.
-* There should be a single space follwing the double slash (//) for comments.
 * There should be a single space after the opening curly brace and before the closing curly brace when initializing objects in a single line.
 
 #### Good:
@@ -142,7 +141,7 @@ function checkCondition() {
 }
 
 function nextFunction() {
-  // Some actions here
+  /* some actions here */
 }
 ```
 
@@ -154,6 +153,7 @@ Grouping parentheses are allowed but should not be used excessively, in order to
 * Block comments are opened with /* and closed with */. Every line between the open and close should start with an asterisk at the proper indent level to make it immediately known that it is a comment line.
 * Comments should be used for parameters where the method name does not immediately convey the parameters that it is taking. This will make any future refactoring of code easier.
 * Parameter comments should be in the "parameter=" format displayed below.
+* All comments should be in the /* comment */ format. We do not use double slash (//) comments.
 
 #### Good:
 ```JS
@@ -177,10 +177,6 @@ function checkCondition() {
   
   /* This is another comment. */
   return result;
-}
-
-function nextFunction() {
-  // These comments are also fine.
 }
 ```
 
@@ -210,7 +206,7 @@ function checkCondition() {
 }
 
 function nextFunction() {
-  // Some actions here
+  /* some actions here */
 }
 
 ```
@@ -232,7 +228,7 @@ function checkCondition() {
 }
 
 function nextFunction() {
-  // Some actions here
+  /* some actions here */
 }
 ```
 
@@ -263,7 +259,7 @@ function checkCondition() {
 }
 
 function nextFunction() {
-  // Some actions here
+  /* some actions here */
 }
 ```
 
@@ -293,7 +289,7 @@ function checkCondition() {
 }
 
 function nextFunction() {
-  // Some actions here
+  /* some actions here */
 }
 ```
 
