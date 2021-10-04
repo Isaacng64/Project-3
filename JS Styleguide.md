@@ -34,7 +34,8 @@ This style guide isn't meant as a hard rulebook. At times, you may not be able t
 Example code shown in this guide is not necessarily the only way to write code in this style. Optional formatting choices made in the example code are simply the preference of the author and not meant to be followed as rules.
 
 ## 2. Source File Basics
-2.1 File Name
+
+### 2.1 File Name
 File names must be all lowercase and may include underscores (_) or dashes (-), but no additional punctuation. Decide upon the convention as a cohort and ensure that file names are kept consistent. Filenames’ extension must be .js
 
 ## 3. Formatting
@@ -49,7 +50,7 @@ Braces are required for all control structures (if, else, for, do, while, etc.) 
 * There MUST be a space before the opening brace.
 * There MUST be a line break before the closing brace.
 
-#### Allowed:
+#### Good:
 ```JS
 
 if (conditional) {
@@ -65,7 +66,7 @@ for (let i = 0; i < foo.length; i++) {
 }
 ```
 
-#### Disallowed:
+#### Bad:
 ```JS
 if (conditional)
   doSomething();
@@ -76,7 +77,7 @@ for (let i = 0; i < foo.length; i++) bar(foo[i]);
 ### 3.2 Code Blocks
 Each time a new code block (refer to note at start of "formatting" section) is opened, the indent must increase by two spaces. When the block ends, the indent is decreased by two spaces again to match the previous code block level. The indent applies to both code and comments inside the block.
 
-#### Allowed:
+#### Good:
 ```JS
 function checkCondition() {
   if (conditional) {
@@ -89,7 +90,7 @@ function checkCondition() {
 }
 ```
 
-#### Disallowed:
+#### Bad:
 ```JS
 function checkCondition() {
 if (conditional) {
@@ -116,15 +117,15 @@ doSomethingElser();
 
 #### Horizontal whitespace:
 
-* nThere should be a single space between if, for, do, and similar keywords and the parentheses that follow them.
+* There should be a single space between if, for, do, and similar keywords and the parentheses that follow them.
 * There should be a single space between the close parentheses and the open brace that follows them.
 * There should NOT be a space between a function or constructor and the parentheses that follow them.
 * There should be a single space on both sides of the ternary operator.
 * There should be a single space following every comma or semicolon.
 * There should be a single space follwing the double slash (//) for comments.
-*  There should be a single space after the opening curly brace and before the closing curly brace when initializing objects in a single line.
+* There should be a single space after the opening curly brace and before the closing curly brace when initializing objects in a single line.
 
-#### Allowed:
+#### Good:
 ```JS
 function checkCondition() {
   let result;
@@ -154,7 +155,7 @@ Grouping parentheses are allowed but should not be used excessively, in order to
 * Comments should be used for parameters where the method name does not immediately convey the parameters that it is taking. This will make any future refactoring of code easier.
 * Parameter comments should be in the "parameter=" format displayed below.
 
-#### Allowed:
+#### Good:
 ```JS
 function checkCondition() {
   let result;
@@ -190,7 +191,7 @@ function nextFunction() {
 * Only declare one variable per declaration.
 * Always initialize variables as close to the point they are declared as possible.
 
-#### Allowed:
+#### Good:
 ```JS
 function checkCondition() {
   let result = false;
@@ -214,7 +215,7 @@ function nextFunction() {
 
 ```
 
-#### Disallowed:
+#### Bad:
 ```JS
 function checkCondition() {
   let result = false, x = 2, y = 8;
@@ -240,7 +241,7 @@ function nextFunction() {
 * Array initialization CAN be done in multiple lines. When using multiple line initialization, use code block indentation practices defined in 3.2.
 * Use [] when initializing arrays instead of "new Array()"
 
-#### Allowed:
+#### Good:
 ```JS
 function checkCondition() {
   let result;
@@ -272,7 +273,7 @@ function nextFunction() {
 * Use {} or { prop1: 1, prop2: 2 }
 * Do not mix quoted and unquoted keys in a single object literal.
 
-#### Allowed:
+#### Good:
 ```JS
 function checkCondition() {
   let result;
@@ -309,7 +310,7 @@ function nextFunction() {
 * String literals may not span multiple lines, unless you are including variables.
 * If a string literal is long enough that it would naturally span multiple lines, cut the string at the end of the line, use + to concatenate them, and follow the proper indentation practices.
 
-#### Allowed:
+#### Good:
 ```JS
 function outputLongString() {
   let longString = 'I sat on the bus, on my way to school. At one of the stops my mind snapped back to reality.' +
