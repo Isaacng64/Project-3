@@ -94,7 +94,7 @@ List<Contact> cons = [SELECT Id, FirstName, LastName, Phone, Email,
                              (SELECT Id, ActivityDate, Origin, Type,
                              RecordTypeId
                              FROM ActivityHistories
-                             WHERE Type =: name)
+                             WHERE Type = :name)
                       FROM Contact
                       WHERE CreatedDate >= TODAY];
 ```
