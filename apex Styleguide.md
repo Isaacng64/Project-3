@@ -30,7 +30,7 @@ This document serves as a comprehensive style guide for all apex code throughout
 
 ### Sources
 
-* Utilized the Polaris Project [style guide](https://github.com/PolarisProject/salesforceStyleGuide/blob/master/Apex%20style%20guide.md#istest) as a template for this guide.
+* Utilized the Polaris Project [style guide](https://github.com/PolarisProject/salesforceStyleGuide/blob/master/Apex%20style%20guide.md#istest) as inspiration for this guide.
 
 ## Structure
 
@@ -53,20 +53,20 @@ All blocks of code should be indented with 4 spaces to ensure consitency.
     
 ### New Lines and Spaces
 
-* Please place in-code context comments on their own line and use '/*' around comments.
+* Please place in-code context comments on their own line and use `/*` around comments.
 * Opening braces should have a space before them and not a new line. Closing braces should line up with the start of the opening brace's line.
-* 'else' and 'else if' do not get a new line prior. 'catch' and 'while' in a 'do...while' loop should follow suit.
-* The parenthetical clause in 'if', 'while', 'do', 'catch', etc., statements should have spaces before and after.
+* `else` and `else if` do not get a new line prior. `catch` and `while` in a `do...while` loop should follow suit.
+* The parenthetical clause in `if`, `while`, `do`, `catch`, etc., statements should have spaces before and after.
 * When declaring methods, there should be no space between the name of the method and the opening parenthesis, and one space after.
 * All binary operators should have a space seperating them from surrounding elements. Unary operators should be attached to their parameters.
-* A ':' in a 'for each' loop should have spaces on either side
+* A `:` in a `for each` loop should have spaces on either side
 * No whitespace prior to a comma, with a single space after
 
 ### Capitalization
 
 * Java standard for capitalization with listed exceptions.
-* 'for', 'if', etc. statements should be lowercase. constants should be 'UPPERCASE_WITH_UNDERSCORES'.
-* classes and class-level variables should be 'UpperCamelCase', and methods and local variables should be 'lowerCamelCase'.
+* `for`, `if`, etc. statements should be lowercase. constants should be `UPPERCASE_WITH_UNDERSCORES`.
+* classes and class-level variables should be `UpperCamelCase`, and methods and local variables should be `lowerCamelCase`.
 * Native apex methods and classes should be generally referenced as written in official SF documentation.
 
 ### Example Code
@@ -81,10 +81,10 @@ public static void exampleMethod(Integer num) {
 ```
 
 ## SOQL
-* SOQL keywords (e.g., 'SELECT', 'WHERE', 'FROM') should be written in all caps.
+* SOQL keywords (e.g., `SELECT`, `WHERE`, `FROM`) should be written in all caps.
 * objects fields and variables should be referenced as declared.
 * For complex SOQL queries, please seperate clauses of the query into seperate lines for easier readability. Use your judgement for the complexity of the query.
-* Clauses begin in the column of the most relevant 'SELECT'.
+* Clauses begin in the column of the most relevant `SELECT`.
 
 ### Example Query
 ```java
@@ -112,15 +112,15 @@ Account acc = new Account(RecordTypeId = CUSTOMER_ACCOUNT_ID,
 
 ## Testing
 
-* Please use '@isTest' attribute to declare test methods rather then the 'testmethod' modifier.
+* Please use `@isTest` attribute to declare test methods rather then the `testmethod` modifier.
 * When writing test cases, always use Test.startTest(); and Test.stopTest(); methods and indent the code between those method calls.
 
 ## Naming Conventions
 
 ### Classes and Triggers
 
-Make sure to name your classes/ triggers after their functionality. Triggers should be verbs and end with 'Trigger'.
+Make sure to name your classes/ triggers after their functionality. Triggers should be verbs and end with `Trigger`.
 
 ### Test Classes
 
-For naming your test classes, please use the best practice of specifying the type of unit test in all caps (eg.,'TP', 'TN', 'TB', 'TRU'), followed by an underscore, then the name of the class you are testing. For broader test cases use the convention of 'TEST_ClassUnderTest'.
+For naming your test classes, please use the best practice of specifying the type of unit test in all caps (eg.,`TP`, `TN`, `TB`, `TRU`), followed by an underscore, then the name of the class you are testing. For broader test cases use the convention of `TEST_ClassUnderTest`.
