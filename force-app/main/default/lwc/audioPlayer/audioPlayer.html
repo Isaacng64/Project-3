@@ -1,21 +1,15 @@
 <template>
 
-    <lightning-button onclick={play} label="play"></lightning-button>
-    <lightning-button onclick={dec} label="dec"></lightning-button>
-    <lightning-button onclick={playLink} label="play fried noodles"></lightning-button>
+    <div class="container">
+        <lightning-button onclick={playHandle} label="play song static res."></lightning-button>
+        <lightning-input type="number" value="0.5" formatter="percent" step="0.01" name="volume" label="Volume" onchange={changeVolume}></lightning-input>
+        <!--lightning-button onclick={dec} label="decrease volume"></lightning-button-->
+        <!--lightning-button onclick={playLink} label="play song by link"></lightning-button-->
+    </div>
 
-
-    bpm is {bpm}
-    <lightning-button onclick={slower} label="-"></lightning-button>
-    <lightning-button onclick={faster} label="+"></lightning-button>
-
-    <lightning-layout>
-        <lightning-layout-item>
-            <lightning-input type="number" name="input1" label="Enter a number" onchange={topchange}></lightning-input>
-        </lightning-layout-item>
-        <lightning-layout-item>
-            <lightning-input type="number" name="input2" label="Enter a number" onchange={botchange}></lightning-input>
-        </lightning-layout-item>
-    </lightning-layout>
+    <div class="container">
+        <c-metronome></c-metronome>
+    </div>
+    
 
 </template>
