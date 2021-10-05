@@ -1,0 +1,21 @@
+<template>
+
+    <lightning-button onclick={play} label="play"></lightning-button>
+    <lightning-button onclick={dec} label="dec"></lightning-button>
+    <lightning-button onclick={playLink} label="play fried noodles"></lightning-button>
+
+
+    bpm is {bpm}
+    <lightning-button onclick={slower} label="-"></lightning-button>
+    <lightning-button onclick={faster} label="+"></lightning-button>
+
+    <lightning-layout>
+        <lightning-layout-item>
+            <lightning-input type="number" name="input1" label="Enter a number" onchange={topchange}></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-input type="number" name="input2" label="Enter a number" onchange={botchange}></lightning-input>
+        </lightning-layout-item>
+    </lightning-layout>
+
+</template>
