@@ -1,0 +1,15 @@
+<template>
+  <p if:true={myRecord.data}>{name}</p>
+  <p if:true={apexAccount}>{apexAccount.Name}</p>
+  <lightning-button
+    label="Get Apex"
+    onclick={getApexAccount}
+  ></lightning-button>
+  <!--
+        Unit Tests vs End-to-End Tests
+        - Unit Tests
+          - Intended to test 1 thing and only 1
+          - If evertyhing is unit tested, the system integrity is enhanced
+          - Easy to write, and catches defects early and quickly
+    -->
+</template>
