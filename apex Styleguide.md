@@ -49,7 +49,7 @@ Each apex file should have an initial comment containing a high-level descriptio
 
 ### Indentation
 
-All blocks of code should be indented with 4 spaces to ensure consitency. 
+All blocks of code should be indented with 2 spaces to ensure consitency. 
     
 ### New Lines and Spaces
 
@@ -72,11 +72,11 @@ All blocks of code should be indented with 4 spaces to ensure consitency.
 ### Example Code
 ```java
 public static void exampleMethod(Integer num) {
-    if (num == 1) {
-        System.debug('num is 1');
-    } else {
-        System.debug('num is ' + num);
-    }
+  if (num == 1) {
+    stem.debug('num is 1');
+  } else {
+    System.debug('num is ' + num);
+  }
 }
 ```
 
