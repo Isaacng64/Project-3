@@ -4,13 +4,14 @@ export default class Metronome extends LightningElement {
 
     constructor(){
         super();
-
-        this.setMetro(100); // bpm
+        this.setTempo(100);
     }
 
     intervalObj;
-    @api
-    setMetro(bpm){
+    metroCounter = 1;
+    bpm = 0;
+
+    setTempo(bpm){
         clearInterval(this.intervalObj);
 
         this.intervalObj = setInterval(this.selfTick.bind(this), this.bpm2ms(bpm));
@@ -25,15 +26,14 @@ export default class Metronome extends LightningElement {
 
     faster(){
         this.bpm += 1;
-        this.setMetro(this.bpm);
-    }
-    slower(){
-        this.bpm -= 1;
-        this.setMetro(this.bpm);
+        this.setTempo(this.bpm);
     }
     
-    metroCounter = 1;
-    bpm = 0;
+    slower(){
+        this.bpm -= 1;
+        this.setTempo(this.bpm);
+    }
+
     selfTick(){
 
         console.log('tick ' + this.metroCounter);
