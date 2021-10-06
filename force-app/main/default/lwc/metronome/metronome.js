@@ -1,4 +1,4 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, track } from 'lwc';
 
 export default class Metronome extends LightningElement {
 
@@ -40,13 +40,5 @@ export default class Metronome extends LightningElement {
             this.metroCounter = 1;
         }
     }
-
-    topnum;
-    botnum;
-    botchange(event){
-        this.botnum = event.target.value;
-    }
-    topchange(event){
-        this.topnum = event.target.value;
-    }
+    
 }

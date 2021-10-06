@@ -7,6 +7,7 @@ import dosSongs from '@salesforce/resourceUrl/dosSongs';
 export default class AudioPlayer extends LightningElement {
 
     volume;
+    
     changeVolume(event){
         this.volume = event.target.value;
     }
