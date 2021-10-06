@@ -1,14 +1,12 @@
 <template>
 
     <div class="container">
-        <lightning-button onclick={playHandle} label="play song static res."></lightning-button>
+        <!--lightning-button onclick={playHandle} label="play song static res."></lightning-button-->
         <lightning-input type="number" value="0.5" formatter="percent" step="0.01" name="volume" label="Volume" onchange={changeVolume}></lightning-input>
         <!--lightning-button onclick={dec} label="decrease volume"></lightning-button-->
         <!--lightning-button onclick={playLink} label="play song by link"></lightning-button-->
-    </div>
 
-    <div class="container">
-        <c-metronome></c-metronome>
+        <lightning-button onclick={playPiano} label="Play Piano"></lightning-button>
     </div>
     
 </template>
