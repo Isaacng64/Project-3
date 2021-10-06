@@ -3,7 +3,7 @@ import { api, LightningElement } from 'lwc';
 export default class Autoplayer extends LightningElement {
 
     strumPattern = ["E", "Db", "Ab", "A"];
-    strumPattern2 = ["Ab","Ab","Ab","E"];
+    strumPattern2 = ["E","E","Eb","E"];
 
 
     tickCount = 0;
