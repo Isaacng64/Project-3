@@ -11,12 +11,16 @@ export default class Metronome extends LightningElement {
     intervalObj;
     @api
     setMetro(bpm){
-
         clearInterval(this.intervalObj);
 
-        this.intervalObj = setInterval(this.metroCallback.bind(this), 1000.0 * 60.0/bpm);
+        this.intervalObj = setInterval(this.selfTick.bind(this), this.bpm2ms(bpm));
 
         this.bpm = bpm; 
+    }
+
+    bpm2ms(bpm){
+        // beats per minute (which is a frequency) converted to a period in milliseconds (T = 1 / f)
+        return 1000.0 * 60.0/bpm;
     }
 
     faster(){
@@ -27,11 +31,10 @@ export default class Metronome extends LightningElement {
         this.bpm -= 1;
         this.setMetro(this.bpm);
     }
-
     
     metroCounter = 1;
     bpm = 0;
-    metroCallback(){
+    selfTick(){
 
         console.log('tick ' + this.metroCounter);
 
@@ -39,6 +42,9 @@ export default class Metronome extends LightningElement {
         if (this.metroCounter > 4){
             this.metroCounter = 1;
         }
+
+        let e = new CustomEvent('tick');
+        this.dispatchEvent(e);
     }
     
 }
