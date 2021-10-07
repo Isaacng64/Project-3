@@ -1,11 +1,6 @@
 import { api, LightningElement } from 'lwc';
-import { sharp2flat } from './musicHelper';
+import { sharp2flat, offset2note } from './musicHelper';
 import pianoRes from '@salesforce/resourceUrl/Piano';
-
-//import song from '@salesforce/resourceUrl/oneminute';
-//import song2 from '@salesforce/resourceUrl/whensun';
-//import dosSongs from '@salesforce/resourceUrl/dosSongs';
-
 
 export default class AudioPlayer extends LightningElement {
 
@@ -22,76 +17,64 @@ export default class AudioPlayer extends LightningElement {
         this.volume = event.target.value;
     }
 
-    //playHandle(){
-    //    this.play({volume: this.volume, name: "s2"});
-    //}
-
 
     @api
     play(opts){
 
-        if(opts["key"]){
-            var key = String(opts["key"]);
-        }else{
-            var key = '0';
+        if(opts["offset"]){
+            let result = offset2note(opts["octave"], opts["name"] ,opts["offset"]); // only offset is strictly required
+            var octaveOffset = result[0];
+            var offsetName = result[1];
         }
 
-        if(opts["name"]){
-            let note = sharp2flat(opts["name"]);
-            let path = this.pianoPath + '/' + key + '/' + note + '.mp3';
-            console.log(path);
-            var a = new Audio(path);
+        if(opts["octave"]){
+            var octave = Number(opts["octave"]);
         }else{
-            var a = new Audio(this.pianoPath + '/' + key + '/' + "A" + '.mp3'); // default song to play
+            var octave = 0;
         }
 
-        //if(opts["volume"]){
-        //    a.volume = opts["volume"];
-        //}else{
-        //    a.volume = 0.5;
-        //}
+        octave += octaveOffset ? octaveOffset : 0;
+
+        if(offsetName){
+            var path = this.makeFilePath("Piano", octave, offsetName);    
+        }
+        else if(opts["name"]){
+            var path = this.makeFilePath("Piano", octave, opts["name"]);
+        }
+        else{
+            throw "No name or offset given to play!";
+        }
+        console.log(path);
+        let a = new Audio(path);
+
+        if(opts["volume"]){
+            a.volume = opts["volume"];
+        }else{
+            a.volume = this.volume;
+        }
         
         if(opts["clear"]){
+            // might be deprecated if audio players are preloaded instead of always newly instantiated
             for(let i = 0; i < this.currentlyPlaying.length; i++){
                 //this.currentlyPlaying[i].pause();
-                this.currentlyPlaying[i].volume /= 5.0;
+                this.currentlyPlaying[i].volume /= 6.0;
             }
             this.currentlyPlaying = [];
         }
 
         this.currentlyPlaying.push(a);
 
-        a.volume = this.volume;
-
         a.play();
     }
 
-    setVolume(vol){
-        for(let i = 0; i < this.currentlyPlaying.length; i++){
-            this.currentlyPlaying[i].volume = this.volume;
+    makeFilePath(instrument, octave, name){
+        if(instrument.toLowerCase() == "piano"){
+            let path = this.pianoPath + '/' + String(octave) + '/' + sharp2flat(name) + '.mp3';
+            return path;
+        }
+        else{
+            throw "Instrument either not specified or not yet implemented!";
         }
     }
-
-
-    /*   
-    playPiano(){
-        let path = this.pianoPath + '/2/C#.mp3';
-
-        //let url = encodeURIComponent(path);
-
-        //let url = path.replace('#', '%23');
-
-        console.log(path);
-        
-        let a = new Audio(path);
-
-        a.play();
-    }
-
-    playLink(){
-        let a = new Audio('https://srv3.onlymp3.net/download?file=3a8ae414bc7e7955109768889a4f1f9d251003003');
-        a.play();
-    }
-    */
 
 }

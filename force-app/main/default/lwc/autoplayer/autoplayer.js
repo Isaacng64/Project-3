@@ -42,7 +42,7 @@ export default class Autoplayer extends LightningElement {
     
             this.dispatchEvent(new CustomEvent('autoplay', 
             {detail: 
-                {'key': key,
+                {'octave': key,
                 name: offset2note(noteIndex),
                 clear: true} // default for clear is false, just explicitly demonstrating here
             }));
@@ -52,14 +52,14 @@ export default class Autoplayer extends LightningElement {
     programmedStrumming(){
         this.dispatchEvent(new CustomEvent('autoplay', 
         {detail: 
-            {key: 1, 
+            {octave: 1, 
             name: this.strumPattern[this.chordCount], 
             clear: true} // with clear true, it clears all notes which were already playing instead of leaving them resonating in the background
         }));
 
         this.dispatchEvent(new CustomEvent('autoplay', 
         {detail: 
-            {key: 3, 
+            {octave: 3, 
             name: this.strumPattern2[this.chordCount],
             clear: false} // default for clear is false, just explicitly demonstrating here
         }));

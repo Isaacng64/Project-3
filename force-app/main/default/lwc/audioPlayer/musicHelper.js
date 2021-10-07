@@ -23,7 +23,14 @@ function nextCharacter(c) {
 
 
 function offset2note(index){
+
+    return offset2noteH(index);
+
+}
+
+function offset2noteH(index){
     switch((index + 3) % 12){
+        // with index + 3 this is C INDEXED, with + 0 is A INDEXED
         case 0: return 'A';
         case 1: return 'Bb';
         case 2: return 'B';
