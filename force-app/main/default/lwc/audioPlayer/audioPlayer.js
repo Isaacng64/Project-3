@@ -1,21 +1,22 @@
 import { api, LightningElement } from 'lwc';
+import { sharp2flat } from './musicHelper';
+import pianoRes from '@salesforce/resourceUrl/Piano';
+
 //import song from '@salesforce/resourceUrl/oneminute';
 //import song2 from '@salesforce/resourceUrl/whensun';
+//import dosSongs from '@salesforce/resourceUrl/dosSongs';
 
-import dosSongs from '@salesforce/resourceUrl/dosSongs';
-
-import pianoRes from '@salesforce/resourceUrl/Piano';
 
 export default class AudioPlayer extends LightningElement {
 
     pianoPath;
+    volume = 0.5;
+    currentlyPlaying =[];
+
     constructor(){
         super();
         this.pianoPath = pianoRes + '/Piano';
     }
-    
-
-    volume;
     
     changeVolume(event){
         this.volume = event.target.value;
@@ -26,29 +27,29 @@ export default class AudioPlayer extends LightningElement {
     //}
 
 
-    currentlyPlaying =[];
     @api
     play(opts){
 
         if(opts["key"]){
             var key = String(opts["key"]);
         }else{
-            var key = '7';
+            var key = '0';
         }
 
         if(opts["name"]){
-            let path = this.pianoPath + '/' + key + '/' + opts["name"] + '.mp3';
+            let note = sharp2flat(opts["name"]);
+            let path = this.pianoPath + '/' + key + '/' + note + '.mp3';
             console.log(path);
             var a = new Audio(path);
         }else{
             var a = new Audio(this.pianoPath + '/' + key + '/' + "A" + '.mp3'); // default song to play
         }
 
-        if(opts["volume"]){
-            a.volume = opts["volume"];
-        }else{
-            a.volume = 0.5;
-        }
+        //if(opts["volume"]){
+        //    a.volume = opts["volume"];
+        //}else{
+        //    a.volume = 0.5;
+        //}
         
         if(opts["clear"]){
             for(let i = 0; i < this.currentlyPlaying.length; i++){
@@ -60,9 +61,19 @@ export default class AudioPlayer extends LightningElement {
 
         this.currentlyPlaying.push(a);
 
+        a.volume = this.volume;
+
         a.play();
     }
 
+    setVolume(vol){
+        for(let i = 0; i < this.currentlyPlaying.length; i++){
+            this.currentlyPlaying[i].volume = this.volume;
+        }
+    }
+
+
+    /*   
     playPiano(){
         let path = this.pianoPath + '/2/C#.mp3';
 
@@ -77,7 +88,6 @@ export default class AudioPlayer extends LightningElement {
         a.play();
     }
 
-    /*   
     playLink(){
         let a = new Audio('https://srv3.onlymp3.net/download?file=3a8ae414bc7e7955109768889a4f1f9d251003003');
         a.play();
