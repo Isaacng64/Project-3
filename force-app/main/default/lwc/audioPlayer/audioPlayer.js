@@ -21,25 +21,28 @@ export default class AudioPlayer extends LightningElement {
     @api
     play(opts){
 
-        if(opts["offset"]){
-            let result = offset2note(opts["octave"], opts["name"] ,opts["offset"]); // only offset is strictly required
-            var octaveOffset = result[0];
-            var offsetName = result[1];
+        let result = offset2note(opts["offset"], opts["octave"], opts["name"]); // only offset is strictly required, either or both of others can be null
+        let octave = Number(opts["octave"]);
+        let name = opts["name"];
+
+        if(result.name){
+            octave = result["octave"];
+            name = result["name"];
         }
 
-        if(opts["octave"]){
-            var octave = Number(opts["octave"]);
-        }else{
-            var octave = 0;
-        }
 
-        octave += octaveOffset ? octaveOffset : 0;
 
-        if(offsetName){
-            var path = this.makeFilePath("Piano", octave, offsetName);    
-        }
-        else if(opts["name"]){
-            var path = this.makeFilePath("Piano", octave, opts["name"]);
+        //}else{ // if note offset gets implemented this will be not needed
+         //   var name = opts["name"];
+        //    if(opts["octave"]){
+        //        var octave = Number(opts["octave"]);
+        //    }else{
+        //        var octave = 0;
+        //    }
+        //}
+
+        if(name){
+            var path = this.makeFilePath("Piano", octave, name);    
         }
         else{
             throw "No name or offset given to play!";

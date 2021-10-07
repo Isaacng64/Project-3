@@ -4,7 +4,7 @@ export default class Metronome extends LightningElement {
 
     constructor(){
         super();
-        this.setTempo(100);
+        this.setTempo(160);
     }
 
     intervalObj;

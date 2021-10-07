@@ -1,5 +1,4 @@
 import { api, LightningElement } from 'lwc';
-import { offset2note } from '../audioPlayer/musicHelper';
 
 export default class Autoplayer extends LightningElement {
 
@@ -32,21 +31,14 @@ export default class Autoplayer extends LightningElement {
     }
 
     playWholeKeyboard(){
-        if(this.tickCount < 85){
-            let key = this.tickCount / 12.0;
-            console.log(key);
-            key = Math.trunc(key);
-            console.log(key);
-            let noteIndex = this.tickCount % 12;
-    
-    
-            this.dispatchEvent(new CustomEvent('autoplay', 
-            {detail: 
-                {'octave': key,
-                name: offset2note(noteIndex),
-                clear: true} // default for clear is false, just explicitly demonstrating here
-            }));
-        }
+        this.dispatchEvent(new CustomEvent('autoplay', 
+        {detail: 
+            {octave: 0,
+            name: "A",
+            offset: this.tickCount % 85,
+            //volume : default is 0.5 (50%)
+            clear: true} // default for clear is false, just explicitly demonstrating here
+        }));
     }
 
     programmedStrumming(){
