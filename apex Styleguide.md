@@ -73,7 +73,7 @@ All blocks of code should be indented with 2 spaces to ensure consitency.
 ```java
 public static void exampleMethod(Integer num) {
   if (num == 1) {
-    stem.debug('num is 1');
+    System.debug('num is 1');
   } else {
     System.debug('num is ' + num);
   }
