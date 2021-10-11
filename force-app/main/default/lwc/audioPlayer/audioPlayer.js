@@ -2,7 +2,7 @@ import { api, LightningElement } from 'lwc';
 import { sharp2flat, offset2note } from './musicHelper';
 
 import { buildLocalAudioPlayers } from './audioBuilder';
-//import { arrayRemove } from './generalHelper';
+
 import metronome from '@salesforce/resourceUrl/metronomesound';
 
 export default class AudioPlayer extends LightningElement {
@@ -22,10 +22,19 @@ export default class AudioPlayer extends LightningElement {
     }
 
     @api
+    playPianoInteger(i){
+        this.playPiano({offset: i});
+    }
+
+    @api
     playPiano(opts){
+        this.play(opts, "piano");
+    }
+
+    play(opts, instrument){
 
         let result = offset2note(opts["offset"], opts["octave"], opts["name"]); // only offset is strictly required, either or both of others can be null
-        let octave = opts["octave"] ? Number(opts["octave"]) : '0'; // default to octave 0 if nothing specified.
+        let octave = opts["octave"] ? Number(opts["octave"]) : '0'; // default to octave 0 if nothing specified since not required
         let name = opts["name"];
 
         if(result.name && result.octave){
@@ -35,17 +44,17 @@ export default class AudioPlayer extends LightningElement {
 
         if(name){
             name = sharp2flat(name);
-            this.clientNotesAuto.piano[octave][name].player.currentTime = 0;
-            this.clientNotesAuto.piano[octave][name].player.play();
+            this.clientNotesAuto[instrument][octave][name].player.currentTime = 0;
+            this.clientNotesAuto[instrument][octave][name].player.play();
         }
         else{
             throw "No name or offset given to play!";
         }
 
         if(opts["volume"] != null){
-            this.clientNotesAuto.piano[octave][name].player.volume = opts["volume"]; 
+            this.clientNotesAuto[instrument][octave][name].player.volume = opts["volume"]; 
         }else{
-            this.clientNotesAuto.piano[octave][name].player.volume = this.volume;
+            this.clientNotesAuto[instrument][octave][name].player.volume = this.volume;
         }
 
         if(opts["duration"]){
@@ -53,10 +62,10 @@ export default class AudioPlayer extends LightningElement {
             //this.clientNotesAuto.piano[octave][name].remainingBeats = opts["duration"];
         }
 
-        this.currentlyPlaying.push(this.clientNotesAuto.piano[octave][name]);
+        this.currentlyPlaying.push(this.clientNotesAuto[instrument][octave][name]);
     }
 
-    /*
+    /* // cancel play cancels notes in the MANUAL PLAY dictionary whereas the ones in the auto-play dict will be played for a duration (atm a fixed duration of 1 metronome tick)
     @api
     cancelPlay(opts){
         let result = offset2note(opts["offset"], opts["octave"], opts["name"]); // only offset is strictly required, either or both of others can be null
@@ -70,10 +79,8 @@ export default class AudioPlayer extends LightningElement {
 
         if(name){
             name = sharp2flat(name);
-            this.clientsideNotes[octave][name].pause();
+            this.clientNotesManual[octave][name].pause();
         }
-
-        arrayRemove(this.currentlyPlaying, this.clientsideNotes[octave][name]);
     }
     */
 
@@ -94,18 +101,6 @@ export default class AudioPlayer extends LightningElement {
         this.metronomePlayer.volume = tickVolume;
         this.metronomePlayer.play();
     }
-    /*
-        for(let i = 0; i < this.currentlyPlaying.length; i++){
-
-            if(this.currentlyPlaying[i].remainingBeats == 0){
-                this.currentlyPlaying[i].player.pause();
-            }
-
-            this.currentlyPlaying[i].remainingBeats -= 1;
-        }
-
-    }
-    */
 
     changeVolume(event){
         this.volume = event.target.value;
