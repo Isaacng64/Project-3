@@ -2,6 +2,8 @@ import { LightningElement, track, api } from 'lwc';
 
 export default class BeatPatternUi extends LightningElement {
     
+    page = 0;
+
     beatsTotal = 4;
     @api
     getBeatsTotal() {
@@ -50,18 +52,42 @@ export default class BeatPatternUi extends LightningElement {
     }
 
     louder() {
-        this.tempList[event.target.dataset.item] += 0.25;
-        if (this.tempList[event.target.dataset.item] > 1) {
-            this.tempList[event.target.dataset.item] = 1;
+        var current = parseInt(this.page) * 4 + parseInt(event.target.dataset.item);
+        this.tempList[current] += 0.25;
+        if (this.tempList[current] > 1) {
+            this.tempList[current] = 1;
         }
         this.changeUpdateEvent();
     }
 
     softer() {
-        this.tempList[event.target.dataset.item] -= 0.25;
-        if (this.tempList[event.target.dataset.item] < 0) {
-            this.tempList[event.target.dataset.item] = 0;
+        var current = parseInt(this.page) * 4 + parseInt(event.target.dataset.item);
+        this.tempList[current] -= 0.25;
+        if (this.tempList[current] < 0) {
+            this.tempList[current] = 0;
         }
         this.changeUpdateEvent();
+    }
+
+    get smallList() {
+        var smallList = [];
+        for (var i = 0; i < 4; i++) {
+            if (this.tempList.length > (this.page * 4 + i)) {
+                smallList.push(this.tempList[this.page * 4 + i]);
+            }
+        }
+        return smallList;
+    }
+
+    nextPage() {
+        if (this.page * 4 < this.tempList.length - 4) {
+            this.page += 1;
+        }
+    }
+
+    lastPage() {
+        if (this.page > 0) {
+            this.page -= 1;
+        }
     }
 }
