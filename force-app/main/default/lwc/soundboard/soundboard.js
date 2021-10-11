@@ -2,8 +2,9 @@ import { LightningElement } from 'lwc';
 
 export default class Soundboard extends LightningElement {
 
-    tickHandle(){
-        this.template.querySelector("c-audio-player").tickCallback();
+    tickHandle(event){
+        let tickVolume = event.detail;
+        this.template.querySelector("c-audio-player").tickCallback(tickVolume);
         this.template.querySelector("c-autoplayer").tickCallback();
     }
 
