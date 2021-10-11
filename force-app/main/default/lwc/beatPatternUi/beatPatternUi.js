@@ -2,100 +2,109 @@ import { LightningElement, track, api } from 'lwc';
 
 export default class BeatPatternUi extends LightningElement {
     
-    page = 0;
-
     beatsTotal = 4;
+    currentPage = 0;
+    @track
+    volumesList = [0.75, 0.25, 0.25, 0.25];
+
     @api
     getBeatsTotal() {
         return this.beatsTotal;
     }
+
     @api
     setBeatsTotal(num) {
         this.beatsTotal = num;
-        this.resizeTempList(this.beatsTotal);
+        this.resizeVolumesList(this.beatsTotal);
     }
 
-    @track
-    tempList = [0.75, 0.25, 0.25, 0.25];
     @api
     getTempList() {
-        return this.tempList;
+        return this.volumesList;
     }
 
+    /*
     beatsUpdateButton() {
         this.setBeatsTotal(event.target.value);
     }
+    */
 
-    resizeTempList(num) {
+    //list resizing and volume setting methods
+    resizeVolumesList(num) {
         
-        var moreTempList = [];
+        let newList = [];
         for (let i = 0; i < num; i++) {
-            if (this.tempList.length > i) {
-                moreTempList.push(this.tempList[i]);
+            if (this.volumesList.length > i) {
+                newList.push(this.volumesList[i]);
             } else {
-                moreTempList.push(0);
+                newList.push(0);
             }
         }
         
-        this.tempList = moreTempList;
+        this.volumesList = newList;
         this.changeUpdateEvent();
     }
 
     updateListValue() {
-        this.tempList[event.target.dataset.item] = event.target.value;
+        this.volumesList[event.target.dataset.item] = event.target.value;
         this.changeUpdateEvent();
     }
 
-    changeUpdateEvent() {
-        var e = new CustomEvent('beatPatternUpdate', {detail: this.tempList});
-        this.dispatchEvent(e);
-    }
-
     louder() {
-        var current = parseInt(this.page) * 4 + parseInt(event.target.dataset.item);
-        this.tempList[current] += 0.25;
-        if (this.tempList[current] > 1) {
-            this.tempList[current] = 1;
+        let current = parseInt(this.currentPage) * 4 + parseInt(event.target.dataset.item);
+        this.volumesList[current] += 0.25;
+        if (this.volumesList[current] > 1) {
+            this.volumesList[current] = 1;
         }
+
         this.changeUpdateEvent();
     }
 
     softer() {
-        var current = parseInt(this.page) * 4 + parseInt(event.target.dataset.item);
-        this.tempList[current] -= 0.25;
-        if (this.tempList[current] < 0) {
-            this.tempList[current] = 0;
+        let current = parseInt(this.currentPage) * 4 + parseInt(event.target.dataset.item);
+        this.volumesList[current] -= 0.25;
+        if (this.volumesList[current] < 0) {
+            this.volumesList[current] = 0;
         }
+
         this.changeUpdateEvent();
     }
 
+    changeUpdateEvent() {
+        let e = new CustomEvent('beatPatternUpdate', {detail: this.volumesList});
+        this.dispatchEvent(e);
+    }
+
+
+    //pagination methods
     get smallList() {
-        var smallList = [];
-        for (var i = 0; i < 4; i++) {
-            if (this.tempList.length > (this.page * 4 + i)) {
-                smallList.push(100 * this.tempList[this.page * 4 + i]);
+        let smallList = [];
+        for (let i = 0; i < 4; i++) {
+            if (this.volumesList.length > (this.currentPage * 4 + i)) {
+                smallList.push(100 * this.volumesList[this.currentPage * 4 + i]);
             }
         }
+
         return smallList;
     }
 
     nextPage() {
-        if (this.page < this.totalPages - 1) {
-            this.page += 1;
+        if (this.currentPage < this.totalPages - 1) {
+            this.currentPage += 1;
         }
     }
 
     lastPage() {
-        if (this.page > 0) {
-            this.page -= 1;
+        if (this.currentPage > 0) {
+            this.currentPage -= 1;
         }
     }
 
-    get totalPages() {
-        return Math.ceil(this.tempList.length/4);
+    get pageNum() {
+        return parseInt(this.currentPage) + 1;
     }
 
-    get pageNum() {
-        return parseInt(this.page) + 1;
+    get totalPages() {
+        return Math.ceil(this.volumesList.length/4);
     }
 }
