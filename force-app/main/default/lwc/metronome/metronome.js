@@ -10,6 +10,20 @@ export default class Metronome extends LightningElement {
     intervalObj;
     metroCounter = 1;
     bpm = 0;
+    currentVolume = 0;
+    counterMax = 4;
+    active = false;
+
+    start() {
+        this.active = true;
+        this.metroCounter = 0;
+        //this.sefTick();
+        this.setTempo(this.bpm);
+    }
+
+    stopMetro() {
+        this.active = false;
+    }
 
     setTempo(bpm){
         clearInterval(this.intervalObj);
@@ -17,6 +31,10 @@ export default class Metronome extends LightningElement {
         this.intervalObj = setInterval(this.selfTick.bind(this), this.bpm2ms(bpm));
 
         this.bpm = bpm; 
+    }
+
+    counterMaxUpdate() {
+        editBeats(event.target.value);
     }
 
     bpm2ms(bpm){
@@ -34,17 +52,44 @@ export default class Metronome extends LightningElement {
         this.setTempo(this.bpm);
     }
 
+    faster10(){
+        this.bpm += 10;
+        this.setTempo(this.bpm);
+    }
+    
+    slower10(){
+        this.bpm -= 10;
+        this.setTempo(this.bpm);
+    }
+
+    moreBeats(){
+        this.editBeats(this.counterMax + 1);
+    }
+    
+    lessBeats(){
+        this.editBeats(this.counterMax - 1);
+    }
+
+    editBeats(num) {
+        this.counterMax = num;
+        this.template.querySelector('c-beat-pattern-ui').setBeatsTotal(this.counterMax);
+    }
+
     selfTick(){
 
-        console.log('tick ' + this.metroCounter);
+        if (this.active == true) {
+            console.log('tick ' + this.metroCounter);
 
-        this.metroCounter += 1;
-        if (this.metroCounter > 4){
-            this.metroCounter = 1;
+            this.metroCounter += 1;
+            if (this.metroCounter > this.counterMax){
+                this.metroCounter = 1;
+            }
+
+            this.currentVolume = this.template.querySelector('c-beat-pattern-ui').getTempList()[this.metroCounter - 1];
+
+            let e = new CustomEvent('tick');
+            this.dispatchEvent(e);
         }
-
-        let e = new CustomEvent('tick');
-        this.dispatchEvent(e);
     }
     
 }

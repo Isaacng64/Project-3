@@ -1,7 +1,21 @@
 <template>
     
-    bpm is {bpm}
+    BPM is {bpm}
+    <br />
+    <lightning-button onclick={slower10} label="--"></lightning-button>
     <lightning-button onclick={slower} label="-"></lightning-button>
     <lightning-button onclick={faster} label="+"></lightning-button>
+    <lightning-button onclick={faster10} label="++"></lightning-button>
+    <!--lightning-input label="Beats per Measure" value={counterMax} onchange={counterMaxUpdate}></lightning-input-->
+    <p>Beats per measeure: {counterMax}</p>
+    <lightning-button onclick={lessBeats} label="-"></lightning-button>
+    <lightning-button onclick={moreBeats} label="+"></lightning-button>
+    <br />
+    <lightning-button onclick={start} label="Start"></lightning-button>
+    <lightning-button onclick={stopMetro} label="Stop"></lightning-button>
+    <p>Current beat: {metroCounter}</p>
+    <p>Current volume: {currentVolume}</p>
+
+    <c-beat-pattern-ui></c-beat-pattern-ui>
 
 </template>
