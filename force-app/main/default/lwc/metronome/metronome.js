@@ -86,8 +86,9 @@ export default class Metronome extends LightningElement {
             }
 
             this.currentVolume = this.template.querySelector('c-beat-pattern-ui').getTempList()[this.metroCounter - 1];
-
-            let e = new CustomEvent('tick');
+            //call sound player here
+            //this.template.querySelector('c-audio-player').playPiano({offset: 0, volume: this.currentVolume});
+            let e = new CustomEvent('tick', {detail : this.currentVolume});
             this.dispatchEvent(e);
         }
     }
