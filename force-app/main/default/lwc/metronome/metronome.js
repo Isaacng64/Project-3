@@ -13,6 +13,11 @@ export default class Metronome extends LightningElement {
     currentVolume = 0;
     counterMax = 4;
     active = false;
+    muted = false;
+
+    toggleMute() {
+        this.muted = !this.muted;
+    }
 
     start() {
         this.active = true;
@@ -85,7 +90,7 @@ export default class Metronome extends LightningElement {
                 this.metroCounter = 1;
             }
 
-            this.currentVolume = this.template.querySelector('c-beat-pattern-ui').getTempList()[this.metroCounter - 1];
+            this.currentVolume = this.muted ? 0 : this.template.querySelector('c-beat-pattern-ui').getTempList()[this.metroCounter - 1];
             //call sound player here
             //this.template.querySelector('c-audio-player').playPiano({offset: 0, volume: this.currentVolume});
             let e = new CustomEvent('tick', {detail : this.currentVolume});
