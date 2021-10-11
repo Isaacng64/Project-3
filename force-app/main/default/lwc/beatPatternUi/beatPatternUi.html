@@ -6,11 +6,14 @@
             <p key={index}>Volume {indexNum}: {instance}</p>
         </template>
     </div-->
-    <div key={index} style="float: left; width: 80%;">
+    <div key={index}><!--style="float: left; width: 80%;"-->
         <template for:each={tempList} for:item="instance" for:index="indexNum" key={index} >
-            <div key={index} style="float: left; width: 10%;">
-                <lightning-input key={index} data-item={indexNum} label="test" variant="label-hidden" value={instance} onchange={updateListValue}></lightning-input>
-                <p key={index} style="text-align: center;">Beat {indexNum}</p>
+            <div key={index} style="float: left; width: 25%;">
+                <!--lightning-input key={index} data-item={indexNum} label="test" variant="label-hidden" value={instance} onchange={updateListValue}></lightning-input-->
+                <lightning-button key={index} data-item={indexNum} onclick={louder} label="+"></lightning-button>
+                <!--p key={index} style="text-align: center;">Beat {indexNum}</p-->
+                <p style="text-align: center;">{instance}</p>
+                <lightning-button key={index} data-item={indexNum} onclick={softer} label="-"></lightning-button>
             </div>
         </template>
     </div>

@@ -14,7 +14,7 @@ export default class BeatPatternUi extends LightningElement {
     }
 
     @track
-    tempList = [86, 75, 30, 999];
+    tempList = [0, 0.5, 1, 0.75];
     @api
     getTempList() {
         return this.tempList;
@@ -47,5 +47,21 @@ export default class BeatPatternUi extends LightningElement {
     changeUpdateEvent() {
         var e = new CustomEvent('beatPatternUpdate', {detail: this.tempList});
         this.dispatchEvent(e);
+    }
+
+    louder() {
+        this.tempList[event.target.dataset.item] += 0.25;
+        if (this.tempList[event.target.dataset.item] > 1) {
+            this.tempList[event.target.dataset.item] = 1;
+        }
+        this.changeUpdateEvent();
+    }
+
+    softer() {
+        this.tempList[event.target.dataset.item] -= 0.25;
+        if (this.tempList[event.target.dataset.item] < 0) {
+            this.tempList[event.target.dataset.item] = 0;
+        }
+        this.changeUpdateEvent();
     }
 }
