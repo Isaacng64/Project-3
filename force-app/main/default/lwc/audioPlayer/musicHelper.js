@@ -65,7 +65,7 @@ function index2noteH(index){
 
 function indexOf(name){
 
-    return notes.indexOf(name); // notes.indexOf(name) - BASE_INDEX_PIANO;
+    return notes.indexOf(sharp2flat(name)); // notes.indexOf(name) - BASE_INDEX_PIANO;
     
 }
 
@@ -85,4 +85,51 @@ function clampBounds(name, octave){
     }
 }
 
-export { sharp2flat, offset2note }
+function note2freq({octave, name}){
+    const C4 = 261.63;
+    let x = octave - 4;
+    let factor = Math.pow(2.0, x);
+    let Cfreq = factor * C4;
+
+    let index = indexOf(name);
+    switch(index){
+        case 0:
+            return Cfreq;
+            break;
+        case 1:
+            return Cfreq * 1.067871;
+            break;
+        case 2:
+            return Cfreq * 1.125;
+            break;
+        case 3:
+            return Cfreq * 1.201354;
+            break;
+        case 4:
+            return Cfreq * 1.265625;
+            break;
+        case 5:
+            return Cfreq * 1.3333333;
+            break;
+        case 6:
+            return Cfreq * 1.42382;
+            break;
+        case 7:
+            return Cfreq * 1.5;
+            break;
+        case 8:
+            return Cfreq * 1.6;
+            break;
+        case 9:
+            return Cfreq * 1.6875;
+            break;
+        case 10:
+            return Cfreq * 1.8;
+            break;
+        case 11:
+            return Cfreq * 1.8984375;
+            break;
+    }
+}
+
+export { sharp2flat, offset2note, note2freq }

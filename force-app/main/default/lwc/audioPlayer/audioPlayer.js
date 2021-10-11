@@ -5,7 +5,11 @@ import { buildLocalAudioPlayers } from './audioBuilder';
 
 import metronome from '@salesforce/resourceUrl/metronomesound';
 
+import { InstrumentTonePlayer } from './tonePlayer';
+
 export default class AudioPlayer extends LightningElement {
+
+    testclass = new InstrumentTonePlayer({name: "A", octave: 0});
 
     /* 
      * Organized by instrument, octave with submaps of the note name to the audioplayer and beats remaining.
@@ -23,6 +27,8 @@ export default class AudioPlayer extends LightningElement {
         super();
         buildLocalAudioPlayers(this.clientNotesAuto, this.clientNotesManual);
         this.metronomePlayer = new Audio(metronome);
+
+        //this.testclass.play();
     }
 
     @api
