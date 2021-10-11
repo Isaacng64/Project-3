@@ -6,16 +6,17 @@
             <p key={index}>Volume {indexNum}: {instance}</p>
         </template>
     </div-->
-    <lightning-button onclick={lastPage} label="--"></lightning-button>
-    <lightning-button onclick={nextPage} label="++"></lightning-button>
-    <p>Page: {page}</p>
+    <lightning-button onclick={lastPage} label="&lt;-"></lightning-button>
+    <label> Page: {pageNum} of {totalPages} </label>
+    <lightning-button onclick={nextPage} label="-&gt;"></lightning-button>
+    
     <div key={index}><!--style="float: left; width: 80%;"-->
         <template for:each={smallList} for:item="instance" for:index="indexNum" key={index} >
             <div key={index} style="float: left; width: 25%;">
                 <!--lightning-input key={index} data-item={indexNum} label="test" variant="label-hidden" value={instance} onchange={updateListValue}></lightning-input-->
                 <lightning-button key={index} data-item={indexNum} onclick={louder} label="+"></lightning-button>
                 <!--p key={index} style="text-align: center;">Beat {indexNum}</p-->
-                <p style="text-align: center;">{instance}</p>
+                <p style="text-align: center;">{instance}%</p>
                 <lightning-button key={index} data-item={indexNum} onclick={softer} label="-"></lightning-button>
             </div>
         </template>
