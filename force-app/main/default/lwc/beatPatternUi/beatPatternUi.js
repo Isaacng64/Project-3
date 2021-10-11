@@ -16,7 +16,7 @@ export default class BeatPatternUi extends LightningElement {
     }
 
     @track
-    tempList = [0, 0.5, 1, 0.75];
+    tempList = [0.75, 0.25, 0.25, 0.25];
     @api
     getTempList() {
         return this.tempList;
@@ -73,7 +73,7 @@ export default class BeatPatternUi extends LightningElement {
         var smallList = [];
         for (var i = 0; i < 4; i++) {
             if (this.tempList.length > (this.page * 4 + i)) {
-                smallList.push(this.tempList[this.page * 4 + i]);
+                smallList.push(100 * this.tempList[this.page * 4 + i]);
             }
         }
         return smallList;
