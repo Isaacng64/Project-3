@@ -3,6 +3,7 @@ import { sharp2flat } from "./musicHelper";
 
 import pianoRes from '@salesforce/resourceUrl/Piano';
 
+
 function buildLocalAudioPlayers(dictAuto, dictManual){
 
     dictAuto["piano"] = {};

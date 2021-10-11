@@ -3,11 +3,13 @@ import { sharp2flat, offset2note } from './musicHelper';
 
 import { buildLocalAudioPlayers } from './audioBuilder';
 //import { arrayRemove } from './generalHelper';
+import metronome from '@salesforce/resourceUrl/metronomesound';
 
 export default class AudioPlayer extends LightningElement {
 
     clientNotesAuto = {}; // organized by instrument, octave with submaps of the note name to the audioplayer and beats remaining
     clientNotesManual = {}; // a second set of notes which you can use to play instruments with on top of auto strummer
+    metronomePlayer;
 
     volume = 0.5;
 
@@ -16,6 +18,7 @@ export default class AudioPlayer extends LightningElement {
     constructor(){
         super();
         buildLocalAudioPlayers(this.clientNotesAuto, this.clientNotesManual);
+        this.metronomePlayer = new Audio(metronome);
     }
 
     @api
@@ -76,7 +79,7 @@ export default class AudioPlayer extends LightningElement {
 
 
     @api
-    tickCallback(){
+    tickCallback(tickVolume){
         for(let i = 0; i < this.currentlyPlaying.length; i++){
 
             //if(this.currentlyPlaying[i].remainingBeats == 0){
@@ -86,6 +89,10 @@ export default class AudioPlayer extends LightningElement {
 
             this.currentlyPlaying[i].remainingBeats -= 1;
         }
+
+        this.metronomePlayer.currentTime = 0.0;
+        this.metronomePlayer.volume = tickVolume;
+        this.metronomePlayer.play();
     }
     /*
         for(let i = 0; i < this.currentlyPlaying.length; i++){
