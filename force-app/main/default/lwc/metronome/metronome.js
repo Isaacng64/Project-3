@@ -15,27 +15,31 @@ export default class Metronome extends LightningElement {
     active = false;
     muted = false;
 
-    toggleMute() {
-        this.muted = !this.muted;
-    }
-
-    start() {
-        this.active = true;
-        this.metroCounter = 0;
-        //this.sefTick();
-        this.setTempo(this.bpm);
-    }
-
-    stopMetro() {
-        this.active = false;
-    }
-
     setTempo(bpm){
         clearInterval(this.intervalObj);
 
         this.intervalObj = setInterval(this.selfTick.bind(this), this.bpm2ms(bpm));
 
         this.bpm = bpm; 
+    }
+
+    selfTick(){
+
+        if (this.active == true) {
+            console.log('tick ' + this.metroCounter);
+
+            this.metroCounter += 1;
+            if (this.metroCounter > this.counterMax){
+                this.metroCounter = 1;
+            }
+
+            this.currentVolume = this.template.querySelector('c-beat-pattern-ui').getTempList()[this.metroCounter - 1];
+            if (this.muted) {
+                this.currentVolume = 0;
+            }
+            let e = new CustomEvent('tick', {detail : this.currentVolume});
+            this.dispatchEvent(e);
+        }
     }
 
     counterMaxUpdate() {
@@ -80,22 +84,18 @@ export default class Metronome extends LightningElement {
         this.template.querySelector('c-beat-pattern-ui').setBeatsTotal(this.counterMax);
     }
 
-    selfTick(){
+    toggleMute() {
+        this.muted = !this.muted;
+    }
 
-        if (this.active == true) {
-            console.log('tick ' + this.metroCounter);
+    start() {
+        this.active = true;
+        this.metroCounter = 0;
+        this.setTempo(this.bpm);
+    }
 
-            this.metroCounter += 1;
-            if (this.metroCounter > this.counterMax){
-                this.metroCounter = 1;
-            }
-
-            this.currentVolume = this.muted ? 0 : this.template.querySelector('c-beat-pattern-ui').getTempList()[this.metroCounter - 1];
-            //call sound player here
-            //this.template.querySelector('c-audio-player').playPiano({offset: 0, volume: this.currentVolume});
-            let e = new CustomEvent('tick', {detail : this.currentVolume});
-            this.dispatchEvent(e);
-        }
+    stopMetronome() {
+        this.active = false;
     }
     
 }
