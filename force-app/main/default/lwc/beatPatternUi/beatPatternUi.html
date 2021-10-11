@@ -1,0 +1,17 @@
+<template>
+    <!--div key={index} style="float: left; width: 20%; border-style: solid; border-color: red;">
+        <p style="color: red;">Temp UI</p>
+        <lightning-input label="Beats per Measure" value={beatsTotal} onchange={beatsUpdateButton}></lightning-input>
+        <template for:each={tempList} for:item="instance" for:index="indexNum" key={index}>
+            <p key={index}>Volume {indexNum}: {instance}</p>
+        </template>
+    </div-->
+    <div key={index} style="float: left; width: 80%;">
+        <template for:each={tempList} for:item="instance" for:index="indexNum" key={index} >
+            <div key={index} style="float: left; width: 10%;">
+                <lightning-input key={index} data-item={indexNum} label="test" variant="label-hidden" value={instance} onchange={updateListValue}></lightning-input>
+                <p key={index} style="text-align: center;">Beat {indexNum}</p>
+            </div>
+        </template>
+    </div>
+</template>
