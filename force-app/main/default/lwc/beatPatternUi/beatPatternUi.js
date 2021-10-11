@@ -80,7 +80,7 @@ export default class BeatPatternUi extends LightningElement {
     }
 
     nextPage() {
-        if (this.page * 4 < this.tempList.length - 4) {
+        if (this.page < this.totalPages - 1) {
             this.page += 1;
         }
     }
@@ -89,5 +89,13 @@ export default class BeatPatternUi extends LightningElement {
         if (this.page > 0) {
             this.page -= 1;
         }
+    }
+
+    get totalPages() {
+        return Math.ceil(this.tempList.length/4);
+    }
+
+    get pageNum() {
+        return parseInt(this.page) + 1;
     }
 }
