@@ -39,7 +39,7 @@ export default class AudioPlayer extends LightningElement {
             throw "No name or offset given to play!";
         }
 
-        if(opts["volume"]){
+        if(opts["volume"] != null){
             this.clientNotesAuto.piano[octave][name].player.volume = opts["volume"]; 
         }else{
             this.clientNotesAuto.piano[octave][name].player.volume = this.volume;
