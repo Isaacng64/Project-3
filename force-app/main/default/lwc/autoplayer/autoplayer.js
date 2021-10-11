@@ -36,6 +36,7 @@ export default class Autoplayer extends LightningElement {
             {octave: 0,
             name: "A",
             offset: this.tickCount % 85,
+            duration : 2,
             //volume : default is 0.5 (50%)
             clear: true} // default for clear is false, just explicitly demonstrating here
         }));

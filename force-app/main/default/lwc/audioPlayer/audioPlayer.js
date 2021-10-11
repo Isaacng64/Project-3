@@ -1,28 +1,63 @@
 import { api, LightningElement } from 'lwc';
 import { sharp2flat, offset2note } from './musicHelper';
-import pianoRes from '@salesforce/resourceUrl/Piano';
+
+import { buildLocalAudioPlayers } from './audioBuilder';
+//import { arrayRemove } from './generalHelper';
 
 export default class AudioPlayer extends LightningElement {
 
-    pianoPath;
+    clientNotesAuto = {}; // organized by instrument, octave with submaps of the note name to the audioplayer and beats remaining
+    clientNotesManual = {}; // a second set of notes which you can use to play instruments with on top of auto strummer
+
     volume = 0.5;
-    currentlyPlaying =[];
+
+    currentlyPlaying = [];
 
     constructor(){
         super();
-        this.pianoPath = pianoRes + '/Piano';
+        buildLocalAudioPlayers(this.clientNotesAuto, this.clientNotesManual);
     }
-    
-    changeVolume(event){
-        this.volume = event.target.value;
-    }
-
 
     @api
-    play(opts){
+    playPiano(opts){
 
         let result = offset2note(opts["offset"], opts["octave"], opts["name"]); // only offset is strictly required, either or both of others can be null
-        let octave = Number(opts["octave"]);
+        let octave = opts["octave"] ? Number(opts["octave"]) : '0'; // default to octave 0 if nothing specified.
+        let name = opts["name"];
+
+        if(result.name && result.octave){
+            octave = result["octave"];
+            name = result["name"];
+        }
+
+        if(name){
+            name = sharp2flat(name);
+            this.clientNotesAuto.piano[octave][name].player.currentTime = 0;
+            this.clientNotesAuto.piano[octave][name].player.play();
+        }
+        else{
+            throw "No name or offset given to play!";
+        }
+
+        if(opts["volume"]){
+            this.clientNotesAuto.piano[octave][name].player.volume = opts["volume"]; 
+        }else{
+            this.clientNotesAuto.piano[octave][name].player.volume = this.volume;
+        }
+
+        if(opts["duration"]){
+            console.log("Duration of notes not yet implemented! All notes play for one metronome-tick");
+            //this.clientNotesAuto.piano[octave][name].remainingBeats = opts["duration"];
+        }
+
+        this.currentlyPlaying.push(this.clientNotesAuto.piano[octave][name]);
+    }
+
+    /*
+    @api
+    cancelPlay(opts){
+        let result = offset2note(opts["offset"], opts["octave"], opts["name"]); // only offset is strictly required, either or both of others can be null
+        let octave = opts["octave"] ? Number(opts["octave"]) : '0'; // default to octave 0 if nothing specified.
         let name = opts["name"];
 
         if(result.name){
@@ -30,54 +65,43 @@ export default class AudioPlayer extends LightningElement {
             name = result["name"];
         }
 
-
-
-        //}else{ // if note offset gets implemented this will be not needed
-         //   var name = opts["name"];
-        //    if(opts["octave"]){
-        //        var octave = Number(opts["octave"]);
-        //    }else{
-        //        var octave = 0;
-        //    }
-        //}
-
         if(name){
-            var path = this.makeFilePath("Piano", octave, name);    
-        }
-        else{
-            throw "No name or offset given to play!";
-        }
-        console.log(path);
-        let a = new Audio(path);
-
-        if(opts["volume"]){
-            a.volume = opts["volume"];
-        }else{
-            a.volume = this.volume;
-        }
-        
-        if(opts["clear"]){
-            // might be deprecated if audio players are preloaded instead of always newly instantiated
-            for(let i = 0; i < this.currentlyPlaying.length; i++){
-                //this.currentlyPlaying[i].pause();
-                this.currentlyPlaying[i].volume /= 6.0;
-            }
-            this.currentlyPlaying = [];
+            name = sharp2flat(name);
+            this.clientsideNotes[octave][name].pause();
         }
 
-        this.currentlyPlaying.push(a);
-
-        a.play();
+        arrayRemove(this.currentlyPlaying, this.clientsideNotes[octave][name]);
     }
+    */
 
-    makeFilePath(instrument, octave, name){
-        if(instrument.toLowerCase() == "piano"){
-            let path = this.pianoPath + '/' + String(octave) + '/' + sharp2flat(name) + '.mp3';
-            return path;
+
+    @api
+    tickCallback(){
+        for(let i = 0; i < this.currentlyPlaying.length; i++){
+
+            //if(this.currentlyPlaying[i].remainingBeats == 0){
+                
+            //}
+            this.currentlyPlaying[i].player.pause();
+
+            this.currentlyPlaying[i].remainingBeats -= 1;
         }
-        else{
-            throw "Instrument either not specified or not yet implemented!";
+    }
+    /*
+        for(let i = 0; i < this.currentlyPlaying.length; i++){
+
+            if(this.currentlyPlaying[i].remainingBeats == 0){
+                this.currentlyPlaying[i].player.pause();
+            }
+
+            this.currentlyPlaying[i].remainingBeats -= 1;
         }
+
+    }
+    */
+
+    changeVolume(event){
+        this.volume = event.target.value;
     }
 
 }
