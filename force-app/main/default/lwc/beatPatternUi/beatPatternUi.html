@@ -6,9 +6,10 @@
             <p key={index}>Volume {indexNum}: {instance}</p>
         </template>
     </div-->
-    <lightning-button onclick={lastPage} label="--"></lightning-button>
-    <lightning-button onclick={nextPage} label="++"></lightning-button>
-    <p>Page: {page}</p>
+    <lightning-button onclick={lastPage} label="&lt;-"></lightning-button>
+    <label> Page: {page} </label>
+    <lightning-button onclick={nextPage} label="-&gt;"></lightning-button>
+    
     <div key={index}><!--style="float: left; width: 80%;"-->
         <template for:each={smallList} for:item="instance" for:index="indexNum" key={index} >
             <div key={index} style="float: left; width: 25%;">
