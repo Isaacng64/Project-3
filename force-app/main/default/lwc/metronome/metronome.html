@@ -13,16 +13,12 @@
     <!--br /-->
     <lightning-button onclick={start} label="Start"></lightning-button>
     <lightning-button onclick={stopMetro} label="Stop"></lightning-button>
-    <p>Current beat: {metroCounter}</p>
-    <p>Current volume: {currentVolume}</p>
-
-    <lightning-button onclick={toggleMute} label="Toggle Mute"></lightning-button>
-    <p>Muted: {muted}</p>
-
+    <br /><br />
     <c-beat-pattern-ui></c-beat-pattern-ui>
     <br />
-    <!--div>
-        <c-audio-player></c-audio-player>
-    </div-->
+    <lightning-button onclick={toggleMute} label="Toggle Mute"></lightning-button>
+    <p>Current beat: {metroCounter}</p>
+    <p>Current volume: {currentVolume}</p>
+    <p>Muted: {muted}</p>
 
 </template>
