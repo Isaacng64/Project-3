@@ -7,8 +7,12 @@ import metronome from '@salesforce/resourceUrl/metronomesound';
 
 export default class AudioPlayer extends LightningElement {
 
-    clientNotesAuto = {}; // organized by instrument, octave with submaps of the note name to the audioplayer and beats remaining
-    clientNotesManual = {}; // a second set of notes which you can use to play instruments with on top of auto strummer
+    /* 
+     * Organized by instrument, octave with submaps of the note name to the audioplayer and beats remaining.
+     * A second set of notes which you can use to play instruments with on top of auto strummer is the clientNotesManual object.
+     */
+    clientNotesAuto = {};
+    clientNotesManual = {};
     metronomePlayer;
 
     volume = 0.5;
@@ -33,8 +37,12 @@ export default class AudioPlayer extends LightningElement {
 
     play(opts, instrument){
 
-        let result = offset2note(opts["offset"], opts["octave"], opts["name"]); // only offset is strictly required, either or both of others can be null
-        let octave = opts["octave"] ? Number(opts["octave"]) : '0'; // default to octave 0 if nothing specified since not required
+        /*
+         * Only offset is strictly required, either or both of others can be null
+         * Default to octave 0 if nothing specified since not required
+         */
+        let result = offset2note(opts["offset"], opts["octave"], opts["name"]);
+        let octave = opts["octave"] ? Number(opts["octave"]) : '0';
         let name = opts["name"];
 
         if(result.name && result.octave){
@@ -65,7 +73,7 @@ export default class AudioPlayer extends LightningElement {
         this.currentlyPlaying.push(this.clientNotesAuto[instrument][octave][name]);
     }
 
-    /* // cancel play cancels notes in the MANUAL PLAY dictionary whereas the ones in the auto-play dict will be played for a duration (atm a fixed duration of 1 metronome tick)
+    /* Cancel play cancels notes in the MANUAL PLAY dictionary whereas the ones in the auto-play dict will be played for a duration (atm a fixed duration of 1 metronome tick)
     @api
     cancelPlay(opts){
         let result = offset2note(opts["offset"], opts["octave"], opts["name"]); // only offset is strictly required, either or both of others can be null
@@ -83,7 +91,6 @@ export default class AudioPlayer extends LightningElement {
         }
     }
     */
-
 
     @api
     tickCallback(tickVolume){

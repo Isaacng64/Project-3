@@ -7,13 +7,13 @@ import pianoRes from '@salesforce/resourceUrl/Piano';
 function buildLocalAudioPlayers(dictAuto, dictManual){
 
     dictAuto["piano"] = {};
-    //dictAuto["guitar"] = {};
+    dictAuto["guitar"] = {};
     //dictAuto["bass"] = {};
     dictManual["piano"] = {};
-    //dictManual["guitar"] = {};
+    dictManual["guitar"] = {};
     //dictManual["bass"] = {};
     
-    // build piano sounds
+    /* Build Piano sounds */
     for(let i = 0; i < 85; i++){
 
         let result = offset2note(i, null, null);
@@ -26,6 +26,8 @@ function buildLocalAudioPlayers(dictAuto, dictManual){
         }
         dictAuto.piano[result.octave][result.name] = {remainingBeats: -1, player: new Audio(path)};
         dictManual.piano[result.octave][result.name] = {remainingBeats: -1, player: new Audio(path)};
+
+        //dictAuto.guitar
     }
 
     console.log(dictAuto);
