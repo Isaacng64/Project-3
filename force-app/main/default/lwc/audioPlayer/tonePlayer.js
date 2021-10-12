@@ -59,10 +59,14 @@ export class TonePlayer{
 
 export class GuitarTonePlayer{
     tonePlayers = [];
-    constructor(){
+    constructor(noteIndex){
         for(let i = 0; i < 10; i++){
 
-            this.tonePlayers.push(new TonePlayer({freq: ((1+i)      *    82)}));
+            let freq = 82;
+            if (noteIndex) {
+                freq *= Math.pow(2, noteIndex/12);
+            }
+            this.tonePlayers.push(new TonePlayer({freq: ((1+i)*freq)}));
             this.tonePlayers[i].setVol(guitarDistribution(i));
             
         }
