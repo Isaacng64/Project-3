@@ -1,5 +1,7 @@
 import { note2freq } from "./musicHelper";
 
+import { guitarDistribution } from "./instrumentSynthBuilder";
+
 export class TonePlayer{
 
     context;
@@ -8,56 +10,74 @@ export class TonePlayer{
 
     oscillator;
 
-    constructor({name, octave, vol}){
+    volume = 0;
+
+    constructor({name, octave, freq}){
 
         this.context = new AudioContext();
 
-        this.envelope = this.context.createGain();
-        this.envelope.gain.value = 0.03 * vol;
-
-
-
         this.oscillator = this.context.createOscillator(); //new OscillatorNode();
-        this.oscillator.frequency.value = note2freq({name, octave});
-        console.log(note2freq({name, octave}) + " Hz");
+        if(freq){
+            this.oscillator.frequency.value = freq;
+        }
+        else{
+            this.oscillator.frequency.value = note2freq({name, octave});
+            console.log(note2freq({name, octave}) + " Hz");
+        }
+
         this.oscillator.type = 'sine';
-
-        this.oscillator.connect(this.envelope);
-        this.envelope.connect(this.context.destination);
-
-        //this.oscillator.start();
-
     }
+
     start(){
         this.oscillator.start();
     }
     stop(){
         this.oscillator.stop();
     }
+    setVol(vol){
+        this.volume = vol;
+        this.envelope = this.context.createGain();
+        this.envelope.gain.value = 0.1 * this.volume;
+        this.oscillator.connect(this.envelope);
+        this.envelope.connect(this.context.destination);
+    }
+    pulse(dur){
+        this.setVol(this.volume);
+
+        this.envelope.gain.exponentialRampToValueAtTime(0.00001, this.context.currentTime + dur);
+        this.envelope.gain.clear
+        //console.log("pulse " + this.envelope.gain.value + " for " + dur + " seconds");
+        try{
+            this.start();
+        }
+        catch(e){
+
+        }
+    }
 }
 
-export class InstrumentTonePlayer{
+
+export class GuitarTonePlayer{
     tonePlayers = [];
-    constructor({name, octave}){
-        this.tonePlayers.push(new TonePlayer({name, octave : octave + 2, vol: 0.10}));
-        this.tonePlayers.push(new TonePlayer({name, octave : octave + 3, vol: 1.0}));
-        this.tonePlayers.push(new TonePlayer({name, octave : octave + 4, vol: 0.3}));
-        this.tonePlayers.push(new TonePlayer({name, octave : octave + 5, vol: 0.08}));
-        //this.tonePlayers.push(new TonePlayer({name: "E", octave: 6, vol: 0.3}));
-        //this.tonePlayers.push(new TonePlayer({name: "E", octave: 7, vol: 0.08}));
-        //this.tonePlayers.push(new TonePlayer({name: "E", octave: 8, vol: 0.1}));
-        //this.tonePlayers.push(new TonePlayer({name: "E", octave: 9, vol: 0.1}));
-        //this.tonePlayers.push(new TonePlayer({name: "E", octave: 9, vol: 0.1}));
+    constructor(){
+        for(let i = 0; i < 10; i++){
+
+            this.tonePlayers.push(new TonePlayer({freq: ((1+i)*82)}));
+            this.tonePlayers[i].setVol(guitarDistribution(i));
+            
+        }
     }
 
     play(){
-        for (let i = 1; i < 10; i++){
-            this.tonePlayers[i-1].start();
+        for (let i = 0; i < this.tonePlayers.length; i++){
+            this.tonePlayers[i].pulse(5);
+            //this.tonePlayers[i].start();
         }
+        //console.log("play");
     }
     stop(){
-        for (let i = 1; i < 10; i++){
-            this.tonePlayers[i-1].stop();
-        } 
+        for (let i = 0; i < this.tonePlayers.length; i++){
+            this.tonePlayers[i].stop();
+        }
     }
 }
