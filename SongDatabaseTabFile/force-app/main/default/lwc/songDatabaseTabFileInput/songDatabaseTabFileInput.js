@@ -1,6 +1,6 @@
 import { api, LightningElement, track, wire } from 'lwc';
-import getContentDetails from '@salesforce/apex/ContentManagerService.getContentDetails';
-import deleteContentDocument from '@salesforce/apex/ContentManagerService.deleteContentDocument';
+import getContentDetails from '@salesforce/apex/FileUploadClass.getContentDetails';
+import deleteContentDocument from '@salesforce/apex/FileUploadClass.deleteContentDocument';
 import { NavigationMixin } from 'lightning/navigation';
 
 const columns = [
@@ -41,7 +41,7 @@ export default class ContentManager extends NavigationMixin(LightningElement) {
     @api recordId;
     @api usedInCommunity;
     @api showFilters;
-    @api accept = '.doc,.docx';
+    @api accept = '.doc,.docx, .txt';
 
     @track dataList;
     @track columnsList = columns;
