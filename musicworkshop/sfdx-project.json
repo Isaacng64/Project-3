@@ -1,0 +1,19 @@
+{
+    "packageDirectories": [
+        {
+            "path": "music-utilities",
+            "package": "music-utilities",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true
+        }
+    ],
+    "name": "musicworkshop",
+    "namespace": "",
+    "sfdcLoginUrl": "https://cunning-wolf-l4gda9-dev-ed.my.salesforce.com/",
+    "sourceApiVersion": "52.0",
+    "packageAliases": {
+        "music-utilities": "0Ho5f0000008OPWCA2",
+        "music-utilities@0.1.0-1": "04t5f000000tn2vAAA"
+    }
+}
