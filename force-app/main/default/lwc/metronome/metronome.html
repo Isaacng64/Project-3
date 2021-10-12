@@ -1,21 +1,29 @@
 <template>
-    
+    <div style="float: left; width: 50%" >
     BPM: {bpm}
     <br />
     <lightning-button onclick={slower10} label="--"></lightning-button>
     <lightning-button onclick={slower} label="-"></lightning-button>
     <lightning-button onclick={faster} label="+"></lightning-button>
     <lightning-button onclick={faster10} label="++"></lightning-button>
-    <p>Beats per measure: {counterMax}</p>
+    <br />
+    <label>Beat: {metroCounter} of {counterMax} </label>
+    <br />
     <lightning-button onclick={lessBeats} label="-"></lightning-button>
     <lightning-button onclick={moreBeats} label="+"></lightning-button>
-    <!--br /-->
+    <br />
     <lightning-button onclick={start} label="Start"></lightning-button>
     <lightning-button onclick={stopMetronome} label="Stop"></lightning-button>
+    <lightning-button onclick={toggleMute} label={mutedString}></lightning-button>
     <br /><br />
+</div>
+<div style="float: left; width: 50%" >
     <c-beat-pattern-ui></c-beat-pattern-ui>
     <br />
-    <lightning-button onclick={toggleMute} label="Toggle Mute"></lightning-button>
+</div>
+
+    <p>------------------------------------------------------------------------------------------------</p>
+    <p>(Temporary Display)</p>
     <p>Current beat: {metroCounter}</p>
     <p>Current volume: {currentVolume}</p>
     <p>Muted: {muted}</p>

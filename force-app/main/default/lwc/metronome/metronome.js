@@ -14,6 +14,7 @@ export default class Metronome extends LightningElement {
     counterMax = 4;
     active = false;
     muted = false;
+    mutedString = 'Mute';
 
     setTempo(bpm){
         clearInterval(this.intervalObj);
@@ -86,6 +87,7 @@ export default class Metronome extends LightningElement {
 
     toggleMute() {
         this.muted = !this.muted;
+        this.mutedString = this.muted ? 'Unmute' : 'Mute';
     }
 
     start() {
@@ -96,6 +98,7 @@ export default class Metronome extends LightningElement {
 
     stopMetronome() {
         this.active = false;
+        //this.metroCounter = 0;
     }
     
 }
