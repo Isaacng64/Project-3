@@ -3,6 +3,5 @@ li{
 }
 
 lightning-button{
-  border-collapse: true;
   background: linear-gradient(#A5A5A5, #A5A5A5) no-repeat center/2px 100%
 }
