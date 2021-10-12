@@ -1,5 +1,7 @@
 import { api, LightningElement } from 'lwc';
 
+import { AudioPlayerNote } from '../audioPlayer/audioPlayerNote';
+
 export default class Autoplayer extends LightningElement {
 
     strumPattern = ["E", "c#", "Ab", "A"];
@@ -33,28 +35,19 @@ export default class Autoplayer extends LightningElement {
     playWholeKeyboard(){
         this.dispatchEvent(new CustomEvent('autoplay', 
         {detail: 
-            {octave: 0,
-            name: "A",
-            offset: this.tickCount % 85,
-            duration : 2,
-            //volume : default is 0.5 (50%)
-            clear: true} // default for clear is false, just explicitly demonstrating here
+            new AudioPlayerNote(this.tickCount % 85, "A", 0)
         }));
     }
 
     programmedStrumming(){
         this.dispatchEvent(new CustomEvent('autoplay', 
         {detail: 
-            {octave: 1, 
-            name: this.strumPattern[this.chordCount], 
-            clear: true} // with clear true, it clears all notes which were already playing instead of leaving them resonating in the background
+            new AudioPlayerNote(0, this.strumPattern[this.chordCount], 1) // with clear true, it clears all notes which were already playing instead of leaving them resonating in the background
         }));
 
         this.dispatchEvent(new CustomEvent('autoplay', 
         {detail: 
-            {octave: 3, 
-            name: this.strumPattern2[this.chordCount],
-            clear: false} // default for clear is false, just explicitly demonstrating here
+            new AudioPlayerNote(0, this.strumPattern2[this.chordCount], 3)
         }));
         
         
