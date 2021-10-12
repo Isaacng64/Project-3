@@ -4,6 +4,52 @@ import { sharp2flat } from "./musicHelper";
 import pianoRes from '@salesforce/resourceUrl/Piano';
 
 
+export {buildLocalAudioPlayers}
+
+
+class PlayerWrapper{
+
+    player; // either AudioPlayer or TonePlayer! polymorphism ? 8D
+    remainingBeats = -1;
+
+    constructor(player){
+        this.player = player;
+    }
+
+    play(beats){
+
+        if(beats){
+            this.remainingBeats = dur;
+        }
+
+        this.player.currentTime = 0;
+
+        try{
+            this.player.play();
+        }catch(e){
+            console.log("could not start player");
+        }
+        
+    }
+
+    stop(){
+
+        this.player.pause();
+
+    }
+
+    tickRemainingDuration(){
+        if(this.remainingBeats == 0){
+            this.stop();
+        }
+        else{
+            this.remainingBeats -= 1;
+        }
+    }
+
+}
+
+
 function buildLocalAudioPlayers(dictAuto, dictManual){
 
     dictAuto["piano"] = {};
@@ -24,15 +70,12 @@ function buildLocalAudioPlayers(dictAuto, dictManual){
             dictAuto.piano[result.octave] = {};
             dictManual.piano[result.octave] = {};
         }
-        dictAuto.piano[result.octave][result.name] = {remainingBeats: -1, player: new Audio(path)};
-        dictManual.piano[result.octave][result.name] = {remainingBeats: -1, player: new Audio(path)};
 
-        //dictAuto.guitar
+        dictAuto.piano[result.octave][result.name] = new PlayerWrapper(new Audio(path));
+        dictManual.piano[result.octave][result.name] = new PlayerWrapper(new Audio(path));
+
     }
 
     console.log(dictAuto);
     console.log(dictManual);
-
 }
-
-export {buildLocalAudioPlayers}

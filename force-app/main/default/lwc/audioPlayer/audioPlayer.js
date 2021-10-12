@@ -27,7 +27,6 @@ export default class AudioPlayer extends LightningElement {
     }
 
 
-
     /* Thinking ahead you may optionally take params for duration and volume IN HERE separate from note construction which is just THE NOTE */
     @api
     playPianoInteger(i){ 
@@ -43,7 +42,7 @@ export default class AudioPlayer extends LightningElement {
     tickCallback(tickVolume){
         for(let i = 0; i < this.currentlyPlaying.length; i++){
 
-            this.currentlyPlaying[i].player.pause();
+            this.currentlyPlaying[i].stop();
 
         }
 
@@ -61,8 +60,7 @@ export default class AudioPlayer extends LightningElement {
          */
 
         if(playerNote.valid){
-            this.clientNotesAuto[instrument][playerNote.octave][playerNote.name].player.currentTime = 0;
-            this.clientNotesAuto[instrument][playerNote.octave][playerNote.name].player.play();
+            this.clientNotesAuto[instrument][playerNote.octave][playerNote.name].play(); // can specify duration in player.play() function!
         }else{
             throw "no valid note to play!";
         }
@@ -70,14 +68,9 @@ export default class AudioPlayer extends LightningElement {
 
         /*
         if(opts["volume"] != null){
-            this.clientNotesAuto[instrument][octave][name].player.volume = opts["volume"]; 
+            this.clientNotesAuto[instrument][octave][name].player.volume = opts["volume"];
         }else{
             this.clientNotesAuto[instrument][octave][name].player.volume = this.volume;
-        }
-
-        if(opts["duration"]){
-            console.log("Duration of notes not yet implemented! All notes play for one metronome-tick");
-            //this.clientNotesAuto.piano[octave][name].remainingBeats = opts["duration"];
         }*/
 
         this.currentlyPlaying.push(this.clientNotesAuto[instrument][playerNote.octave][playerNote.name]);
@@ -89,43 +82,4 @@ export default class AudioPlayer extends LightningElement {
 
 }
 
-class PlayerWrapper{
-    
-    player;
-    remainingDuration = -1;
 
-    constructor(){
-
-    }
-
-    play(){
-        this.player.currentTime = 0;
-        this.player.play();
-    }
-
-    stop(){
-
-
-    }
-
-}
-
-
-    /* Cancel play cancels notes in the MANUAL PLAY dictionary whereas the ones in the auto-play dict will be played for a duration (atm a fixed duration of 1 metronome tick)
-    @api
-    cancelPlay(opts){
-        let result = offset2note(opts["offset"], opts["octave"], opts["name"]); // only offset is strictly required, either or both of others can be null
-        let octave = opts["octave"] ? Number(opts["octave"]) : '0'; // default to octave 0 if nothing specified.
-        let name = opts["name"];
-
-        if(result.name){
-            octave = result["octave"];
-            name = result["name"];
-        }
-
-        if(name){
-            name = sharp2flat(name);
-            this.clientNotesManual[octave][name].pause();
-        }
-    }
-    */
