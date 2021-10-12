@@ -1,3 +1,4 @@
+export { sharp2flat, offset2note, note2freq, stdNote2components }
 
 /* Utility class to smooth any particular API features out with the audioplayer and soundboard suite */
 
@@ -10,15 +11,21 @@ function sharp2flat(name) {
      * All file path names in practice SHOULD BE CASE INSENSITIVE, but this also makes sure to capitalize exactly as the file names are, anyway
      */
 
-    if(name.toLowerCase() == "g#" || name.toLowerCase() == "ab"){ /* Special end case, all others work by incrementing next letter but can't increment G to A */
-        return 'Ab';
-    }
+    if(name){
 
-    if(name.includes("#")){
-        const base = name.charAt(0);
-        return nextCharacter(base).toUpperCase() + 'b';
+            if(name.toLowerCase() == "g#" || name.toLowerCase() == "ab"){ /* Special end case, all others work by incrementing next letter but can't increment G to A */
+            return 'Ab';
+        }
+
+        if(name.includes("#")){
+            const base = name.charAt(0);
+            return nextCharacter(base).toUpperCase() + 'b';
+        }else{
+            return name.length > 1 ? name.charAt(0).toUpperCase() + 'b' : name.charAt(0).toUpperCase(); /* ternary operator so cool */
+        }
+
     }else{
-        return name.length > 1 ? name.charAt(0).toUpperCase() + 'b' : name.charAt(0).toUpperCase(); /* ternary operator so cool */
+        return null;
     }
 }
 
@@ -85,6 +92,24 @@ function clampBounds(name, octave){
     }
 }
 
+function stdNote2components(stdNote){
+    if(stdNote){
+        let name;
+        let octave;
+        if(stdNote.length == 3){
+            octave = opts.stdNote.charAt(2);
+            name = opts.stdNote.charAt(0) + opts.stdNote.charAt(1);
+        }else{
+            octave = opts.stdNote.charAt(1);
+            name = opts.stdNote.charAt(0);
+        }
+
+        return {name: name, octave: octave};
+    }else{
+        return null;
+    }
+}
+
 function note2freq({octave, name}){
     const C4 = 261.63;
     let x = octave - 4;
@@ -132,4 +157,3 @@ function note2freq({octave, name}){
     }
 }
 
-export { sharp2flat, offset2note, note2freq }
