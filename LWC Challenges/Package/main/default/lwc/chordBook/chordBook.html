@@ -1,0 +1,88 @@
+<template>
+	<!-- Template for the guitar component -->
+	<template if:true={guitarActive}>
+		<!-- Div holding the image carousel-->
+		<div class="carousel-holder">
+			<template iterator:it={guitarChords}>
+				<section key={it.value.index} style="display:inline;">
+					<div class="image-things">
+						<div class="let-it-end">
+							<img src={it.value.image} alt={it.value.name} width="200" height="200" onmouseover={handleMO}>
+						</div>
+					</div>
+				</section>
+			</template>
+		</div>
+		<!-- End of images carousel-->
+
+		<!-- Divs for button style. The outer div centers the buttons and adds padding between them and the carousel, the inner div keeps them on the same line -->
+		<div class="buttons">
+			<div class="dont-break">
+				<button class="button-stuff" style="padding-bottom: 10px;" onclick={handleLeftClick}>&laquo;</button>
+			</div>
+			<div class="dont-break">
+				<button class="button-stuff" style="padding-bottom: 10px;" onclick={handleRightClick}>&raquo;</button>
+			</div>
+		</div>
+		<!-- End of button style divs-->
+	</template>
+	<!-- End of guitar template-->
+
+	<!-- Template for the bass component-->
+	<template if:true={bassActive}>
+		<!-- Div holding the image carousel-->
+		<div class="carousel-holder">
+			<template iterator:it={bassChords}>
+				<section key={it.value.index} style="display:inline;">
+					<div class="image-things">
+						<div class="let-it-end">
+							<img src={it.value.image} alt={it.value.name} width="200" height="200" onmouseover={handleMO}>
+						</div>
+					</div>
+				</section>
+			</template>
+		</div>
+		<!-- End of images carousel-->
+
+		<!-- Divs for button style. The outer div centers the buttons and adds padding between them and the carousel, the inner div keeps them on the same line -->
+		<div class="buttons">
+			<div class="dont-break">
+				<button class="button-stuff" style="padding-bottom: 10px;" onclick={handleLeftClick}>&laquo;</button>
+			</div>
+			<div class="dont-break">
+				<button class="button-stuff" style="padding-bottom: 10px;" onclick={handleRightClick}>&raquo;</button>
+			</div>
+		</div>
+		<!-- End of button style divs-->
+	</template>
+	<!-- End of bass template-->
+
+	<!-- Template for the piano component-->
+	<template if:true={pianoActive}>
+		<!-- Div holding the image carousel-->
+		<div class="carousel-holder">
+			<template iterator:it={pianoChords}>
+				<section key={it.value.index} style="display:inline;">
+					<div class="image-things">
+						<div class="let-it-end">
+							<img src={it.value.image} alt={it.value.name} width="200" height="200" onmouseover={handleMO}>
+						</div>
+					</div>
+				</section>
+			</template>
+		</div>
+		<!-- End of images carousel-->
+
+		<!-- Divs for button style. The outer div centers the buttons and adds padding between them and the carousel, the inner div keeps them on the same line -->
+		<div class="buttons">
+			<div class="dont-break">
+				<button class="button-stuff" style="padding-bottom: 10px;" onclick={handleLeftClick}>&laquo;</button>
+			</div>
+			<div class="dont-break">
+				<button class="button-stuff" style="padding-bottom: 10px;" onclick={handleRightClick}>&raquo;</button>
+			</div>
+		</div>
+		<!-- End of button style divs-->
+	</template>
+	<!-- End of piano template-->
+</template>
