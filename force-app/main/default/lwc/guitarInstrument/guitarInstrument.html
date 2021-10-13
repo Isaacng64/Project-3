@@ -1,0 +1,11 @@
+<template>
+    <ul class="slds-list_vertical">
+        <template for:each={tuning} for:item="string">
+            <li key={string}>
+                <div class="string"></div>
+                    <c-guitar-string onpasscurrentfret={currentFretAndString} string-number={string}></c-guitar-string>
+                <div class="string"></div>
+            </li>
+        </template>
+    </ul>
+</template>
