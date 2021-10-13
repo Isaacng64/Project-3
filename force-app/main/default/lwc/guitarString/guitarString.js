@@ -11,7 +11,11 @@ export default class GuitarString extends LightningElement {
     @api strumImg = strumImage + '.png';
 
     setFretInString(event){
-        this.currentFret = event.detail;
+        if (this.currentFret = event.detail) {
+            this.currentFret = 0;
+        } else {
+            this.currentFret = event.detail;
+        }
         this.dispatchEvent(new CustomEvent('passcurrentfret', {detail: [this.currentFret, this.stringNumber]}));
     }
 
@@ -29,7 +33,7 @@ export default class GuitarString extends LightningElement {
     }
 
     strum() {
-        let noteToPlay = [parseInt(this.openString) + parseInt(this.currentFret), this.stringNumber];parseInt(this.openString) + parseInt(this.currentFret) + parseInt(this.stringNumber);
+        let noteToPlay = [parseInt(this.openString) + parseInt(this.currentFret), this.stringNumber];
         this.dispatchEvent(new CustomEvent('playguitarnote', {detail: noteToPlay, bubbles: true, composed: true}));
         console.log('strumming' + noteToPlay);
     }
