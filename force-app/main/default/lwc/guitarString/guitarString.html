@@ -1,9 +1,9 @@
 <template>
     <div>
     <ul class="slds-list_horizontal">
-        <lightning-button label='-' onclick={tuneDown} ></lightning-button>
+        <button label='-' onclick={tuneDown} ></button>
         <label>{openString}</label>
-        <lightning-button label='+' onclick={tuneUp} ></lightning-button>
+        <button label='+' onclick={tuneUp} ></button>
         <template for:each={frets} for:item="fret">
             <li key={fret}>
                 <c-guitar-fret onpassfret={setFretInString} current-fret={fret}></c-guitar-fret>

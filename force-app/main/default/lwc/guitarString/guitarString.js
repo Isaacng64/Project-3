@@ -29,12 +29,12 @@ export default class GuitarString extends LightningElement {
     }
 
     tuneDown() {
-        this.setOpenString(parseInt(this.openString) + 1);
+        this.setOpenString(parseInt(this.openString) - 1);
     }
 
     strum() {
         let noteToPlay = parseInt(this.openString) + parseInt(this.currentFret);
-        this.dispatchEvent(new CustomEvent('playGuitarNote', {detail: noteToPlay, bubbles: true, composed: true}));
+        this.dispatchEvent(new CustomEvent('playguitarnote', {detail: noteToPlay, bubbles: true, composed: true}));
         console.log('strumming' + noteToPlay);
     }
 
