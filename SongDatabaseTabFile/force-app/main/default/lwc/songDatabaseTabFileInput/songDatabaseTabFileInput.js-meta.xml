@@ -2,7 +2,7 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>50.0</apiVersion>
     <isExposed>true</isExposed>
-    <masterLabel>Content Manager</masterLabel>
+    <masterLabel>Guitar Tab Upload</masterLabel>
     <targets>
         <target>lightning__RecordPage</target>
         <target>lightning__UtilityBar</target>
@@ -12,7 +12,7 @@
     <!-- Configuring for the design attributes here! -->
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage, lightningCommunity__Default">
-            <property name="title" type="String" label="Title" default="Content Manager" required="true"/>
+            <property name="title" type="String" label="Title" default="Guitar Tab Upload" required="true"/>
             <property name="recordId" type="String" default="recordId" label="Record Id" required="true"/>
             <property name="showDetails" type="Boolean" default="true" label="Do you want to Show Details ?"/>
             <property name="accept" type="String" default=".csv,.doc,.xsl,.pdf,.png,.jpg,.jpeg,.docx,.doc" 

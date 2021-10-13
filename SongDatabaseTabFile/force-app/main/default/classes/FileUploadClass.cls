@@ -1,4 +1,4 @@
-public with sharing class FileUploadClass {
+public without sharing class FileUploadClass {
     
     @AuraEnabled
     public static String getContentDetails(String recordId) {
