@@ -1,0 +1,12 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "piano",
+  "namespace": "",
+  "sfdcLoginUrl": "https://mindful-otter-il8j5w-dev-ed.my.salesforce.com/",
+  "sourceApiVersion": "52.0"
+}

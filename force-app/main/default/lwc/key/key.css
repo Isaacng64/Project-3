@@ -1,0 +1,39 @@
+.white { 
+    /* --size-xx-small: 96px; 
+    width: var(--lwc-size-xx-small); */
+    width: 2rem; 
+    height: 10rem;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: black;
+    bottom: -5;
+}
+
+.black {
+    /* --size-xx-small: 48px; 
+    width: var(--lwc-size-xxx-small); 
+    */
+    width: 1.5rem; 
+    height: 6rem; 
+    margin-left: -0.75rem; 
+    margin-right: -0.75rem; 
+    background-color: #000000;  
+    z-index: 2;
+    text-align: center;
+    color: cornsilk;
+}
+
+.white:hover {
+    cursor: pointer;
+}
+
+.black:hover {
+    cursor: pointer;
+}
+
+.white.active {
+    background-color: #92928f;
+}
