@@ -1,1 +1,12 @@
+button {
+  width: 15px;
+  height: 15px;
+}
 
+label {
+  font-size: 20px;
+}
+
+.strum {
+  margin-top: -0.5em;
+}
