@@ -33,7 +33,7 @@ export default class GuitarString extends LightningElement {
     }
 
     strum() {
-        let noteToPlay = parseInt(this.openString) + parseInt(this.currentFret);
+        let noteToPlay = [parseInt(this.openString) + parseInt(this.currentFret), this.stringNumber];
         this.dispatchEvent(new CustomEvent('playguitarnote', {detail: noteToPlay, bubbles: true, composed: true}));
         console.log('strumming' + noteToPlay);
     }

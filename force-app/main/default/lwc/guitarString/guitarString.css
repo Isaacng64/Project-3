@@ -1,8 +1,12 @@
 button {
-  width: 39px;
-  height: 39px;
+  width: 15px;
+  height: 15px;
 }
 
 label {
-  font-size: 39px;
+  font-size: 20px;
+}
+
+.strum {
+  margin-top: -0.5em;
 }

@@ -5,8 +5,7 @@ export default class GuitarInstrument extends LightningElement {
     currentFret;
     stringNumber;
 
-    tuning = [1, 2, 3, 4, 5, 6];
-    //1 is high E & 6 is low E
+    tuning = ['E2', 'A2', 'D3', 'G3', 'B3', 'E4'];
 
     currentFretAndString(event){
         let result = event.detail;
