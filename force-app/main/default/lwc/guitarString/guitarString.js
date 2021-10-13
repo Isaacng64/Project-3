@@ -1,4 +1,5 @@
 import { LightningElement, api } from 'lwc';
+import strumImage from '@salesforce/resourceUrl/strum'
 
 export default class GuitarString extends LightningElement {
 
@@ -6,6 +7,7 @@ export default class GuitarString extends LightningElement {
 
     currentFret;
     @api stringNumber;
+    @api strumImg = strumImage + '.png';
 
     setCurrentFret(event){
         this.currentFret = event.target.value;
