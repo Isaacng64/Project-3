@@ -3,8 +3,7 @@
     <ul class="slds-list_horizontal">
         <template for:each={frets} for:item="fret">
             <li key={fret}>
-                <c-guitar-fret current-fret={fret} onclick={setCurrentFret}></c-guitar-fret>
-                <!-- <lightning-button label="" value={fret} onclick={setCurrentFret}></lightning-button> -->
+                <c-guitar-fret onpassfret={setFretInString} current-fret={fret}></c-guitar-fret>
             </li>
         </template>
     </ul>
