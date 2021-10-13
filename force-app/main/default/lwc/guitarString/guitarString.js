@@ -5,13 +5,37 @@ export default class GuitarString extends LightningElement {
 
     frets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 
-    currentFret;
+    currentFret = 0;
+    openString = 0;
     @api stringNumber;
     @api strumImg = strumImage + '.png';
 
     setFretInString(event){
-        this.currentFret = event.detail;
+        if (this.currentFret = event.detail) {
+            this.currentFret = 0;
+        } else {
+            this.currentFret = event.detail;
+        }
         this.dispatchEvent(new CustomEvent('passcurrentfret', {detail: [this.currentFret, this.stringNumber]}));
+    }
+
+    @api
+    setOpenString(num) {
+        this.openString = num;
+    }
+
+    tuneUp() {
+        this.setOpenString(parseInt(this.openString) + 1);
+    }
+
+    tuneDown() {
+        this.setOpenString(parseInt(this.openString) + 1);
+    }
+
+    strum() {
+        let noteToPlay = parseInt(this.openString) + parseInt(this.currentFret);
+        this.dispatchEvent(new CustomEvent('playGuitarNote', {detail: noteToPlay, bubbles: true, composed: true}));
+        console.log('strumming' + noteToPlay);
     }
 
 }

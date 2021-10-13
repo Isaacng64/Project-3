@@ -1,13 +1,16 @@
 <template>
     <div>
     <ul class="slds-list_horizontal">
+        <lightning-button label='-' onclick={tuneDown} ></lightning-button>
+        <label>{openString}</label>
+        <lightning-button label='+' onclick={tuneUp} ></lightning-button>
         <template for:each={frets} for:item="fret">
             <li key={fret}>
                 <c-guitar-fret onpassfret={setFretInString} current-fret={fret}></c-guitar-fret>
             </li>
         </template>
             <li>
-                <img src={strumImg}>
+                <img src={strumImg} onclick={strum} onmouseover={strum}>
             </li>
     </ul>
     </div>
