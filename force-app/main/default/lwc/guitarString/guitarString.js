@@ -9,8 +9,8 @@ export default class GuitarString extends LightningElement {
     @api stringNumber;
     @api strumImg = strumImage + '.png';
 
-    setCurrentFret(event){
-        this.currentFret = event.target.value;
+    setFretInString(event){
+        this.currentFret = event.detail;
         this.dispatchEvent(new CustomEvent('passcurrentfret', {detail: [this.currentFret, this.stringNumber]}));
     }
 

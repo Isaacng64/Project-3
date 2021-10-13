@@ -7,5 +7,7 @@ export default class GuitarFret extends LightningElement {
   @api currentFret;
 
   //append .highlighted class to fret div when clicked
-
+  setFret(){
+    this.dispatchEvent(new CustomEvent('passfret', {detail: this.currentFret}));
+  }
 }
