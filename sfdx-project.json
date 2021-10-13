@@ -2,14 +2,14 @@
     "packageDirectories": [
         {
             "path": "force-app",
-            "default": true
+            "default": false
         },
         {
             "path": "AudioPlayerPack",
             "package": "AudioPlayerPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": false
+            "default": true
         }
     ],
     "name": "p3",

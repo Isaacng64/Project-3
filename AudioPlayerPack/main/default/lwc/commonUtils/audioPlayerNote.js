@@ -7,7 +7,7 @@ import { sharp2flat, offset2note, stdNote2components } from './musicHelper';
  * notably by providing the offset to a base integer suitable for thinking about frets on a guitar.
  */
 
-export default class AudioPlayerNote{
+export class AudioPlayerNote{
 
     name;
     octave;
