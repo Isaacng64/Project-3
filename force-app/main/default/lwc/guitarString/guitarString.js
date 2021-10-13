@@ -1,5 +1,5 @@
 import { LightningElement, api } from 'lwc';
-import strumImage from '@salesforce/resourceUrl/strum'
+import strumImage from '@salesforce/resourceUrl/strum';
 
 export default class GuitarString extends LightningElement {
 
