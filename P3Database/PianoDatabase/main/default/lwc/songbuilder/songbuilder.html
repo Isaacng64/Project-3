@@ -1,0 +1,110 @@
+<template>
+	<div id="builder" style="height: 500px; width: 1018px; background: #ffffff; margin: auto;">
+		<lightning-button-group class="slds-float_left">
+			<lightning-button label="Octave +" onclick={addOctave}></lightning-button>
+			<lightning-button label="Octave -" onclick={subOctave}></lightning-button>
+		</lightning-button-group>
+		<lightning-button-group class="slds-float_right">
+			<lightning-button label="Add Measure" onclick={addNewMeasure}></lightning-button>
+			<lightning-button label="Remove Measure" onclick={removeMeasure}></lightning-button>
+		</lightning-button-group>
+		<lightning-button-group class="slds-align_absolute-center">
+			<lightning-button label="Save Song" onclick={saveSong}></lightning-button>
+		</lightning-button-group>
+
+		<div style="height: 64px;"></div>
+		<div style="width: 100%; display: table;">
+			<div style="display: table-row; width: 100%;">
+				<div style="width: 1.5%; display: table-cell;">
+					<table class="piano">
+						<tr class="roll">
+							<td class="keys cCell">C4</td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys cCell">C3</td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys cCell">C2</td>
+						</tr>
+					</table>
+				</div>
+				<div  class="scroll" style="width: 1000px; height: 420px;">
+				<div style="display: table-cell;">
+					<lightning-layout multiple-rows="false">			
+						<template for:each={dataForDynamicComponentCreation} for:item="item">
+							<c-songbuildermeasure key={item.requiredKey} measure-id={item.measureid} curr-octave={octave}>
+							</c-songbuildermeasure>
+						</template>
+					</lightning-layout>	
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</template>

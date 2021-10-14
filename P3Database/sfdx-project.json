@@ -1,0 +1,19 @@
+{
+    "packageDirectories": [
+        {
+            "path": "PianoDatabase",
+            "package": "PianoDatabase",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true
+        }
+    ],
+    "name": "P3Database",
+    "namespace": "",
+    "sfdcLoginUrl": "https://creative-hawk-s8bdnr-dev-ed.my.salesforce.com/",
+    "sourceApiVersion": "52.0",
+    "packageAliases": {
+        "PianoDatabase": "0Ho5f000000k9nBCAQ",
+        "PianoDatabase@0.1.0-1": "04t5f000000UlpgAAC"
+    }
+}
