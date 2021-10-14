@@ -34,6 +34,7 @@ export default class Metronome extends LightningElement {
                 this.metroCounter = 1;
             }
 
+            this.template.querySelector('c-beat-pattern-ui').highlightBeat(this.metroCounter - 1);
             this.currentVolume = this.template.querySelector('c-beat-pattern-ui').getTempList()[this.metroCounter - 1];
             if (this.muted) {
                 this.currentVolume = 0;
@@ -73,11 +74,15 @@ export default class Metronome extends LightningElement {
     }
 
     moreBeats(){
-        this.editBeats(this.counterMax + 1);
+        if (this.counterMax < 8) {
+            this.editBeats(this.counterMax + 1);
+        }
     }
     
     lessBeats(){
-        this.editBeats(this.counterMax - 1);
+        if (this.counterMax > 0) {
+            this.editBeats(this.counterMax - 1);
+        }
     }
 
     editBeats(num) {

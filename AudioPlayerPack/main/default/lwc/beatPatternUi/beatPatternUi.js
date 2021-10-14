@@ -54,7 +54,7 @@ export default class BeatPatternUi extends LightningElement {
         let current = parseInt(this.currentPage) * 4 + parseInt(event.target.dataset.item);
         this.volumesList[current] += 0.25;
         if (this.volumesList[current] > 1) {
-            this.volumesList[current] = 1;
+            this.volumesList[current] = 0;
         }
 
         this.changeUpdateEvent();
@@ -106,5 +106,10 @@ export default class BeatPatternUi extends LightningElement {
 
     get totalPages() {
         return Math.ceil(this.volumesList.length/4);
+    }
+
+    @api
+    highlightBeat(num) {
+        //this.volumesList[num] = 0.1;
     }
 }
