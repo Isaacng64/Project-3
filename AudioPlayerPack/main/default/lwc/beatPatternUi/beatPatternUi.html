@@ -1,8 +1,8 @@
 <template>
-    <div class="slds-grid slds-grid_align-space" style="width: 100%">
+    <div class="slds-grid slds-grid_align-space">
         <template for:each={volumesList} for:item="instance" for:index="indexNum" key={index} >
-            <div key={index} class="slds-col" data-item={indexNum} onclick={clickVolumeOuter} style="border-radius: 50%; background: #9FB78F; width: 50px; height: 50px;">
-                <div data-item={indexNum} style="border-radius: 50%; background: #362C28; width: 12.5px; height: 12.5px; margin: 18.75px;"></div>
+            <div key={index} class="slds-col outer" data-item={indexNum} onclick={clickVolumeHandler}>
+                <div data-item={indexNum} class="inner"></div>
             </div>
         </template>
     </div>

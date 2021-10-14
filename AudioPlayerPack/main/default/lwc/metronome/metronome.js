@@ -67,10 +67,6 @@ export default class Metronome extends LightningElement {
         }
     }
 
-    counterMaxUpdate() {
-        editBeats(event.target.value);
-    }
-
     bpm2ms(bpm){
         // beats per minute (which is a frequency) converted to a period in milliseconds (T = 1 / f)
         return 1000.0 * 60.0/bpm;
@@ -129,6 +125,5 @@ export default class Metronome extends LightningElement {
 
     stopMetronome() {
         this.active = false;
-        //this.metroCounter = 0;
     }
 }

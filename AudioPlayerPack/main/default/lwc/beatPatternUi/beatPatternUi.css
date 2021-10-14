@@ -1,0 +1,22 @@
+.outer {
+    border-radius: 50%;
+    background: #9FB78F;
+    width: 50px;
+    height: 50px;
+}
+
+.inner {
+    border-radius: 50%; 
+    background: #362C28;
+    width: 12.5px;
+    height: 12.5px;
+    margin: 18.75px;
+}
+
+.highlighted {
+    background: #D4FCC3;
+}
+
+.unhighlighted {
+    background: #362C28;
+}

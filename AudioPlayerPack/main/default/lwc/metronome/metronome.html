@@ -1,6 +1,6 @@
 <template>
-    <div style="width: 500px; border-style: solid; border-color: #362C28; background: #6B715C; padding: 10px;" >
-        <div class="slds-grid slds-grid_align-spread" style="width: 100%;">
+    <div class="outer">
+        <div class="slds-grid slds-grid_align-spread">
             <div class="slds-col">
                 <lightning-button onclick={start} label="Start"></lightning-button>
                 <lightning-button onclick={stopMetronome} label="Stop"></lightning-button>
@@ -8,24 +8,25 @@
             </div>
             
             <div class="slds-col">
-                <label style="color: #F0E478">BPM: {bpm} </label>
+                <label>BPM: {bpm} </label>
                 <lightning-button onclick={slower10} label="--"></lightning-button>
                 <lightning-button onclick={slower} label="-"></lightning-button>
                 <lightning-button onclick={faster} label="+"></lightning-button>
                 <lightning-button onclick={faster10} label="++"></lightning-button>
             </div>
-        </div>
-       
+        </div>  
         <br />
-        <div style="width:100%" >
+
+        <div>
             <c-beat-pattern-ui></c-beat-pattern-ui>
         </div>
         <br />
-        <div class="slds-grid slds-grid_align-space" style="width: 100%">
+        
+        <div class="slds-grid slds-grid_align-space">
             <div>
                 <template if:false={counterMaxLocked} >
                     <lightning-button onclick={lessBeats} label="-"></lightning-button>
-                    <label style="color: #F0E478"> Beats: {counterMax} </label>
+                    <label> Beats: {counterMax} </label>
                     <lightning-button onclick={moreBeats} label="+"></lightning-button>
                 </template>
             </div>
