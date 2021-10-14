@@ -13,7 +13,8 @@ export default class Metronome extends LightningElement {
 
     metroCounter = 1;
     counterMax = 4;
-    counterMaxUnlocked = true;
+    @api
+    counterMaxLocked = false;
     currentSubBeat = 0;
     
     active = false;
@@ -108,7 +109,7 @@ export default class Metronome extends LightningElement {
     }
 
     editBeats(num) {
-        if (this.counterMaxUnlocked) {
+        if (!this.counterMaxLocked) {
             this.counterMax = num;
             this.template.querySelector('c-beat-pattern-ui').setBeatsTotal(this.counterMax);
         }
@@ -129,11 +130,5 @@ export default class Metronome extends LightningElement {
     stopMetronome() {
         this.active = false;
         //this.metroCounter = 0;
-    }
-    
-    @api
-    lockCounterMax() {
-        this.editBeats(4);
-        this.counterMaxUnlocked = false;
     }
 }

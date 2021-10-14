@@ -1,30 +1,34 @@
 <template>
-    <div style="width: 100%" >
-        <div>
-            <label>BPM: {bpm}</label>
+    <div style="width: 500px; border-style: solid; border-color: #362C28; background: #6B715C; padding: 10px;" >
+        <div class="slds-grid slds-grid_align-spread" style="width: 100%;">
+            <div class="slds-col">
+                <lightning-button onclick={start} label="Start"></lightning-button>
+                <lightning-button onclick={stopMetronome} label="Stop"></lightning-button>
+                <lightning-button onclick={toggleMute} label={mutedString}></lightning-button>
+            </div>
+            
+            <div class="slds-col">
+                <label style="color: #F0E478">BPM: {bpm} </label>
                 <lightning-button onclick={slower10} label="--"></lightning-button>
                 <lightning-button onclick={slower} label="-"></lightning-button>
-                {currentSubBeat}
                 <lightning-button onclick={faster} label="+"></lightning-button>
                 <lightning-button onclick={faster10} label="++"></lightning-button>
-
-                
-                <label>Beat: {metroCounter} of {counterMax} </label>
-                <!--br /-->
-                <template if:true={counterMaxUnlocked} >
+            </div>
+        </div>
+       
+        <br />
+        <div style="width:100%" >
+            <c-beat-pattern-ui></c-beat-pattern-ui>
+        </div>
+        <br />
+        <div class="slds-grid slds-grid_align-space" style="width: 100%">
+            <div>
+                <template if:false={counterMaxLocked} >
                     <lightning-button onclick={lessBeats} label="-"></lightning-button>
+                    <label style="color: #F0E478"> Beats: {counterMax} </label>
                     <lightning-button onclick={moreBeats} label="+"></lightning-button>
                 </template>
-
-            <lightning-button onclick={start} label="Start"></lightning-button>
-            <lightning-button onclick={stopMetronome} label="Stop"></lightning-button>
-            <lightning-button onclick={toggleMute} label={mutedString}></lightning-button>
-            <lightning-button onclick={lockCounterMax} label="lock"></lightning-button>
+            </div>
         </div>
-    <div style="float: left; " >
-        <c-beat-pattern-ui></c-beat-pattern-ui>
-        <br /><br /><br />
     </div>
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-</div>
 </template>
