@@ -75,6 +75,22 @@ describe("c-beat-pattern-ui", () => {
     expect(element.getTempList()).toStrictEqual([]);
   });
 
+  it("setBeatsTotal Negative Input Test", () => {
+    const element = createElement("c-beat-pattern-ui", {
+      is: BeatPatternUi
+    });
+    document.body.appendChild(element);
+
+    let listVar = [0.25, 0.25, 0.25, 0.25];
+    expect(element.getTempList()).toEqual(listVar);
+    element.setBeatsTotal(-1);
+
+    expect(element.getBeatsTotal()).toBe(-1);
+    expect(element.getTempList().length).toBe(0);
+
+    expect(element.getTempList()).toStrictEqual([]);
+  });
+
   it("clickVolumeHandler Test", () => {
     const element = createElement("c-beat-pattern-ui", {
       is: BeatPatternUi
@@ -156,22 +172,45 @@ describe("c-beat-pattern-ui", () => {
     expect(element.getBeatsTotal()).toBe(8);
     expect(element.getTempList().length).toBe(8);
 
-    let divsList = element.shadowRoot.querySelectorAll("div");
-    expect(divsList.length).toBe(17);
-    expect(divsList[2].className).toBe("inner unhighlighted");
+    return Promise.resolve().then(() => {
+      let divsList = element.shadowRoot.querySelectorAll("div");
+      expect(divsList.length).toBe(17);
+      expect(divsList[2].className).toBe("inner unhighlighted");
 
-    element.highlightBeat(0);
+      element.highlightBeat(0);
 
-    expect(divsList[2].className).toBe("inner highlighted");
+      expect(divsList[2].className).toBe("inner highlighted");
 
-    element.highlightBeat(1);
+      element.highlightBeat(7);
 
-    expect(divsList[2].className).toBe("inner unhighlighted");
-    expect(divsList[4].className).toBe("inner highlighted");
+      expect(divsList[2].className).toBe("inner unhighlighted");
+      expect(divsList[16].className).toBe("inner highlighted");
+    });
+  });
 
-    element.highlightBeat(8);
+  it("highlightBeat Unrealistic Bulk Test", () => {
+    const element = createElement("c-beat-pattern-ui", {
+      is: BeatPatternUi
+    });
+    document.body.appendChild(element);
 
-    expect(divsList[4].className).toBe("inner unhighlighted");
-    expect(divsList[16].className).toBe("inner highlighted");
+    element.setBeatsTotal(1000);
+    expect(element.getBeatsTotal()).toBe(1000);
+    expect(element.getTempList().length).toBe(1000);
+
+    return Promise.resolve().then(() => {
+      let divsList = element.shadowRoot.querySelectorAll("div");
+      expect(divsList.length).toBe(2001);
+      expect(divsList[2].className).toBe("inner unhighlighted");
+
+      element.highlightBeat(0);
+
+      expect(divsList[2].className).toBe("inner highlighted");
+
+      element.highlightBeat(999);
+
+      expect(divsList[2].className).toBe("inner unhighlighted");
+      expect(divsList[2000].className).toBe("inner highlighted");
+    });
   });
 });
