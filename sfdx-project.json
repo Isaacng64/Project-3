@@ -1,21 +1,21 @@
 {
-    "packageDirectories": [
-        {
-            "path": "AudioPlayerPack",
-            "package": "AudioPlayerPackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": true
-        }
-    ],
-    "name": "p3",
-    "namespace": "",
-    "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "51.0",
-    "packageAliases": {
-        "AudioPlayerPackage": "0Ho5f000000TN3BCAW",
-        "AudioPlayerPackage@0.1.0-1": "04t5f000000dBEuAAM",
-        "AudioPlayerPackage@0.1.0-2": "04t5f000000dBJ7AAM",
-        "AudioPlayerPackage@0.1.0-3": "04t5f000000dHbaAAE"
+  "packageDirectories": [
+    {
+      "path": "AudioPlayerPack",
+      "package": "AudioPlayerPackage",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "default": true
     }
+  ],
+  "name": "p3",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "51.0",
+  "packageAliases": {
+    "AudioPlayerPackage": "0Ho5f000000TN3BCAW",
+    "AudioPlayerPackage@0.1.0-1": "04t5f000000dBEuAAM",
+    "AudioPlayerPackage@0.1.0-2": "04t5f000000dBJ7AAM",
+    "AudioPlayerPackage@0.1.0-3": "04t5f000000dHbaAAE"
+  }
 }
