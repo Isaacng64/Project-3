@@ -42,7 +42,7 @@ export default class GuitarFret extends LightningElement {
     } else if(this.currentString == 'E4' && this.pressed==true){
       this.fretImg = this.pressedFretImg6;
     } else if(this.pressed == false){
-      this.fretImg = fretImage + '.png';
+      this.fretImg = fretImage;
     }
   }
 
