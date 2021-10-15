@@ -6,6 +6,8 @@ import metronome from '@salesforce/resourceUrl/metronomesound';
 
 import { AudioPlayerNote } from 'c/commonUtils';
 
+export * from './tonePlayer';
+
 export default class AudioPlayer extends LightningElement {
 
     /* 

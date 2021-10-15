@@ -2,7 +2,7 @@ import { LightningElement } from 'lwc';
 
 /* 'Harmonics Explorer' I should have called it, meant to explore making an instrument sound out of component frequencies */
 
-import { GuitarTonePlayer, TonePlayer } from '../audioPlayer/tonePlayer';
+import { GuitarTonePlayer, TonePlayer } from 'c/audioPlayer';
 
 export default class FrequencyExplorer extends LightningElement {
 
