@@ -97,11 +97,11 @@ function stdNote2components(stdNote){
         let name;
         let octave;
         if(stdNote.length == 3){
-            octave = opts.stdNote.charAt(2);
-            name = opts.stdNote.charAt(0) + opts.stdNote.charAt(1);
+            octave = stdNote.charAt(2);
+            name = stdNote.charAt(0) + stdNote.charAt(1);
         }else{
-            octave = opts.stdNote.charAt(1);
-            name = opts.stdNote.charAt(0);
+            octave = stdNote.charAt(1);
+            name = stdNote.charAt(0);
         }
 
         return {name: name, octave: octave};

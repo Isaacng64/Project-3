@@ -1,10 +1,6 @@
 {
     "packageDirectories": [
         {
-            "path": "force-app",
-            "default": false
-        },
-        {
             "path": "AudioPlayerPack",
             "package": "AudioPlayerPackage",
             "versionName": "ver 0.1",

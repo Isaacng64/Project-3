@@ -21,8 +21,6 @@ export default class Soundboard extends LightningElement {
 
     autoPlayHandle(event){
         this.nextNotes.push(event.detail);
-        
-        //this.template.querySelector("c-audio-player").playPiano(note); // note is object
     }
 
 }
