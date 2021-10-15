@@ -14,7 +14,7 @@ export default class AudioPlayer extends LightningElement {
    * A second set of notes which you can use to play instruments with on top of auto strummer is the clientNotesManual object.
    */
   clientNotesAuto = {};
-  clientNotesManual = {};
+  clientNotesManual = {}; /* just note that this isn't really used anywhere yet, not removing it though */
   metronomePlayer;
 
   volume = 0.5;
@@ -29,7 +29,7 @@ export default class AudioPlayer extends LightningElement {
     this.metronomePlayer = new Audio(metronome);
 
     console.log(this.clientNotesAuto);
-    console.log(this.clientNotesManual);
+    //console.log(this.clientNotesManual);
   }
 
   /* Thinking ahead you may optionally take params for duration and volume IN HERE separate from note construction which is just THE NOTE */
@@ -41,13 +41,32 @@ export default class AudioPlayer extends LightningElement {
   @api
   playPiano(playerNote) {
       if(playerNote.valid){
-          this.clientNotesAuto["piano"][playerNote.octave][playerNote.name].play(); // can specify duration in player.play() function!
-          this.clientNotesAuto["piano"][playerNote.octave][playerNote.name].setVolume(this.volume);
+
+        let player_reference = this.clientNotesAuto["piano"][playerNote.octave][playerNote.name];
+        player_reference.play(); // can specify duration in player.play() function!
+        player_reference.setVolume(this.volume);
+        this.currentlyPlaying.push(player_reference);
       }else{
           throw "no valid note to play!";
       }
+  }
 
-      this.currentlyPlaying.push(this.clientNotesAuto["piano"][playerNote.octave][playerNote.name]);
+  @api
+  playGuitar(string_name, fret){
+    if(string_name != null && fret != null){
+      let index = Number(fret);
+      let string = String(string_name);
+
+      let player_reference = this.clientNotesAuto["guitar"][string][index];
+
+      player_reference.play();
+      player_reference.setVolume(this.volume);
+
+      this.currentlyPlaying.push(player_reference);
+    }
+    else{
+      throw "no valid note to play!";
+    }
   }
 
   @api
@@ -63,10 +82,13 @@ export default class AudioPlayer extends LightningElement {
       }
       this.autoPlaying = [];
 
+      
       for(let i = 0; i < autoNotes.length; i++){
           this.playPiano(autoNotes[i]);
           this.autoPlaying.push(this.clientNotesAuto["piano"][autoNotes[i].octave][autoNotes[i].name]);
       }
+
+      //this.playGuitar("A", 5);
   }
 
   changeVolume(event){
