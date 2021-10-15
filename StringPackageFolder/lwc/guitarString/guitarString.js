@@ -9,7 +9,7 @@ export default class GuitarString extends LightningElement {
     currentFret = 0;
     openString = 0;
     @api stringNumber;
-    @api strumImg = strumImage + '.png';
+    @api strumImg = strumImage;
 
     setFretInString(event){
         if (this.currentFret = event.detail) {

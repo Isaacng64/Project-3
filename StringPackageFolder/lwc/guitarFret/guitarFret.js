@@ -3,7 +3,7 @@ import fretImage from '@salesforce/resourceUrl/fret';
 
 export default class GuitarFret extends LightningElement {
 
-  @api fretImg = fretImage + '.png';
+  @api fretImg = fretImage;
   @api currentFret;
 
   //append .highlighted class to fret div when clicked
