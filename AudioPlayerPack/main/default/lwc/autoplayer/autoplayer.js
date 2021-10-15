@@ -1,6 +1,8 @@
 import { api, LightningElement } from 'lwc';
 
 import { AudioPlayerNote } from 'c/commonUtils';
+import { musicHelper } from 'c/commonUtils';
+import SystemModstamp from '@salesforce/schema/Account.SystemModstamp';
 
 export default class Autoplayer extends LightningElement {
 
@@ -42,7 +44,7 @@ export default class Autoplayer extends LightningElement {
     programmedStrumming(){
         this.dispatchEvent(new CustomEvent('autoplay', 
         {detail: 
-            new AudioPlayerNote(0, this.strumPattern[this.chordCount], 1) // with clear true, it clears all notes which were already playing instead of leaving them resonating in the background
+            new AudioPlayerNote(0, this.strumPattern[this.chordCount], 1)
         }));
 
         this.dispatchEvent(new CustomEvent('autoplay', 
@@ -61,5 +63,33 @@ export default class Autoplayer extends LightningElement {
             this.chordCount = 0;
         }
     }
+    /* This function plays a note when provided a note in string or integer formatting*/
+    handleNote(note){
+        /* Determines if the parameter is an integer, an array of integers (a chord), or a string and handles accordingly */
+        if(note instanceof String){
+            this.handleNoteHelper(note);
+        } else if (Array.isArray(note)){
+            for (i = 0; i < note.length; i++){
+                this.handleNoteHelper(musicHelper.index2note2(note[i]));
+            }
+        } else if (note instanceof int){
+            this.handleNoteHelper(musicHelper.index2note2(note));
+        }
+    }
+    /* handles a note after it has been converted to string + octave formatting */
+    handleNoteHelper(note){
+        if (!(note.length === 3)){
+            log("Attempted to pass an invalid note into the autostrummer. Notes should consist of a 2-char note and an octave if formatted as a string.");
+            return;
+        }
+        noteStr = note.substr(0, 2);
+        octave = parseInt(note.substr(2, 1));
+        this.dispatchEvent(new CustomEvent('autoplay', 
+        {detail: 
+            new AudioPlayerNote(octave, noteStr, 0)
+        }));
+    }
+
+
 
 }
