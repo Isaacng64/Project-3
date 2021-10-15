@@ -74,6 +74,8 @@ export default class Autoplayer extends LightningElement {
             }
         } else if (note instanceof int){
             this.handleNoteHelper(musicHelper.index2note2(note));
+        } else {
+            log("handleNote was passed an invalid note. Therefore, the autostrummer did not play any sound.");
         }
     }
     /* handles a note after it has been converted to string + octave formatting */
@@ -90,6 +92,52 @@ export default class Autoplayer extends LightningElement {
         }));
     }
 
+
+
+
+
+    /* below this point is logic for displaying chords that are being played on instruments */
+    
+    displayChordOnIntrument(chord) {
+
+        //chord[] is integer array for note index in chord
+        let currentString = 0
+        let strings = [16, 21, 26, 31, 35, 40]; //guitar defaults, could take an input for other instruments
+    
+        for (let i = 0; i < chord.length; i++)  {
+            currentString = checkStrings(strings, currentString, chord[i]);
+            if (currentString == null) {
+                //ran out of strings
+                break;
+            }
+        }
+    }
+    
+    
+    checkStrings(strings, currentString, currentNote) {
+        //returns string number to start with for the next note
+    
+            if (currentNote < strings[currentString]) {
+            //note is too low to be displayed
+            return currentString; //start with same string again
+        } else if (currentNote < strings[currentString] + 5) {
+            displayHeldFret(currentString, currentNote - strings[currentString]);
+                    currentString++; //string is being used, start with next
+                    return currentString;
+        } else {
+            //string is too low, try next
+            currentString++;
+            if (currentString < strings.length) {
+                //check next string
+                return checkStrings(strings, currentString, currentNote);
+            }
+            return null; //no strings left
+        }
+    }
+    
+    displayHeldFret(stringNum, fretNum) {
+        //call instruments function to set current fret here
+    }
 
 
 }
