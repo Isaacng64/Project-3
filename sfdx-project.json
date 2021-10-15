@@ -18,7 +18,7 @@
     ],
     "name": "Project 3 Package Dev",
     "namespace": "",
-    "sfdcLoginUrl": "https://resourceful-wolf-eqov8-dev-ed.my.salesforce.com/",
+    "sfdcLoginUrl": "https://resourceful-goat-wlkq7t-dev-ed.my.salesforce.com/",
     "sourceApiVersion": "52.0",
     "packageAliases": {
         "StringInstrumentPackage": "0Ho5f000000CahrCAC",

@@ -11,8 +11,5 @@ export default class GuitarInstrument extends LightningElement {
         let result = event.detail;
         this.currentFret = result[0];
         this.stringNumber = result[1];
-        console.log(result);
-        //area to display strumming configuration
-        //additional strumming component with onhover 
     }
 }
