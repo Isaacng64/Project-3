@@ -48,11 +48,10 @@ export default class AudioPlayer extends LightningElement {
         this.metronomePlayer.play();
 
 
-        for(let i = 0; i < this.currentlyPlaying.length; i++){
-
+        for(let i = 0; i < this.autoPlaying.length; i++){
             this.autoPlaying[i].stop();
-
         }
+        this.autoPlaying = [];
 
         for(let i = 0; i < autoNotes.length; i++){
             this.playPiano(autoNotes[i]);
@@ -64,6 +63,7 @@ export default class AudioPlayer extends LightningElement {
 
         if(playerNote.valid){
             this.clientNotesAuto[instrument][playerNote.octave][playerNote.name].play(); // can specify duration in player.play() function!
+            this.clientNotesAuto[instrument][playerNote.octave][playerNote.name].setVolume(this.volume);
         }else{
             throw "no valid note to play!";
         }
@@ -73,6 +73,9 @@ export default class AudioPlayer extends LightningElement {
 
     changeVolume(event){
         this.volume = event.target.value;
+        for(let i = 0; i < this.currentlyPlaying.length; i++){
+            this.currentlyPlaying[i].setVolume(this.volume);
+        }
     }
 
 }

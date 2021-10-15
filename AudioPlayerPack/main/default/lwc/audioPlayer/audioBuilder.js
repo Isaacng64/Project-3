@@ -46,6 +46,10 @@ class PlayerWrapper{
         }
     }
 
+    setVolume(vol){
+        this.player.volume = vol;
+    }
+
 }
 
 
