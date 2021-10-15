@@ -3,17 +3,30 @@
 	<template if:true={guitarActive}>
 		<!-- Div holding the image carousel-->
 		<div class="carousel-holder">
-			<template iterator:it={guitarChords}>
-				<section key={it.value.index} style="display:inline;">
-					<div class="image-things">
-						<div class="let-it-end">
-							<img src={it.value.image} alt={it.value.name} width="200" height="200" onmouseover={handleMO}>
-						</div>
-					</div>
-				</section>
-			</template>
+			<table class="carousel-holder" style="width: 5000px;">
+				<template iterator:it={guitarChords}>
+					<td key={it.value.index}>
+						<section style="display:inline;">
+							<div class="image-things">
+								<div class="let-it-end">
+									<img src={it.value.image} alt={it.value.name} width="200" height="200" onclick={handleBlurb}>
+								</div>
+							</div>
+						</section>
+					</td>
+				</template>
+			</table>
 		</div>
 		<!-- End of images carousel-->
+
+		<!-- Div holding the extra information about the chords -->
+		<div class="buttons" style="height: 45px;">
+			<template if:true={showTheThing}>
+				<p>This chord is in the {chordInfo} key, and is in the {keyPositionInfo} position of that key!</p>
+				<p>Other chords in this key include: {otherChordsSameKey}! </p>
+			</template>
+		</div>
+		<!-- End of div holding extra info -->
 
 		<!-- Divs for button style. The outer div centers the buttons and adds padding between them and the carousel, the inner div keeps them on the same line -->
 		<div class="buttons">
@@ -32,17 +45,30 @@
 	<template if:true={bassActive}>
 		<!-- Div holding the image carousel-->
 		<div class="carousel-holder">
+			<table class="carousel-holder" style="width: 5000px;">
 			<template iterator:it={bassChords}>
-				<section key={it.value.index} style="display:inline;">
-					<div class="image-things">
-						<div class="let-it-end">
-							<img src={it.value.image} alt={it.value.name} width="200" height="200" onmouseover={handleMO}>
+				<td key={it.value.index}>
+					<section style="display:inline;">
+						<div class="image-things">
+							<div class="let-it-end">
+								<img src={it.value.image} alt={it.value.name} width="200" height="200" onclick={handleBlurb}>
+							</div>
 						</div>
-					</div>
-				</section>
+					</section>
+				</td>
 			</template>
+		</table>
 		</div>
 		<!-- End of images carousel-->
+
+		<!-- Div holding the extra information about the chords -->
+		<div class="buttons" style="height: 45px;">
+			<template if:true={showTheThing}>
+				<p>This chord is in the {chordInfo} key, and is in the {keyPositionInfo} position of that key!</p>
+				<p>Other chords in this key include: {otherChordsSameKey}! </p>
+			</template>
+		</div>
+		<!-- End of div holding extra info -->
 
 		<!-- Divs for button style. The outer div centers the buttons and adds padding between them and the carousel, the inner div keeps them on the same line -->
 		<div class="buttons">
@@ -61,17 +87,30 @@
 	<template if:true={pianoActive}>
 		<!-- Div holding the image carousel-->
 		<div class="carousel-holder">
+			<table class="carousel-holder" style="width: 5000px;">
 			<template iterator:it={pianoChords}>
-				<section key={it.value.index} style="display:inline;">
-					<div class="image-things">
-						<div class="let-it-end">
-							<img src={it.value.image} alt={it.value.name} width="200" height="200" onmouseover={handleMO}>
+				<td key={it.value.index}>
+					<section style="display:inline;">
+						<div class="image-things">
+							<div class="let-it-end">
+								<img src={it.value.image} alt={it.value.name} width="200" height="200" onclick={handleBlurb}>
+							</div>
 						</div>
-					</div>
-				</section>
+					</section>
+				</td>
 			</template>
+		</table>
 		</div>
 		<!-- End of images carousel-->
+
+		<!-- Div holding the extra information about the chords -->
+		<div class="buttons" style="height: 45px;">
+			<template if:true={showTheThing}>
+				<p>This chord is in the {chordInfo} key, and is in the {keyPositionInfo} position of that key!</p>
+				<p>Other chords in this key include: {otherChordsSameKey}! </p>
+			</template>
+		</div>
+		<!-- End of div holding extra info -->
 
 		<!-- Divs for button style. The outer div centers the buttons and adds padding between them and the carousel, the inner div keeps them on the same line -->
 		<div class="buttons">
