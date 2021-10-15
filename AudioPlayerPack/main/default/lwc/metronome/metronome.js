@@ -8,10 +8,15 @@ export default class Metronome extends LightningElement {
     }
 
     intervalObj;
-    metroCounter = 1;
     bpm = 0;
     currentVolume = 0;
+
+    metroCounter = 1;
     counterMax = 4;
+    @api
+    counterMaxLocked = false;
+    currentSubBeat = 0;
+    
     active = false;
     muted = false;
     mutedString = 'Mute';
@@ -19,9 +24,27 @@ export default class Metronome extends LightningElement {
     setTempo(bpm){
         clearInterval(this.intervalObj);
 
-        this.intervalObj = setInterval(this.selfTick.bind(this), this.bpm2ms(bpm));
+        this.intervalObj = setInterval(this.subTick.bind(this), this.bpm2ms(bpm)/4);
 
         this.bpm = bpm; 
+    }
+
+    subTick() {
+        if (this.active == true) {
+            console.log('subtick ' + this.metroCounter);
+
+            this.currentSubBeat++;
+            if (this.currentSubBeat > 4){
+                this.currentSubBeat = 1;
+            }
+            if (this.currentSubBeat == 1){
+                this.selfTick();
+            }
+
+            let e = new CustomEvent('subtick');
+            this.dispatchEvent(e);
+
+        }
     }
 
     selfTick(){
@@ -34,6 +57,7 @@ export default class Metronome extends LightningElement {
                 this.metroCounter = 1;
             }
 
+            this.template.querySelector('c-beat-pattern-ui').highlightBeat(this.metroCounter - 1);
             this.currentVolume = this.template.querySelector('c-beat-pattern-ui').getTempList()[this.metroCounter - 1];
             if (this.muted) {
                 this.currentVolume = 0;
@@ -41,10 +65,6 @@ export default class Metronome extends LightningElement {
             let e = new CustomEvent('tick', {detail : this.currentVolume});
             this.dispatchEvent(e);
         }
-    }
-
-    counterMaxUpdate() {
-        editBeats(event.target.value);
     }
 
     bpm2ms(bpm){
@@ -73,16 +93,22 @@ export default class Metronome extends LightningElement {
     }
 
     moreBeats(){
-        this.editBeats(this.counterMax + 1);
+        if (this.counterMax < 8) {
+            this.editBeats(this.counterMax + 1);
+        }
     }
     
     lessBeats(){
-        this.editBeats(this.counterMax - 1);
+        if (this.counterMax > 0) {
+            this.editBeats(this.counterMax - 1);
+        }
     }
 
     editBeats(num) {
-        this.counterMax = num;
-        this.template.querySelector('c-beat-pattern-ui').setBeatsTotal(this.counterMax);
+        if (!this.counterMaxLocked) {
+            this.counterMax = num;
+            this.template.querySelector('c-beat-pattern-ui').setBeatsTotal(this.counterMax);
+        }
     }
 
     toggleMute() {
@@ -93,12 +119,11 @@ export default class Metronome extends LightningElement {
     start() {
         this.active = true;
         this.metroCounter = 0;
+        this.currentSubBeat = 0;
         this.setTempo(this.bpm);
     }
 
     stopMetronome() {
         this.active = false;
-        //this.metroCounter = 0;
     }
-    
 }

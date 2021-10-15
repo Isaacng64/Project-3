@@ -66,7 +66,16 @@ let notes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 
 function index2noteH(index){
 
-    return notes[(index % 12)]; // (index + BASE_INDEX_PIANO)
+    return notes[(index % 12)];
+
+}
+/* written for the autostrummer */
+function index2note2(index){
+
+    returnString = "";
+    returnString += notes[(index % 12)];
+    returnString += Math.floor(index/12);
+    return returnString;
 
 }
 
