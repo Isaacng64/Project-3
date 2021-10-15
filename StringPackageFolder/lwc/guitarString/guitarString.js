@@ -10,7 +10,7 @@ export default class GuitarString extends LightningElement {
     currentFret = 0;
     openString = 0;
     @api stringNumber;
-    @api strumImg = strumImage + '.png';
+    @api strumImg = strumImage;
 
     setFretInString(event){
         this.currentFret = event.detail;
@@ -33,7 +33,7 @@ export default class GuitarString extends LightningElement {
         for(let i = 0; i < fretComponents.length; i++){
             if(fretComponents[i].currentFret != target.currentFret){
                 fretComponents[i].pressed = false;
-                fretComponents[i].fretImg = fretImage + '.png';
+                fretComponents[i].fretImg = fretImage;
             }
         }
       }
