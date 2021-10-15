@@ -1,5 +1,5 @@
 <template>
-	<div id="builder" style="height: 500px; width: 1018px; background: #ffffff; margin: auto;">
+	<div id="builder" style="height: 675px; width: 1018px; background: #ffffff; margin: auto; position: relative;">
 		<lightning-button-group class="slds-float_left">
 			<lightning-button label="Octave +" onclick={addOctave}></lightning-button>
 			<lightning-button label="Octave -" onclick={subOctave}></lightning-button>
@@ -9,11 +9,46 @@
 			<lightning-button label="Remove Measure" onclick={removeMeasure}></lightning-button>
 		</lightning-button-group>
 		<lightning-button-group class="slds-align_absolute-center">
-			<lightning-button label="Save Song" onclick={saveSong}></lightning-button>
+			<lightning-button label="Play Song" onclick={startPlaying}></lightning-button>
+			<lightning-button label="Load Song" onclick={startLoading}></lightning-button>
+			<lightning-button label="Save Song" onclick={startSaving}></lightning-button>
+			<lightning-button label="New Song" onclick={newSong}></lightning-button>
 		</lightning-button-group>
-
-		<div style="height: 64px;"></div>
-		<div style="width: 100%; display: table;">
+		<template if:true={playing}>
+			<div style="z-index: -5; width: 50%; margin-right: auto; margin-left: auto; margin-top: 5px;"><c-audio-player></c-audio-player></div>
+			<div style="width: 300px; height: 100px; margin-right: auto; margin-left: auto; margin-top: 25px;">
+				<c-metronome onsubtick={handleTick}></c-metronome>
+			</div>
+		</template>
+		<template if:true={loading}>
+			<lightning-input class="slds-align_absolute-center inputBox" type="text" name="Loading" label="Enter a song name: " onchange={handleLoadInputChange}>
+			</lightning-input>
+			<lightning-button-group class="slds-align_absolute-center">
+				<lightning-button label="Enter" onclick={loadAllSongs} class="enterButton"></lightning-button>
+			</lightning-button-group>
+			<template if:true={listOfSongs.length}>
+				<div class="scrollh" style="width: 400px; height: 100px; margin-top: 15px; margin-left: auto; margin-right: auto; padding: 10px;">
+					<template for:each={listOfSongs} for:item="song">
+						<div key={song.songID} style="border-bottom: solid">
+							<p key={song.songName}><span style="font-size: 22px; vertical-align: center;"><b>{song.songName}</b></span>
+								<lightning-button-group class="slds-float_right">
+									<lightning-button name={song.songID} label="Load" onclick={loadSong}>
+									</lightning-button>
+								</lightning-button-group>
+							</p>
+						</div>
+					</template>
+				</div>
+			</template>
+		</template>
+		<template if:true={saving}>
+			<lightning-input class="slds-align_absolute-center inputBox" type="text" name="Saving" label="Enter a song name: " onchange={handleSaveInputChange}>
+			</lightning-input>
+			<lightning-button-group class="slds-align_absolute-center">
+				<lightning-button label="Enter" onclick={saveSong} class="enterButton"></lightning-button>
+			</lightning-button-group>
+		</template>
+		<div style="width: 100%; display: table; position: absolute; bottom: 0; left: 0;">
 			<div style="display: table-row; width: 100%;">
 				<div style="width: 1.5%; display: table-cell;">
 					<table class="piano">
@@ -96,12 +131,12 @@
 				</div>
 				<div  class="scroll" style="width: 1000px; height: 420px;">
 				<div style="display: table-cell;">
-					<lightning-layout multiple-rows="false">			
+					<lightning-layout multiple-rows="false">
 						<template for:each={dataForDynamicComponentCreation} for:item="item">
-							<c-songbuildermeasure key={item.requiredKey} measure-id={item.measureid} curr-octave={octave}>
+							<c-songbuildermeasure key={item.requiredKey} measure-id={item.measureid} song-id={songId} curr-octave={octave} loaded-notes={item.LoadedNotes}>
 							</c-songbuildermeasure>
 						</template>
-					</lightning-layout>	
+					</lightning-layout>
 				</div>
 			</div>
 			</div>

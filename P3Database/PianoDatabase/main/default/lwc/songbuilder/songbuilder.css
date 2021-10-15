@@ -27,7 +27,31 @@
     overflow-y: hidden;
 }
 
+.scrollh {
+  height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: solid;
+}
+
 .slds-wrap {
   flex-wrap: nowrap;
   align-items: flex-start;
+}
+
+.inputBox {
+  width: 400px;
+  text-align: center;
+}
+
+.noPadding {
+  padding: 0;
+}
+
+.enterButton {
+  margin-top: 10px;
+}
+
+.behind {
+  z-index: -1;
 }

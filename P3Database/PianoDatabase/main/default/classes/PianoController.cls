@@ -64,6 +64,20 @@ public class PianoController {
         Update toRename;
     }
     /**
+     * This method returns all songs and IDs, given the song name.
+     **/
+    @auraEnabled
+    public static String[] GetSongsByName(String song){
+        system.debug('get songs by name called');
+        String[] toReturn = new String[]{};
+        String toQuery = '%' + song + '%';
+        for (Song__c currSong : [SELECT id, name FROM Song__c WHERE name Like :toQuery]) {
+            toReturn.add(currSong.Id + currSong.Name);
+        }
+        
+        return toReturn;
+    }
+    /**
      * This method clears all the measures in a song.
      **/
     @auraEnabled
