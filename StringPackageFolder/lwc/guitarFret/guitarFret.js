@@ -13,12 +13,12 @@ export default class GuitarFret extends LightningElement {
   @api currentFret;
   @api currentString = 'A2';
   @api pressed = false;
-  pressedFretImg1 = fretPressedImg1 + '.png';
-  pressedFretImg2 = fretPressedImg2 + '.png';
-  pressedFretImg3 = fretPressedImg3 + '.png';
-  pressedFretImg4 = fretPressedImg4 + '.png';
-  pressedFretImg5 = fretPressedImg5 + '.png';
-  pressedFretImg6 = fretPressedImg6 + '.png';
+  pressedFretImg1 = fretPressedImg1;
+  pressedFretImg2 = fretPressedImg2;
+  pressedFretImg3 = fretPressedImg3;
+  pressedFretImg4 = fretPressedImg4;
+  pressedFretImg5 = fretPressedImg5;
+  pressedFretImg6 = fretPressedImg6;
 
   setFret(){
     this.pressed = !this.pressed;
