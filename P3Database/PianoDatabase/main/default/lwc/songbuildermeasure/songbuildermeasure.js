@@ -31,6 +31,7 @@ export default class songbuildermeasure extends LightningElement {
     }
     for (let i = 0; i < tds.length; i++) {
       tds[i].addEventListener('click', function(){
+        let octaveOffset = (self.octave - 3) * 12;
         if (this.style.background == 'green'){
           let toRemove = self.notesInMeasure.indexOf((this.classList[0].split('-')[0] - 0 + octaveOffset).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + this.classList[0].split('-')[1]);
           if (toRemove != -1) {
@@ -97,7 +98,7 @@ export default class songbuildermeasure extends LightningElement {
     let picked = [];
     for (let j = 0; j < this.notesInMeasure.length; j++){
       let toPick = ((this.notesInMeasure[j] + '').substring(0,2) - octaveOffset).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '-' + (this.notesInMeasure[j] + '').substring(2);
-      picked.push(toPick);w
+      picked.push(toPick);
     }
     for (let i = 0; i < tds.length; i++){
       tds[i].style.background = 'white';

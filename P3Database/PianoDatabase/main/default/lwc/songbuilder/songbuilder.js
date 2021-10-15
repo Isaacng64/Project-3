@@ -117,9 +117,7 @@ export default class songbuilder extends LightningElement {
     this.octave = cCells[0].innerHTML.substring(1) - 0;
   }
   startPlaying() {
-    if (this.loading == true) {
-      this.listOfSongs = [];
-    }
+    this.listOfSongs = [];
     this.loading = false;
     this.saving = false;
     this.playing = !this.playing;
@@ -137,9 +135,7 @@ export default class songbuilder extends LightningElement {
   }
 
   startSaving() {
-    if (this.loading == true) {
-      this.listOfSongs = [];
-    }
+    this.listOfSongs = [];
     this.playing = false;
     this.loading = false;
     this.saving = !this.saving;
@@ -201,7 +197,6 @@ export default class songbuilder extends LightningElement {
         for (let j = 0; j < result[i+1].length; j+=4){
           notesForMeasure.push(result[i+1].substring(j, j + 4));
         }
-        
         this.dataForDynamicComponentCreation = [
           ...this.dataForDynamicComponentCreation,
           {
