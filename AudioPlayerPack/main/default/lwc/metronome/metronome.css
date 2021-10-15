@@ -1,0 +1,17 @@
+.container {
+    border: 2px solid black;
+    padding: 5px;
+    margin: 5px;
+}
+
+.outer {
+    width: 500px;
+    border-style: solid;
+    border-color: #362C28;
+    background: #6B715C;
+    padding: 10px;
+}
+
+label {
+    color: #F0E478;
+}
