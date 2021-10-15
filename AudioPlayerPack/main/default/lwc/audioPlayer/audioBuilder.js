@@ -1,10 +1,9 @@
 import { offset2note, sharp2flat } from "c/commonUtils";
 
 import pianoRes from '@salesforce/resourceUrl/Piano';
+import guitarRes from '@salesforce/resourceUrl/Guitar'
 
-
-export {buildLocalAudioPlayers}
-
+export {buildLocalAudioPlayers, buildLocalGuitarPlayers}
 
 class PlayerWrapper{
 
@@ -56,11 +55,7 @@ class PlayerWrapper{
 function buildLocalAudioPlayers(dictAuto, dictManual){
 
     dictAuto["piano"] = {};
-    dictAuto["guitar"] = {};
-    //dictAuto["bass"] = {};
     dictManual["piano"] = {};
-    dictManual["guitar"] = {};
-    //dictManual["bass"] = {};
     
     /* Build Piano sounds */
     for(let i = 0; i < 85; i++){
@@ -78,7 +73,28 @@ function buildLocalAudioPlayers(dictAuto, dictManual){
         dictManual.piano[result.octave][result.name] = new PlayerWrapper(new Audio(path));
 
     }
+}
 
-    console.log(dictAuto);
-    console.log(dictManual);
+function buildLocalGuitarPlayers(dictAuto, dictManual){
+
+    dictAuto["guitar"] = {};
+    dictManual["guitar"] = {};
+    //dictManual["bass"] = {};
+    //dictAuto["bass"] = {};
+
+    ["E1","A","D","G","B","E2"].forEach((note) => {
+
+        if(! dictAuto.guitar[note]){
+            dictAuto.guitar[note] = [];
+            dictManual.guitar[note] = [];
+        }
+
+        for(let i = 0; i < 23; i++){
+            let path = guitarRes + "/E-Standard" + "/" + note + "/" + String(i) + ".mp3";
+            dictAuto.guitar[note][i] = new PlayerWrapper(new Audio(path));
+            dictManual.guitar[note] = new PlayerWrapper(new Audio(path));
+        }
+
+    });
+
 }

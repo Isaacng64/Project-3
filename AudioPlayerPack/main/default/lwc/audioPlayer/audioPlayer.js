@@ -1,6 +1,6 @@
 import { api, LightningElement } from "lwc";
 
-import { buildLocalAudioPlayers } from "./audioBuilder";
+import { buildLocalAudioPlayers, buildLocalGuitarPlayers } from "./audioBuilder";
 
 import metronome from "@salesforce/resourceUrl/metronomesound";
 
@@ -25,7 +25,11 @@ export default class AudioPlayer extends LightningElement {
   constructor() {
     super();
     buildLocalAudioPlayers(this.clientNotesAuto, this.clientNotesManual);
+    buildLocalGuitarPlayers(this.clientNotesAuto, this.clientNotesManual);
     this.metronomePlayer = new Audio(metronome);
+
+    console.log(this.clientNotesAuto);
+    console.log(this.clientNotesManual);
   }
 
   /* Thinking ahead you may optionally take params for duration and volume IN HERE separate from note construction which is just THE NOTE */
@@ -36,7 +40,14 @@ export default class AudioPlayer extends LightningElement {
 
   @api
   playPiano(playerNote) {
-    this.play(playerNote, "piano");
+      if(playerNote.valid){
+          this.clientNotesAuto["piano"][playerNote.octave][playerNote.name].play(); // can specify duration in player.play() function!
+          this.clientNotesAuto["piano"][playerNote.octave][playerNote.name].setVolume(this.volume);
+      }else{
+          throw "no valid note to play!";
+      }
+
+      this.currentlyPlaying.push(this.clientNotesAuto["piano"][playerNote.octave][playerNote.name]);
   }
 
   @api
@@ -58,18 +69,6 @@ export default class AudioPlayer extends LightningElement {
       }
   }
 
-  play(playerNote, instrument){
-
-      if(playerNote.valid){
-          this.clientNotesAuto[instrument][playerNote.octave][playerNote.name].play(); // can specify duration in player.play() function!
-          this.clientNotesAuto[instrument][playerNote.octave][playerNote.name].setVolume(this.volume);
-      }else{
-          throw "no valid note to play!";
-      }
-
-      this.currentlyPlaying.push(this.clientNotesAuto[instrument][playerNote.octave][playerNote.name]);
-  }
-
   changeVolume(event){
       this.volume = event.target.value;
       for(let i = 0; i < this.currentlyPlaying.length; i++){
@@ -77,10 +76,3 @@ export default class AudioPlayer extends LightningElement {
       }
   }
 }
-
-/*
-if(opts["volume"] != null){
-    this.clientNotesAuto[instrument][octave][name].player.volume = opts["volume"];
-}else{
-    this.clientNotesAuto[instrument][octave][name].player.volume = this.volume;
-}*/
