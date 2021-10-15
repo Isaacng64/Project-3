@@ -1,5 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import strumImage from '@salesforce/resourceUrl/strum';
+import { AudioPlayerNote } from 'c/commonUtils/audioPlayerNote';
 
 export default class GuitarString extends LightningElement {
 
@@ -36,6 +37,10 @@ export default class GuitarString extends LightningElement {
         let noteToPlay = [parseInt(this.openString) + parseInt(this.currentFret), this.stringNumber];
         this.dispatchEvent(new CustomEvent('playguitarnote', {detail: noteToPlay, bubbles: true, composed: true}));
         console.log('strumming' + noteToPlay);
+
+        let playNote = audioPlayerNote(this.currentFret, null, null, this.stringNumber);
+
+        this.template.querySelector('c-audio-player').playPiano(playNote);
     }
 
 }
