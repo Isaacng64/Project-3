@@ -1,0 +1,16 @@
+<template>
+    <main class="slds-grid slds-grid_vertical" >
+        <div class="slds-col">
+            The note is: {note}
+        </div>
+        <div class="slds-col">
+            <div class="uipiano">
+            <!-- This Div will hold the Ui for the Piano Instrument-->
+                <template for:each={piano} for:item="note">
+                    <c-key key={note.key} componentkey={note} onkeyclickce={handleKeyClickCE}></c-key>
+                </template>   
+                <!-- <c-audio-player></c-audio-player> -->
+            </div>
+        </div>
+    </main>
+</template>

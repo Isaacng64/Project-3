@@ -1,12 +1,26 @@
 {
-  "packageDirectories": [
-    {
-      "path": "force-app",
-      "default": true
+    "packageDirectories": [
+        {
+            "path": "PianoInstrument",
+            "package": "PianoInstrument",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true,
+            "dependencies" : [{"package":"AudioPlayerPackage","versionNumber": "0.1.0.NEXT"}]
+        },
+          {
+              "path": "AudioPlayerPack",
+              "package": "AudioPlayerPackage",
+              "versionName": "ver 0.1",
+              "versionNumber": "0.1.0.NEXT",
+              "default": false
+          }
+    ],
+    "name": "Project3_Piano",
+    "namespace": "",
+    "sfdcLoginUrl": "https://resourceful-moose-q6thfr-dev-ed.my.salesforce.com/",
+    "sourceApiVersion": "52.0",
+    "packageAliases": {
+        "PianoInstrument": "0Ho5f000000003PCAQ"
     }
-  ],
-  "name": "piano",
-  "namespace": "",
-  "sfdcLoginUrl": "https://resourceful-bear-7nby7z-dev-ed.my.salesforce.com/",
-  "sourceApiVersion": "52.0"
 }

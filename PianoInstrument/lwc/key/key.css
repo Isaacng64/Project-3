@@ -1,0 +1,34 @@
+.white { 
+    /* --size-xx-small: 96px; 
+    width: var(--lwc-size-xx-small); 
+    text-align: center;
+    color: black;
+    */
+    width: 2rem; 
+    height: 10rem;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    padding: 0;
+    margin: 0;
+    bottom: -5;
+    z-index: 1;
+}
+
+.black {
+    width: 1.5rem; 
+    height: 6rem; 
+    margin-left: -0.75rem; 
+    margin-right: -0.75rem; 
+    background-color: #000000;  
+    z-index: 2;
+}
+
+.white:hover {
+    cursor: pointer;
+    background-color: #FFF5B2;
+}
+
+.black:hover {
+    cursor: pointer;
+    background-color: #6B715C;
+}

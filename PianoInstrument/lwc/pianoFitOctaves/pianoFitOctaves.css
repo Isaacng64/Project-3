@@ -1,0 +1,7 @@
+.uipiano{
+    display: flex;
+}
+.uiother{
+    display: block;
+    border: 2px solid #9FB78F;
+}
