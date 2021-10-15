@@ -5,51 +5,7 @@ import guitarRes from '@salesforce/resourceUrl/Guitar'
 
 export {buildLocalAudioPlayers, buildLocalGuitarPlayers}
 
-class PlayerWrapper{
-
-    player; // either AudioPlayer or TonePlayer! polymorphism ? 8D
-    remainingBeats = -1;
-
-    constructor(player){
-        this.player = player;
-    }
-
-    play(beats){
-
-        if(beats){
-            this.remainingBeats = dur;
-        }
-
-        this.player.currentTime = 0;
-
-        try{
-            this.player.play();
-        }catch(e){
-            console.log("could not start player");
-        }
-        
-    }
-
-    stop(){
-
-        this.player.pause();
-
-    }
-
-    tickRemainingDuration(){
-        if(this.remainingBeats == 0){
-            this.stop();
-        }
-        else{
-            this.remainingBeats -= 1;
-        }
-    }
-
-    setVolume(vol){
-        this.player.volume = vol;
-    }
-
-}
+import { PlayerWrapper } from "./playerWrapper";
 
 
 function buildLocalAudioPlayers(dictAuto, dictManual){

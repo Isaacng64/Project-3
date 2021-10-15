@@ -20,7 +20,6 @@ export default class AudioPlayer extends LightningElement {
   volume = 0.5;
 
   currentlyPlaying = [];
-  autoPlaying = [];
 
   constructor() {
     super();
@@ -32,18 +31,21 @@ export default class AudioPlayer extends LightningElement {
     //console.log(this.clientNotesManual);
   }
 
-  /* Thinking ahead you may optionally take params for duration and volume IN HERE separate from note construction which is just THE NOTE */
   @api
-  playPianoInteger(i) {
-    this.playPiano(new AudioPlayerNote(i));
+  playPianoInteger(i, duration) {
+    if(duration){
+      this.playPiano(new AudioPlayerNote(i), duration);
+    }else{
+      this.playPiano(new AudioPlayerNote(i));
+    }
   }
 
   @api
-  playPiano(playerNote) {
+  playPiano(playerNote, duration) {
       if(playerNote.valid){
 
         let player_reference = this.clientNotesAuto["piano"][playerNote.octave][playerNote.name];
-        player_reference.play(); // can specify duration in player.play() function!
+        player_reference.play(duration);
         player_reference.setVolume(this.volume);
         this.currentlyPlaying.push(player_reference);
       }else{
@@ -52,14 +54,14 @@ export default class AudioPlayer extends LightningElement {
   }
 
   @api
-  playGuitar(string_name, fret){
+  playGuitar(string_name, fret, duration){
     if(string_name != null && fret != null){
       let index = Number(fret);
       let string = String(string_name);
 
       let player_reference = this.clientNotesAuto["guitar"][string][index];
 
-      player_reference.play();
+      player_reference.play(duration);
       player_reference.setVolume(this.volume);
 
       this.currentlyPlaying.push(player_reference);
@@ -70,25 +72,20 @@ export default class AudioPlayer extends LightningElement {
   }
 
   @api
-  tickCallback(tickVolume, autoNotes){
+  tickCallback(tickVolume){
 
       this.metronomePlayer.currentTime = 0.0;
       this.metronomePlayer.volume = tickVolume;
       this.metronomePlayer.play();
 
-
-      for(let i = 0; i < this.autoPlaying.length; i++){
-          this.autoPlaying[i].stop();
-      }
-      this.autoPlaying = [];
-
-      
-      for(let i = 0; i < autoNotes.length; i++){
-          this.playPiano(autoNotes[i]);
-          this.autoPlaying.push(this.clientNotesAuto["piano"][autoNotes[i].octave][autoNotes[i].name]);
-      }
-
-      //this.playGuitar("A", 5);
+      let newCurrentlyPlaying = [];
+      this.currentlyPlaying.forEach((player) => {
+        player.clockCallback();
+        if(player.isStillPlaying()){
+          newCurrentlyPlaying.push(player);
+        }
+      });
+      this.currentlyPlaying = newCurrentlyPlaying;
   }
 
   changeVolume(event){
