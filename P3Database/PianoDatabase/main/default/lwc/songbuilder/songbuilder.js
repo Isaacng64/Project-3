@@ -123,6 +123,7 @@ export default class songbuilder extends LightningElement {
     this.loading = false;
     this.saving = false;
     this.playing = !this.playing;
+    this.currNote = 0;
 
     this.songToPlay = [];
 
