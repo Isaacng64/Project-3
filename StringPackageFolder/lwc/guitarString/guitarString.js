@@ -1,5 +1,7 @@
 import { LightningElement, api } from 'lwc';
 import strumImage from '@salesforce/resourceUrl/strum';
+import fretImage from '@salesforce/resourceUrl/fret';
+/* import { AudioPlayerNote } from 'c/commonUtils'; */
 
 export default class GuitarString extends LightningElement {
 
@@ -8,34 +10,32 @@ export default class GuitarString extends LightningElement {
     currentFret = 0;
     openString = 0;
     @api stringNumber;
-    @api strumImg = strumImage + '.png';
+    @api strumImg = strumImage;
 
     setFretInString(event){
-        if (this.currentFret = event.detail) {
-            this.currentFret = 0;
-        } else {
-            this.currentFret = event.detail;
-        }
+        this.currentFret = event.detail;
         this.dispatchEvent(new CustomEvent('passcurrentfret', {detail: [this.currentFret, this.stringNumber]}));
     }
 
-    @api
-    setOpenString(num) {
-        this.openString = num;
-    }
-
-    tuneUp() {
-        this.setOpenString(parseInt(this.openString) + 1);
-    }
-
-    tuneDown() {
-        this.setOpenString(parseInt(this.openString) - 1);
-    }
-
     strum() {
-        let noteToPlay = [parseInt(this.openString) + parseInt(this.currentFret), this.stringNumber];
+        let noteToPlay = [parseInt(this.currentFret), this.stringNumber];
         this.dispatchEvent(new CustomEvent('playguitarnote', {detail: noteToPlay, bubbles: true, composed: true}));
         console.log('strumming' + noteToPlay);
+
+        /*let playNote = audioPlayerNote(this.currentFret, null, null, this.stringNumber);
+
+        this.template.querySelector('c-audio-player').playPiano(playNote); */
     }
+
+    handlePressed(event){
+        let target = event.target;
+        let fretComponents = this.template.querySelectorAll('c-guitar-fret');
+        for(let i = 0; i < fretComponents.length; i++){
+            if(fretComponents[i].currentFret != target.currentFret){
+                fretComponents[i].pressed = false;
+                fretComponents[i].fretImg = fretImage;
+            }
+        }
+      }
 
 }
