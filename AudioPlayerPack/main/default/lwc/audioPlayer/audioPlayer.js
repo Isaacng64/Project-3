@@ -6,6 +6,8 @@ import metronome from '@salesforce/resourceUrl/metronomesound';
 
 import { AudioPlayerNote } from 'c/commonUtils';
 
+export * from './tonePlayer';
+
 export default class AudioPlayer extends LightningElement {
 
     /* 
@@ -41,15 +43,16 @@ export default class AudioPlayer extends LightningElement {
     @api
     tickCallback(tickVolume, autoNotes){
 
+        this.metronomePlayer.currentTime = 0.0;
+        this.metronomePlayer.volume = tickVolume;
+        this.metronomePlayer.play();
+
+
         for(let i = 0; i < this.currentlyPlaying.length; i++){
 
             this.autoPlaying[i].stop();
 
         }
-
-        this.metronomePlayer.currentTime = 0.0;
-        this.metronomePlayer.volume = tickVolume;
-        this.metronomePlayer.play();
 
         for(let i = 0; i < autoNotes.length; i++){
             this.playPiano(autoNotes[i]);

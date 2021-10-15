@@ -1,10 +1,6 @@
 {
     "packageDirectories": [
         {
-            "path": "force-app",
-            "default": false
-        },
-        {
             "path": "AudioPlayerPack",
             "package": "AudioPlayerPackage",
             "versionName": "ver 0.1",
@@ -19,6 +15,7 @@
     "packageAliases": {
         "AudioPlayerPackage": "0Ho5f000000TN3BCAW",
         "AudioPlayerPackage@0.1.0-1": "04t5f000000dBEuAAM",
-        "AudioPlayerPackage@0.1.0-2": "04t5f000000dBJ7AAM"
+        "AudioPlayerPackage@0.1.0-2": "04t5f000000dBJ7AAM",
+        "AudioPlayerPackage@0.1.0-3": "04t5f000000dHbaAAE"
     }
 }

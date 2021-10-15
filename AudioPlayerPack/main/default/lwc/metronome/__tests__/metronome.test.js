@@ -14,13 +14,8 @@ describe('c-metronome', () => {
             is: Metronome
         });
 
-        
-
 
         document.body.appendChild(element);
-
-        expect(element.bpm).toEqual(100);
-
 
 
     });
