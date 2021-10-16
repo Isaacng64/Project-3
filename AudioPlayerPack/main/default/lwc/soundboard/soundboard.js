@@ -14,12 +14,12 @@ export default class Soundboard extends LightningElement {
 
     this.nextNotes.forEach((note) =>{
       this.template
-      .querySelector("c-audio-player").playPiano(note, 2); // second arg is duration in # beats
+      .querySelector("c-audio-player").playPiano(note, 2); /* second arg is duration in # beats */
     })
 
     this.template
       .querySelector("c-audio-player")
-      .tickCallback(tickVolume);//, this.nextNotes);
+      .tickCallback(tickVolume);
   }
 
   autoPlayHandle(event) {
