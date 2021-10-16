@@ -1,7 +1,7 @@
 import { api, LightningElement } from "lwc";
 
 import { AudioPlayerNote } from "c/commonUtils";
-import { musicHelper } from "c/commonUtils";
+import { sharp2flat, offset2note, note2freq, stdNote2components, index2note2, note2index, isValidNote } from "c/commonUtils";
 import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
 
 export default class Autoplayer extends LightningElement {
@@ -86,10 +86,10 @@ export default class Autoplayer extends LightningElement {
           this.handleNoteHelper(note);
       } else if (Array.isArray(note)){
           for (i = 0; i < note.length; i++){
-              this.handleNoteHelper(musicHelper.index2note2(note[i]));
+              this.handleNoteHelper(index2note2(note[i]));
           }
       } else if (note instanceof int){
-          this.handleNoteHelper(musicHelper.index2note2(note));
+          this.handleNoteHelper(index2note2(note));
       } else {
           console.log("handleNote was passed an invalid note. Therefore, the autostrummer did not play any sound.");
       }
@@ -123,8 +123,7 @@ export default class Autoplayer extends LightningElement {
     }
 
     addInputNoteToChord(){
-        console.log("we made it to add inputnotetochord");
-        if (musicHelper.isValidNote(this.inputNote)){
+        if (isValidNote(this.inputNote)){
           this.inputChord.push(this.inputNote);
         }
         document.getElementById("chordDisplay").innerHTML = this.inputChord;
