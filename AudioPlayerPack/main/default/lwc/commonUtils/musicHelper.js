@@ -78,11 +78,36 @@ function index2note2(index){
     return returnString;
 
 }
+/* written for the autostrummer, takes note string and returns integer */
+function note2index(note){
+    returnInt = 0;
+    if (note.length === 2){
+        noteStrPart = note.substr(0, 1);
+        noteOctave = parseInt(note.substr(1, 1));
+        returnInt += notes.indexOf(noteStrPart);
+        returnInt += noteOctave*12;
+        if (returnInt <= 84){
+            return returnInt;
+        }
+    }
+    noteStrPart = note.substr(0, 2);
+    noteOctave = parseInt(note.substr(2, 1));
+    returnInt += notes.indexOf(noteStrPart);
+    returnInt += noteOctave*12;
+    if (returnInt <= 84){
+        return returnInt;
+    }
+    log("note2index function in music helper was provided invalid string.");
+}
 
 function indexOf(name){
 
     return notes.indexOf(sharp2flat(name)); // notes.indexOf(name) - BASE_INDEX_PIANO;
     
+}
+
+function isValidNote(note){
+    return (note.length === 3 && )
 }
 
 function clampBounds(name, octave){

@@ -12,6 +12,14 @@ export default class Autoplayer extends LightningElement {
     tickCount = 0;
     chordCount = 0;
 
+    /* stores the current value of the input note input from the HTML */
+    inputNote = "ab1";
+    /* Stores the current value of the chord visible in the HTML*/
+    inputChord = [];
+    /* stores the current chord progression the user is constructing */
+    currChordProgression = [];
+
+
     isStrumming = true;
 
     setMode(){
@@ -19,6 +27,14 @@ export default class Autoplayer extends LightningElement {
 
         this.tickCount = 0;
         this.chordCount = 0;
+    }
+
+    getImportChord(){
+        return this.getImportChord;
+    }
+
+    getCurrChordProgression(){
+        return this.currChordProgression;
     }
 
     @api
@@ -80,9 +96,17 @@ export default class Autoplayer extends LightningElement {
     }
     /* handles a note after it has been converted to string + octave formatting */
     handleNoteHelper(note){
-        if (!(note.length === 3)){
-            log("Attempted to pass an invalid note into the autostrummer. Notes should consist of a 2-char note and an octave if formatted as a string.");
+        if (!((note.length === 3) || (note.length === 2))){
+            log("Attempted to pass an invalid note into the autostrummer. Notes should consist of a 1 or 2-char note and an octave if formatted as a string.");
             return;
+        }
+        if (note.length === 2){
+            noteStr = note.substr(0, 1);
+            octave = parseInt(note.substr(1, 1));
+            this.dispatchEvent(new CustomEvent('autoplay', 
+            {detail: 
+                new AudioPlayerNote(octave, noteStr, 0)
+            }));
         }
         noteStr = note.substr(0, 2);
         octave = parseInt(note.substr(2, 1));
@@ -91,6 +115,16 @@ export default class Autoplayer extends LightningElement {
             new AudioPlayerNote(octave, noteStr, 0)
         }));
     }
+
+    changeInputNote(event){
+        inputNote = event.target.value;
+    }
+
+    addInputNoteToChord(){
+        
+    }
+
+
 
 
 
