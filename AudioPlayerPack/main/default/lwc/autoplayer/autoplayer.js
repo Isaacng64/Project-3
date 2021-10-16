@@ -31,7 +31,11 @@ export default class Autoplayer extends LightningElement {
     }
 
     getInputChord(){
-        return this.inputChord;
+        let returnString = "";
+        for (i = 0; i < this.inputChord.length; i++){
+          returnString += this.inputChord[i] + ", ";
+        }
+        return returnString;
     }
 
     getCurrChordProgression(){
@@ -123,10 +127,11 @@ export default class Autoplayer extends LightningElement {
     }
 
     addInputNoteToChord(){
-        if (isValidNote(this.inputNote)){
+        if (isValidNote(this.inputNote) && (!this.inputChord.includes(this.inputNote))){
           this.inputChord.push(this.inputNote);
         }
-        document.getElementById("chordDisplay").innerHTML = this.inputChord;
+      //Temp log for debugging
+      console.log(this.inputChord);
     }
 
 
