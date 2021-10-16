@@ -14,7 +14,7 @@ export default class Autoplayer extends LightningElement {
   isStrumming = true;
 
     /* stores the current value of the input note input from the HTML */
-    inputNote = "ab1";
+    inputNote = "Ab1";
     /* Stores the current value of the chord visible in the HTML*/
     inputChord = [];
     /* stores the current chord progression the user is constructing */
@@ -30,8 +30,8 @@ export default class Autoplayer extends LightningElement {
         this.chordCount = 0;
     }
 
-    getImportChord(){
-        return this.getImportChord;
+    getInputChord(){
+        return this.inputChord;
     }
 
     getCurrChordProgression(){
@@ -78,6 +78,23 @@ export default class Autoplayer extends LightningElement {
             this.chordCount = 0;
         }
     }
+
+    /* This function plays a note when provided a note in string or integer formatting*/
+    handleNote(note){
+      /* Determines if the parameter is an integer, an array of integers (a chord), or a string and handles accordingly */
+      if(note instanceof String){
+          this.handleNoteHelper(note);
+      } else if (Array.isArray(note)){
+          for (i = 0; i < note.length; i++){
+              this.handleNoteHelper(musicHelper.index2note2(note[i]));
+          }
+      } else if (note instanceof int){
+          this.handleNoteHelper(musicHelper.index2note2(note));
+      } else {
+          log("handleNote was passed an invalid note. Therefore, the autostrummer did not play any sound.");
+      }
+  }
+
     /* handles a note after it has been converted to string + octave formatting */
     handleNoteHelper(note){
         if (!((note.length === 3) || (note.length === 2))){
@@ -91,13 +108,14 @@ export default class Autoplayer extends LightningElement {
             {detail: 
                 new AudioPlayerNote(octave, noteStr, 0)
             }));
-        }
-        noteStr = note.substr(0, 2);
-        octave = parseInt(note.substr(2, 1));
-        this.dispatchEvent(new CustomEvent('autoplay', 
-        {detail: 
-            new AudioPlayerNote(octave, noteStr, 0)
-        }));
+        } else {
+          noteStr = note.substr(0, 2);
+          octave = parseInt(note.substr(2, 1));
+          this.dispatchEvent(new CustomEvent('autoplay', 
+          {detail: 
+              new AudioPlayerNote(octave, noteStr, 0)
+          }));
+      }
     }
 
     changeInputNote(event){
@@ -105,7 +123,7 @@ export default class Autoplayer extends LightningElement {
     }
 
     addInputNoteToChord(){
-        
+        if (isValidNote)
     }
 
 
