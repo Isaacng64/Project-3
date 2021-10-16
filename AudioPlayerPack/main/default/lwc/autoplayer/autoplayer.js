@@ -91,14 +91,14 @@ export default class Autoplayer extends LightningElement {
       } else if (note instanceof int){
           this.handleNoteHelper(musicHelper.index2note2(note));
       } else {
-          log("handleNote was passed an invalid note. Therefore, the autostrummer did not play any sound.");
+          console.log("handleNote was passed an invalid note. Therefore, the autostrummer did not play any sound.");
       }
   }
 
     /* handles a note after it has been converted to string + octave formatting */
     handleNoteHelper(note){
         if (!((note.length === 3) || (note.length === 2))){
-            log("Attempted to pass an invalid note into the autostrummer. Notes should consist of a 1 or 2-char note and an octave if formatted as a string.");
+            console.log("Attempted to pass an invalid note into the autostrummer. Notes should consist of a 1 or 2-char note and an octave if formatted as a string.");
             return;
         }
         if (note.length === 2){
@@ -119,11 +119,15 @@ export default class Autoplayer extends LightningElement {
     }
 
     changeInputNote(event){
-        inputNote = event.target.value;
+        this.inputNote = event.target.value;
     }
 
     addInputNoteToChord(){
-        if (isValidNote)
+        console.log("we made it to add inputnotetochord");
+        if (musicHelper.isValidNote(this.inputNote)){
+          this.inputChord.push(this.inputNote);
+        }
+        document.getElementById("chordDisplay").innerHTML = this.inputChord;
     }
 
 

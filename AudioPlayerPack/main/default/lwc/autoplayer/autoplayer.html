@@ -4,8 +4,9 @@
 
     <div>
         <h3></h3>
-        <lightning-input type="number" value="Ab1" name="inputNote" label="inputNote" onchange={changeInputNote}></lightning-input>
-        
+        <lightning-input type="string" value="Ab1" name="inputNote" label="Input Note" id="inputNote" onchange={changeInputNote}></lightning-input>
+        <button class="textButton" onclick={addInputNoteToChord}>Add note to chord</button>
+        <p id="chordDisplay"></p>
     </div>
     <div>
         <h3></h3>

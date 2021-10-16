@@ -95,7 +95,7 @@ function note2index(note){
     if (returnInt <= 84){
         return returnInt;
     }
-    log("note2index function in music helper was provided invalid string.");
+    console.log("note2index function in music helper was provided invalid string.");
 }
 
 function indexOf(name) {
@@ -103,6 +103,7 @@ function indexOf(name) {
 }
 
 function isValidNote(note){
+    console.log("we made it to isValidNote");
     isRightLength = (note.length === 3 || note.length === 2);
     isLegalNote = (notes.contains(note.substr(0, 2)) || notes.contains(note.substr(0, 1)));
     hasOctave = ((parseInt(note.substr(note.length-1, 1)) < 8));
