@@ -1,16 +1,27 @@
 <template>
-    <div class="container">
+  <div class="container">
+    <template for:each={names} for:item="name">
+      <lightning-slider
+        value="0"
+        key={name}
+        label={name}
+        onchange={handleChange}
+        type="vertical"
+        class="item"
+      ></lightning-slider>
+    </template>
+  </div>
 
-        <template for:each={names} for:item="name">
-            <lightning-slider value="0" key={name} label={name} onchange={handleChange} type="vertical" class="item"></lightning-slider>
-        </template>
+  <lightning-button label="Pulse String" onclick={pulse}></lightning-button>
 
-    </div>
-
-    <lightning-button label="Pulse String" onclick={pulse}></lightning-button>
-
-    <lightning-button label="Pulse String guitar player!" onclick={guitar}></lightning-button>
-    <lightning-button label="Stop all" onclick={stopAll}></lightning-button>
-    <lightning-input value={noteIndex} label="note index" onchange={updateNoteIndex}></lightning-input>
-
+  <lightning-button
+    label="Pulse String guitar player!"
+    onclick={guitar}
+  ></lightning-button>
+  <lightning-button label="Stop all" onclick={stopAll}></lightning-button>
+  <lightning-input
+    value={noteIndex}
+    label="note index"
+    onchange={updateNoteIndex}
+  ></lightning-input>
 </template>

@@ -1,22 +1,23 @@
 .outer {
-    border-radius: 50%;
-    background: #9FB78F;
-    width: 50px;
-    height: 50px;
+  border-radius: 50%;
+  background: #6b715c;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
 }
 
 .inner {
-    border-radius: 50%; 
-    background: #362C28;
-    width: 12.5px;
-    height: 12.5px;
-    margin: 18.75px;
+  border-radius: 50%;
+  background: #362c28;
+  width: 12.5px;
+  height: 12.5px;
+  margin: 18.75px;
 }
 
 .highlighted {
-    background: #D4FCC3;
+  background: #d4fcc3;
 }
 
 .unhighlighted {
-    background: #362C28;
+  background: #9fb78f;
 }
