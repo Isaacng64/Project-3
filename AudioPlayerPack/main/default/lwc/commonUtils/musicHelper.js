@@ -76,26 +76,56 @@ function index2note2(index) {
   returnString += Math.floor(index / 12);
   return returnString;
 }
+/* written for the autostrummer, takes note string and returns integer */
+function note2index(note){
+    returnInt = 0;
+    if (note.length === 2){
+        noteStrPart = note.substr(0, 1);
+        noteOctave = parseInt(note.substr(1, 1));
+        returnInt += notes.indexOf(noteStrPart);
+        returnInt += noteOctave*12;
+        if (returnInt <= 84){
+            return returnInt;
+        }
+    }
+    noteStrPart = note.substr(0, 2);
+    noteOctave = parseInt(note.substr(2, 1));
+    returnInt += notes.indexOf(noteStrPart);
+    returnInt += noteOctave*12;
+    if (returnInt <= 84){
+        return returnInt;
+    }
+    log("note2index function in music helper was provided invalid string.");
+}
 
 function indexOf(name) {
   return notes.indexOf(sharp2flat(name)); // notes.indexOf(name) - BASE_INDEX_PIANO;
 }
 
+function isValidNote(note){
+    isRightLength = (note.length === 3 || note.length === 2);
+    isLegalNote = (notes.contains(note.substr(0, 2)) || notes.contains(note.substr(0, 1)));
+    hasOctave = ((parseInt(note.substr(note.length-1, 1)) < 8));
+    return (isRightLength && isLegalNote && hasOctave);
+
+}
+
+/*
 function clampBounds(name, octave) {
-  /* Clamp piano key bounds because of our sound file extents  */
-  /*
+  /* Clamp piano key bounds because of our sound file extents
     if (octave == 0){
         if (notes.indexOf(name) < BASE_INDEX_PIANO){ // <3 lol
             return notes[BASE_INDEX_PIANO];
         }else{
             return name;
-        }*/
+        }
   if (octave == 7) {
     return "C";
   } else {
     return name;
   }
 }
+*/
 
 function stdNote2components(stdNote) {
   if (stdNote) {

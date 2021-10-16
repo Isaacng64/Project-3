@@ -13,90 +13,122 @@ export default class Autoplayer extends LightningElement {
 
   isStrumming = true;
 
-  setMode() {
-    this.isStrumming = !this.isStrumming;
+    /* stores the current value of the input note input from the HTML */
+    inputNote = "Ab1";
+    /* Stores the current value of the chord visible in the HTML*/
+    inputChord = [];
+    /* stores the current chord progression the user is constructing */
+    currChordProgression = [];
 
-    this.tickCount = 0;
-    this.chordCount = 0;
-  }
 
-  @api
-  tickCallback() {
-    console.log("tick in autoplayer");
+    isStrumming = true;
+    
+    setMode() {
+        this.isStrumming = !this.isStrumming;
 
-    if (this.isStrumming) {
-      this.programmedStrumming();
-    } else {
-      this.playWholeKeyboard();
+        this.tickCount = 0;
+        this.chordCount = 0;
     }
 
+    getInputChord(){
+        return this.inputChord;
+    }
+
+    getCurrChordProgression(){
+        return this.currChordProgression;
+    }
+
+    @api
+    tickCallback(){
+        console.log('tick in autoplayer');
+
+        if(this.isStrumming){
+            this.programmedStrumming();
+        }else{
+            this.playWholeKeyboard();
+        }
     this.tickCount += 1;
-  }
-
-  playWholeKeyboard() {
-    this.dispatchEvent(
-      new CustomEvent("autoplay", {
-        detail: new AudioPlayerNote(this.tickCount % 85, "A", 0)
-      })
-    );
-  }
-
-  programmedStrumming() {
-    this.dispatchEvent(
-      new CustomEvent("autoplay", {
-        detail: new AudioPlayerNote(0, this.strumPattern[this.chordCount], 1)
-      })
-    );
-
-    this.dispatchEvent(
-      new CustomEvent("autoplay", {
-        detail: new AudioPlayerNote(0, this.strumPattern2[this.chordCount], 3)
-      })
-    );
-
-    if (this.tickCount >= this.strumPattern.length) {
-      this.tickCount = 0;
     }
-    if (!this.tickCount % 3) {
-      this.chordCount += 1;
+
+    playWholeKeyboard() {
+        this.dispatchEvent(
+        new CustomEvent("autoplay", {
+            detail: new AudioPlayerNote(this.tickCount % 85, "A", 0)
+        }));
     }
-    if (this.chordCount >= 4) {
-      this.chordCount = 0;
+
+    programmedStrumming() {
+        this.dispatchEvent(
+        new CustomEvent("autoplay", {
+            detail: new AudioPlayerNote(0, this.strumPattern[this.chordCount], 1)
+        }));
+
+        this.dispatchEvent(
+        new CustomEvent("autoplay", {
+            detail: new AudioPlayerNote(0, this.strumPattern2[this.chordCount], 3)
+        }));
+
+        if (this.tickCount >= this.strumPattern.length) {
+            this.tickCount = 0;
+        }
+        if (!this.tickCount % 3) {
+            this.chordCount += 1;
+        }
+        if (this.chordCount >= 4) {
+            this.chordCount = 0;
+        }
     }
-  }
-  /* This function plays a note when provided a note in string or integer formatting*/
-  handleNote(note) {
-    /* Determines if the parameter is an integer, an array of integers (a chord), or a string and handles accordingly */
-    if (note instanceof String) {
-      this.handleNoteHelper(note);
-    } else if (Array.isArray(note)) {
-      for (i = 0; i < note.length; i++) {
-        this.handleNoteHelper(musicHelper.index2note2(note[i]));
+
+    /* This function plays a note when provided a note in string or integer formatting*/
+    handleNote(note){
+      /* Determines if the parameter is an integer, an array of integers (a chord), or a string and handles accordingly */
+      if(note instanceof String){
+          this.handleNoteHelper(note);
+      } else if (Array.isArray(note)){
+          for (i = 0; i < note.length; i++){
+              this.handleNoteHelper(musicHelper.index2note2(note[i]));
+          }
+      } else if (note instanceof int){
+          this.handleNoteHelper(musicHelper.index2note2(note));
+      } else {
+          log("handleNote was passed an invalid note. Therefore, the autostrummer did not play any sound.");
       }
-    } else if (note instanceof int) {
-      this.handleNoteHelper(musicHelper.index2note2(note));
-    } else {
-      log(
-        "handleNote was passed an invalid note. Therefore, the autostrummer did not play any sound."
-      );
-    }
   }
-  /* handles a note after it has been converted to string + octave formatting */
-  handleNoteHelper(note) {
-    if (!(note.length === 3)) {
-      log(
-        "Attempted to pass an invalid note into the autostrummer. Notes should consist of a 2-char note and an octave if formatted as a string."
-      );
-      return;
+
+    /* handles a note after it has been converted to string + octave formatting */
+    handleNoteHelper(note){
+        if (!((note.length === 3) || (note.length === 2))){
+            log("Attempted to pass an invalid note into the autostrummer. Notes should consist of a 1 or 2-char note and an octave if formatted as a string.");
+            return;
+        }
+        if (note.length === 2){
+            noteStr = note.substr(0, 1);
+            octave = parseInt(note.substr(1, 1));
+            this.dispatchEvent(new CustomEvent('autoplay', 
+            {detail: 
+                new AudioPlayerNote(octave, noteStr, 0)
+            }));
+        } else {
+          noteStr = note.substr(0, 2);
+          octave = parseInt(note.substr(2, 1));
+          this.dispatchEvent(new CustomEvent('autoplay', 
+          {detail: 
+              new AudioPlayerNote(octave, noteStr, 0)
+          }));
+      }
     }
-    noteStr = note.substr(0, 2);
-    octave = parseInt(note.substr(2, 1));
-    this.dispatchEvent(
-      new CustomEvent("autoplay", {
-        detail: new AudioPlayerNote(octave, noteStr, 0)
-      })
-    );
-  }
+
+    changeInputNote(event){
+        inputNote = event.target.value;
+    }
+
+    addInputNoteToChord(){
+        if (isValidNote)
+    }
+
+
+
+
 
   /* below this point is logic for displaying chords that are being played on instruments */
 
