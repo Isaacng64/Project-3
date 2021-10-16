@@ -29,7 +29,6 @@ public class PianoController {
      **/
     @auraEnabled
     public static String CreateMeasure(String song, Integer pos){
-        system.debug('createmeasure called');
         ID songID = ID.valueOf(song);
         
         Measure__c newMeasure = new Measure__c();
@@ -68,7 +67,6 @@ public class PianoController {
      **/
     @auraEnabled
     public static String[] GetSongsByName(String song){
-        system.debug('get songs by name called');
         String[] toReturn = new String[]{};
         String toQuery = '%' + song + '%';
         for (Song__c currSong : [SELECT id, name FROM Song__c WHERE name Like :toQuery]) {
@@ -82,7 +80,6 @@ public class PianoController {
      **/
     @auraEnabled
     public static void ClearSong(String song){
-        system.debug('clear song entered');
         Id songId = Id.valueOf(song);
         List<Measure__c> measuresToClear = [SELECT id FROM Measure__c WHERE Measure__c.Song__c =: songId];
         List<Musicnote__c> notesToDelete = new List<Musicnote__c>();
@@ -105,7 +102,7 @@ public class PianoController {
     public static void SaveMusicNote(List<String> note, String stringId, String song){
         Id measureId = Id.valueOf(stringId);
         Id currSong = Id.valueOf(song);
-        system.debug(note);
+
         List<Decimal> pitch = ReturnPitch(note);
         List<Decimal> position = ReturnPosition(note);
         
@@ -129,14 +126,12 @@ public class PianoController {
      **/
     @auraEnabled
     public static String[] LoadMusicNote(String song){
-        system.debug('load music notes entered');
         Id songId = Id.valueOf(song);
         Song__c currSong = [SELECT id FROM Song__c WHERE id =: songId];
         List<Measure__c> allMeasures = [SELECT name, position__c 
                                         FROM Measure__c
                                         WHERE song__c =: currSong.id ORDER BY position__c];
         
-        system.debug('all measures length: ' + allMeasures.size());
         String[] toReturn = new String[]{};
         for (Measure__c measure : allMeasures){
             toReturn.add(measure.Id + '');
@@ -158,7 +153,7 @@ public class PianoController {
             }
             toReturn.add(notesInMeasure);
         }
-        system.debug('toReturn: ' + toReturn);
+        system.debug(toReturn);
         return toReturn;
     }
     /**

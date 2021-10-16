@@ -8,19 +8,19 @@ import GetAllSongs from '@salesforce/apex/PianoController.GetSongsByName';
 
 export default class songbuilder extends LightningElement {
   @track dataForDynamicComponentCreation = [];
-  index = 0;
+  @track listOfSongs = [];
+  @track songToPlay = [];
   @track octave = 4;
   songID = '';
   songName;
-  loadInputValue;
-  saveInputValue;
   measureNotes = [];
   playing = false;
   loading = false;
   saving = false;
-  @track listOfSongs = [];
-  @track songToPlay = [];
+  index = 0;
   currNote = 0;
+  loadInputValue;
+  saveInputValue;
 
   connectedCallback(){
     CreateSong()
@@ -81,6 +81,7 @@ export default class songbuilder extends LightningElement {
       .then((result) => {
           this.songID = result + '';
           this.dataForDynamicComponentCreation = [];
+          this.songToPlay = [];
           this.index = 0;
       })
       
@@ -183,13 +184,13 @@ export default class songbuilder extends LightningElement {
   }
 
   loadSong(event) {
-
+    this.songToPlay = [];
+    this.dataForDynamicComponentCreation = [];
     let loadingSongID = event.target.name;
     RetrieveSong({ song: loadingSongID })
         
     .then((result) => {
       this.songID = loadingSongID;
-      this.dataForDynamicComponentCreation = [];
       this.index = 0;
 
       for (let i = 0; i < result.length; i+=2){
