@@ -1,22 +1,22 @@
 <template>
-	<div id="builder" style="height: 675px; width: 1018px; background: #ffffff; margin: auto; position: relative;">
-		<lightning-button-group class="slds-float_left">
-			<lightning-button label="Octave +" onclick={addOctave}></lightning-button>
-			<lightning-button label="Octave -" onclick={subOctave}></lightning-button>
-		</lightning-button-group>
-		<lightning-button-group class="slds-float_right">
-			<lightning-button label="Add Measure" onclick={addNewMeasure}></lightning-button>
-			<lightning-button label="Remove Measure" onclick={removeMeasure}></lightning-button>
-		</lightning-button-group>
-		<lightning-button-group class="slds-align_absolute-center">
-			<lightning-button label="Play Song" onclick={startPlaying}></lightning-button>
-			<lightning-button label="Load Song" onclick={startLoading}></lightning-button>
-			<lightning-button label="Save Song" onclick={startSaving}></lightning-button>
-			<lightning-button label="New Song" onclick={newSong}></lightning-button>
-		</lightning-button-group>
+	<div id="builder" style="height: 725px; width: 1018px; background: #6b715c; margin: auto; position: relative; border-radius: 3px;">
+		<div class="slds-float_left">
+			<button onclick={addOctave}>Octave +</button>
+			<button onclick={subOctave}>Octave -</button>
+		</div>
+		<div class="slds-float_right">
+			<button onclick={addNewMeasure}>Add Measure</button>
+			<button onclick={removeMeasure}>Remove Measure</button>
+		</div>
+		<div class="slds-align_absolute-center">
+			<button onclick={startPlaying}>Play Song</button>
+			<button onclick={startLoading}>Load Song</button>
+			<button onclick={startSaving}>Save Song</button>
+			<button onclick={newSong}>New Song</button>
+		</div>
 		<template if:true={playing}>
 			<div style="z-index: -5; width: 50%; margin-right: auto; margin-left: auto; margin-top: 5px;"><c-audio-player></c-audio-player></div>
-			<div style="width: 300px; height: 100px; margin-right: auto; margin-left: auto; margin-top: 25px;">
+			<div style="width: 500px; height: 100px; margin-right: auto; margin-left: auto; margin-top: 25px;">
 				<c-metronome onsubtick={handleTick}></c-metronome>
 			</div>
 		</template>

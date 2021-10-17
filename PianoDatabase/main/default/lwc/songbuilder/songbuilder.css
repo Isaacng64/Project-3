@@ -55,3 +55,9 @@
 .behind {
   z-index: -1;
 }
+
+button {
+  color: #000000;
+  background: #9fb78f;
+  margin: 5px;
+}

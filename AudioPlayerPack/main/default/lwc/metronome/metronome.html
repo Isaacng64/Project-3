@@ -1,30 +1,35 @@
 <template>
-    <div style="width: 100%" >
-        <div>
-            <label>BPM: {bpm}</label>
-                <lightning-button onclick={slower10} label="--"></lightning-button>
-                <lightning-button onclick={slower} label="-"></lightning-button>
-                {currentSubBeat}
-                <lightning-button onclick={faster} label="+"></lightning-button>
-                <lightning-button onclick={faster10} label="++"></lightning-button>
+  <div class="outer">
+    <div class="slds-grid slds-grid_align-spread">
+      <div class="slds-col">
+        <button class="text-button" onclick={start}>Start</button>
+        <button class="text-button" onclick={stopMetronome}>Stop</button>
+        <button class="text-button" onclick={toggleMute}>{mutedString}</button>
+      </div>
 
-                
-                <label>Beat: {metroCounter} of {counterMax} </label>
-                <!--br /-->
-                <template if:true={counterMaxUnlocked} >
-                    <lightning-button onclick={lessBeats} label="-"></lightning-button>
-                    <lightning-button onclick={moreBeats} label="+"></lightning-button>
-                </template>
-
-            <lightning-button onclick={start} label="Start"></lightning-button>
-            <lightning-button onclick={stopMetronome} label="Stop"></lightning-button>
-            <lightning-button onclick={toggleMute} label={mutedString}></lightning-button>
-            <lightning-button onclick={lockCounterMax} label="lock"></lightning-button>
-        </div>
-    <div style="float: left; " >
-        <c-beat-pattern-ui></c-beat-pattern-ui>
-        <br /><br /><br />
+      <div class="slds-col">
+        <label>BPM: {bpm} </label>
+        <button class="symbol-button" onclick={slower10}>--</button>
+        <button class="symbol-button" onclick={slower}>-</button>
+        <button class="symbol-button" onclick={faster}>+</button>
+        <button class="symbol-button" onclick={faster10}>++</button>
+      </div>
     </div>
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-</div>
+    <br />
+
+    <div>
+      <c-beat-pattern-ui></c-beat-pattern-ui>
+    </div>
+    <br />
+
+    <div class="slds-grid slds-grid_align-space">
+      <div>
+        <template if:false={counterMaxLocked}>
+          <button class="symbol-button" onclick={lessBeats}>-</button>
+          <label> Beats: {counterMax} </label>
+          <button class="symbol-button" onclick={moreBeats}>+</button>
+        </template>
+      </div>
+    </div>
+  </div>
 </template>

@@ -117,7 +117,11 @@ export default class songbuilder extends LightningElement {
     }
     this.octave = cCells[0].innerHTML.substring(1) - 0;
   }
+
   startPlaying() {
+    if (this.playing == true) {
+      this.template.querySelector("c-metronome").stopMetronome();
+    }
     this.listOfSongs = [];
     this.loading = false;
     this.saving = false;
@@ -136,6 +140,9 @@ export default class songbuilder extends LightningElement {
   }
 
   startSaving() {
+    if (this.playing == true) {
+      this.template.querySelector("c-metronome").stopMetronome();
+    }
     this.listOfSongs = [];
     this.playing = false;
     this.loading = false;
@@ -154,9 +161,10 @@ export default class songbuilder extends LightningElement {
   }
 
   startLoading() {
-    if (this.loading == true) {
-      this.listOfSongs = [];
+    if (this.playing == true) {
+      this.template.querySelector("c-metronome").stopMetronome();
     }
+    this.listOfSongs = [];
     this.playing = false;
     this.saving = false;
     this.loading = !this.loading;
