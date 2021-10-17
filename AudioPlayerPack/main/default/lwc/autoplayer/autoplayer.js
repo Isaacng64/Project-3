@@ -75,9 +75,7 @@ export default class Autoplayer extends LightningElement {
         console.log('tick in autoplayer');
 
         if(this.isStrumming){
-            this.programmedStrumming();
-        }else{
-            this.playWholeKeyboard();
+            this.playChordProgression(this.currChordProgression);
         }
     this.tickCount += 1;
     }
@@ -127,11 +125,6 @@ export default class Autoplayer extends LightningElement {
       this.handleNote(chordProg[this.chordCount%chordProg.length]);
       chordCount++;
 
-    }
-
-    /* The main play function for handling ticks while the chord progression is playing */
-    handleChordProgPlaying(){
-      
     }
 
     /* This function plays a note or chord when provided a note in string or integer formatting or a chord*/
