@@ -111,13 +111,36 @@ export default class Autoplayer extends LightningElement {
         }
     }
 
-    /* This function plays a note when provided a note in string or integer formatting*/
+    /* This function plays the current chord in a chord progression when provided one */
+    playChordProgression(chordProg){
+      /* Some if blocks to catch invalid inputs, chord progression must be a 2D array of chords */
+      if (!Array.isArray(chordProg)){
+        return;
+      }
+      if (chordProg.length === 0){
+        return;
+      }
+      if (!Array.isArray(chordProg[0])){
+        return;
+      }
+
+      this.handleNote(chordProg[this.chordCount%chordProg.length]);
+      chordCount++;
+
+    }
+
+    /* The main play function for handling ticks while the chord progression is playing */
+    handleChordProgPlaying(){
+      
+    }
+
+    /* This function plays a note or chord when provided a note in string or integer formatting or a chord*/
     handleNote(note){
       /* Determines if the parameter is an integer, an array of integers (a chord), or a string and handles accordingly */
       if(note instanceof String){
           this.handleNoteHelper(note);
       } else if (Array.isArray(note)){
-          for (i = 0; i < note.length; i++){
+          for (let i = 0; i < note.length; i++){
               this.handleNoteHelper(index2note2(note[i]));
           }
       } else if (note instanceof int){
