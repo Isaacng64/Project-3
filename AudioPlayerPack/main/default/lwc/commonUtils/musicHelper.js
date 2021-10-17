@@ -116,22 +116,24 @@ function isValidNote(note){
 
 }
 
-/*
+
 function clampBounds(name, octave) {
-  /* Clamp piano key bounds because of our sound file extents
-    if (octave == 0){
-        if (notes.indexOf(name) < BASE_INDEX_PIANO){ // <3 lol
-            return notes[BASE_INDEX_PIANO];
-        }else{
-            return name;
-        }
+  /* Clamp piano key bounds because of our sound file extents */
+  /*
+  if (octave == 0){
+      if (notes.indexOf(name) < BASE_INDEX_PIANO){ // <3 lol
+          return notes[BASE_INDEX_PIANO];
+      }else{
+          return name;
+      }
+    }*/
   if (octave == 7) {
     return "C";
   } else {
     return name;
   }
 }
-*/
+
 
 function stdNote2components(stdNote) {
   if (stdNote) {

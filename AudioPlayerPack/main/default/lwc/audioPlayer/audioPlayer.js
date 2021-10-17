@@ -1,6 +1,6 @@
 import { api, LightningElement } from "lwc";
 
-import { buildLocalAudioPlayers, buildLocalGuitarPlayers } from "./audioBuilder";
+import { buildLocalAudioPlayers, buildLocalGuitarPlayers, buildLocalBassPlayers } from "./audioBuilder";
 
 import metronome from "@salesforce/resourceUrl/metronomesound";
 
@@ -25,6 +25,7 @@ export default class AudioPlayer extends LightningElement {
     super();
     buildLocalAudioPlayers(this.clientNotesAuto, this.clientNotesManual);
     buildLocalGuitarPlayers(this.clientNotesAuto, this.clientNotesManual);
+    //buildLocalBassPlayers(this.clientNotesAuto, this.clientNotesManual);
     this.metronomePlayer = new Audio(metronome);
 
     console.log(this.clientNotesAuto);
@@ -55,11 +56,20 @@ export default class AudioPlayer extends LightningElement {
 
   @api
   playGuitar(string_name, fret, duration){
+    this.playString(string_name, fret, "guitar", duration);
+  }
+
+  @api
+  playBass(string_name, fret, duration){
+    this.playString(string_name, fret, "bass", duration);
+  }
+
+  playString(string_name, fret, instrument, duration){
     if(string_name != null && fret != null){
       let index = Number(fret);
       let string = String(string_name);
 
-      let player_reference = this.clientNotesAuto["guitar"][string][index];
+      let player_reference = this.clientNotesAuto[instrument][string][index];
 
       player_reference.play(duration);
       player_reference.setVolume(this.volume);
