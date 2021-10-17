@@ -33,12 +33,13 @@ export class PlayerWrapper{
     }
 
     clockCallback(){
-        if(this.remainingBeats > 0){
-            this.remainingBeats -= 1;
-        }
-        else{
+        this.remainingBeats -= 1;
+
+        if(this.remainingBeats < 0){
             this.stop();   
         }
+        
+        console.log("clocked! " + this.remainingBeats);
     }
 
     setVolume(vol){
@@ -46,6 +47,6 @@ export class PlayerWrapper{
     }
 
     isStillPlaying(){
-        return this.remainingBeats > 0;
+        return this.remainingBeats >= 0;
     }
 }
