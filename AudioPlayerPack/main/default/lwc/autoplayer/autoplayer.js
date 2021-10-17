@@ -1,4 +1,4 @@
-import { api, LightningElement } from "lwc";
+import { api, LightningElement, track } from "lwc";
 
 import { AudioPlayerNote } from "c/commonUtils";
 import { sharp2flat, offset2note, note2freq, stdNote2components, index2note2, note2index, isValidNote } from "c/commonUtils";
@@ -16,9 +16,13 @@ export default class Autoplayer extends LightningElement {
     /* stores the current value of the input note input from the HTML */
     inputNote = "Ab1";
     /* Stores the current value of the chord visible in the HTML*/
-    inputChord = [];
+    @api
+    inputChord = ["Ab1"];
     /* stores the current chord progression the user is constructing */
+    @api
     currChordProgression = [];
+    @api
+    displayInputChord = "";
 
 
     isStrumming = true;
@@ -29,13 +33,16 @@ export default class Autoplayer extends LightningElement {
         this.tickCount = 0;
         this.chordCount = 0;
     }
-
-    getInputChord(){
+    /* updates the chord for displaying on HTML */
+    updateInputChordDisplay(){
         let returnString = "";
-        for (i = 0; i < this.inputChord.length; i++){
+        for (let i = 0; i < this.inputChord.length; i++){
           returnString += this.inputChord[i] + ", ";
         }
-        return returnString;
+        if (returnString.length > 1){
+          returnString = returnString.substr(0, returnString.length-2);
+        }
+        this.displayInputChord = returnString;
     }
 
     getCurrChordProgression(){
@@ -131,6 +138,7 @@ export default class Autoplayer extends LightningElement {
           this.inputChord.push(this.inputNote);
         }
       //Temp log for debugging
+      this.updateInputChordDisplay();
       console.log(this.inputChord);
     }
 

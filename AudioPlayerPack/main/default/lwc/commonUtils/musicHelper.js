@@ -104,7 +104,13 @@ function indexOf(name) {
 
 function isValidNote(note){
     let isRightLength = (note.length === 3 || note.length === 2);
-    let isLegalNote = (notes.includes(note.substr(0, 2)) || notes.includes(note.substr(0, 1)));
+    let isLegalNote = false;
+    if (note.length === 3){
+      isLegalNote = notes.includes(note.substr(0, 2));
+    } else if (note.length === 2){
+      isLegalNote = notes.includes(note.substr(0, 1));
+    }
+    
     let hasOctave = ((parseInt(note.substr(note.length-1, 1)) < 8));
     return (isRightLength && isLegalNote && hasOctave);
 
