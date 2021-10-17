@@ -1,4 +1,4 @@
-export { sharp2flat, offset2note, note2freq, stdNote2components };
+export { sharp2flat, offset2note, note2freq, stdNote2components, index2note2, note2index, isValidNote };
 
 /* Utility class to smooth any particular API features out with the audioplayer and soundboard suite */
 
@@ -95,7 +95,7 @@ function note2index(note){
     if (returnInt <= 84){
         return returnInt;
     }
-    log("note2index function in music helper was provided invalid string.");
+    console.log("note2index function in music helper was provided invalid string.");
 }
 
 function indexOf(name) {
@@ -103,9 +103,15 @@ function indexOf(name) {
 }
 
 function isValidNote(note){
-    isRightLength = (note.length === 3 || note.length === 2);
-    isLegalNote = (notes.contains(note.substr(0, 2)) || notes.contains(note.substr(0, 1)));
-    hasOctave = ((parseInt(note.substr(note.length-1, 1)) < 8));
+    let isRightLength = (note.length === 3 || note.length === 2);
+    let isLegalNote = false;
+    if (note.length === 3){
+      isLegalNote = notes.includes(note.substr(0, 2));
+    } else if (note.length === 2){
+      isLegalNote = notes.includes(note.substr(0, 1));
+    }
+    
+    let hasOctave = ((parseInt(note.substr(note.length-1, 1)) < 8));
     return (isRightLength && isLegalNote && hasOctave);
 
 }
