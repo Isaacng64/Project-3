@@ -123,18 +123,19 @@ export default class Autoplayer extends LightningElement {
       }
 
       this.handleNote(chordProg[this.chordCount%chordProg.length]);
-      chordCount++;
+      this.chordCount++;
 
     }
 
     /* This function plays a note or chord when provided a note in string or integer formatting or a chord*/
     handleNote(note){
-      /* Determines if the parameter is an integer, an array of integers (a chord), or a string and handles accordingly */
+      /* Determines if the parameter is an integer, a chord, or a string and handles accordingly */
       if(note instanceof String){
           this.handleNoteHelper(note);
       } else if (Array.isArray(note)){
           for (let i = 0; i < note.length; i++){
-              this.handleNoteHelper(index2note2(note[i]));
+              console.log(note[i]);
+              this.handleNoteHelper(note[i]);
           }
       } else if (note instanceof int){
           this.handleNoteHelper(index2note2(note));
@@ -145,20 +146,21 @@ export default class Autoplayer extends LightningElement {
 
     /* handles a note after it has been converted to string + octave formatting */
     handleNoteHelper(note){
+        console.log(note);
         if (!((note.length === 3) || (note.length === 2))){
             console.log("Attempted to pass an invalid note into the autostrummer. Notes should consist of a 1 or 2-char note and an octave if formatted as a string.");
             return;
         }
         if (note.length === 2){
-            noteStr = note.substr(0, 1);
-            octave = parseInt(note.substr(1, 1));
+            let noteStr = note.substr(0, 1);
+            let octave = parseInt(note.substr(1, 1));
             this.dispatchEvent(new CustomEvent('autoplay', 
             {detail: 
                 new AudioPlayerNote(octave, noteStr, 0)
             }));
         } else {
-          noteStr = note.substr(0, 2);
-          octave = parseInt(note.substr(2, 1));
+          let noteStr = note.substr(0, 2);
+          let octave = parseInt(note.substr(2, 1));
           this.dispatchEvent(new CustomEvent('autoplay', 
           {detail: 
               new AudioPlayerNote(octave, noteStr, 0)
