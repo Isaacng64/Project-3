@@ -2,17 +2,17 @@
   <div class="outer">
     <div class="slds-grid slds-grid_align-spread">
       <div class="slds-col">
-        <button class="textButton" onclick={start}>Start</button>
-        <button class="textButton" onclick={stopMetronome}>Stop</button>
-        <button class="textButton" onclick={toggleMute}>{mutedString}</button>
+        <button class="text-button" onclick={start}>Start</button>
+        <button class="text-button" onclick={stopMetronome}>Stop</button>
+        <button class="text-button" onclick={toggleMute}>{mutedString}</button>
       </div>
 
       <div class="slds-col">
         <label>BPM: {bpm} </label>
-        <button class="symbolButton" onclick={slower10}>--</button>
-        <button class="symbolButton" onclick={slower}>-</button>
-        <button class="symbolButton" onclick={faster}>+</button>
-        <button class="symbolButton" onclick={faster10}>++</button>
+        <button class="symbol-button" onclick={slower10}>--</button>
+        <button class="symbol-button" onclick={slower}>-</button>
+        <button class="symbol-button" onclick={faster}>+</button>
+        <button class="symbol-button" onclick={faster10}>++</button>
       </div>
     </div>
     <br />
@@ -25,9 +25,9 @@
     <div class="slds-grid slds-grid_align-space">
       <div>
         <template if:false={counterMaxLocked}>
-          <button class="symbolButton" onclick={lessBeats}>-</button>
+          <button class="symbol-button" onclick={lessBeats}>-</button>
           <label> Beats: {counterMax} </label>
-          <button class="symbolButton" onclick={moreBeats}>+</button>
+          <button class="symbol-button" onclick={moreBeats}>+</button>
         </template>
       </div>
     </div>

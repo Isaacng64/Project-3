@@ -1,25 +1,25 @@
 .outer {
   width: 500px;
-  border-style: solid;
-  border-color: #362c28;
-  background: #362c28;
   padding: 10px;
+  border-style: solid;
+  border-color: #6b715c;
+  background: #362c28;
 }
 
 label {
-  color: #f0e478;
+  color: #d4fcc3;
 }
 
-button.symbolButton {
-  color: black;
-  background: #f0e478;
-  width: 50px;
+button {
+  color: #000000;
+  background: #9fb78f;
+}
+
+button.symbol-button {
+  width: 45px;
   font-weight: bold;
-  font-size: 100%;
 }
 
-button.textButton {
-  color: black;
-  background: #f0e478;
-  width: 50px;
+button.text-button {
+  width: 60px;
 }
