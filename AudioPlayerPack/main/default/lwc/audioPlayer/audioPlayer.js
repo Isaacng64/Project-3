@@ -25,7 +25,7 @@ export default class AudioPlayer extends LightningElement {
     super();
     buildLocalAudioPlayers(this.clientNotesAuto, this.clientNotesManual);
     buildLocalGuitarPlayers(this.clientNotesAuto, this.clientNotesManual);
-    buildLocalBassPlayers(this.clientNotesAuto, this.clientNotesManual);
+    //buildLocalBassPlayers(this.clientNotesAuto, this.clientNotesManual);
     this.metronomePlayer = new Audio(metronome);
 
     console.log(this.clientNotesAuto);

@@ -9,8 +9,6 @@ import bassRes from '@salesforce/resourceUrl/Bass';
 export {buildLocalAudioPlayers, buildLocalGuitarPlayers, buildLocalBassPlayers}
 
 
-
-
 function buildLocalAudioPlayers(dictAuto, dictManual){
 
     dictAuto["piano"] = {};
