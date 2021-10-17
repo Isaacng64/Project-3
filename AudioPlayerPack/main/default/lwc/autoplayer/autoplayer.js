@@ -185,7 +185,11 @@ export default class Autoplayer extends LightningElement {
       if (this.inputChord.length === 0){
         return;
       }
-      this.currChordProgression.push(this.inputChord);
+      let tempInputChord = [];
+      for (let i = 0; i < this.inputChord.length; i++){
+        tempInputChord.push(this.inputChord[i]);
+      }
+      this.currChordProgression.push(tempInputChord);
       this.updateCurrChordProgressionDisplay();
     }
 
