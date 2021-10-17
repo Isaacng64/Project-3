@@ -18,11 +18,15 @@ export default class Autoplayer extends LightningElement {
     /* Stores the current value of the chord visible in the HTML*/
     @api
     inputChord = ["Ab1"];
-    /* stores the current chord progression the user is constructing */
+    /* 2D array that stores the current chord progression the user is constructing */
     @api
     currChordProgression = [];
+    /* The string value for displaying the inputChord on the HTML*/
     @api
     displayInputChord = "";
+    /* The string value for displaying the currChordProgression on the HTML*/
+    @api
+    displayCurrChordProgression = "";
 
 
     isStrumming = true;
@@ -43,6 +47,23 @@ export default class Autoplayer extends LightningElement {
           returnString = returnString.substr(0, returnString.length-2);
         }
         this.displayInputChord = returnString;
+    }
+    /* updates the chord progression for displaying on the HTML*/
+    updateCurrChordProgressionDisplay(){
+      let returnString = "";
+      if (this.currChordProgression.length === 0){
+        this.displayCurrChordProgression = "";
+        return;
+      }
+      for (let i = 0; i < this.currChordProgression.length; i++){
+        for (let c = 0; c < this.currChordProgression[i].length; c++){
+          returnString += this.currChordProgression[i][c] + ", ";
+        }
+        returnString = returnString.substr(0, returnString.length-2);
+        returnString += " -> ";
+      }
+      returnString = returnString.substr(0, returnString.length-4);
+      this.displayCurrChordProgression = returnString;
     }
 
     getCurrChordProgression(){
@@ -133,13 +154,33 @@ export default class Autoplayer extends LightningElement {
         this.inputNote = event.target.value;
     }
 
+    /* Used with the button on the HTML to update the inputChord */
     addInputNoteToChord(){
         if (isValidNote(this.inputNote) && (!this.inputChord.includes(this.inputNote))){
           this.inputChord.push(this.inputNote);
         }
-      //Temp log for debugging
       this.updateInputChordDisplay();
-      console.log(this.inputChord);
+    }
+
+    /* Used with the button on the HTML to update the inputChordProgression*/
+    addInputChordToChordProgression(){
+      if (this.inputChord.length === 0){
+        return;
+      }
+      this.currChordProgression.push(this.inputChord);
+      this.updateCurrChordProgressionDisplay();
+    }
+
+    /* used to clear the current chord */
+    clearInputChord(){
+      this.inputChord = [];
+      this.updateInputChordDisplay();
+    }
+
+    /* used to delete the last value from current chord progression */
+    truncateChordProgression(){
+      this.currChordProgression.pop();
+      this.updateCurrChordProgressionDisplay();
     }
 
 
