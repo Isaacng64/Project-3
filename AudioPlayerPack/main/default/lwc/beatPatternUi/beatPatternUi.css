@@ -1,17 +1,17 @@
 .outer {
-  border-radius: 50%;
-  background: #9fb78f;
   width: 50px;
   height: 50px;
+  border-radius: 50%;
+  background: #6b715c;
   cursor: pointer;
 }
 
 .inner {
-  border-radius: 50%;
-  background: #362c28;
+  margin: 18.75px;
   width: 12.5px;
   height: 12.5px;
-  margin: 18.75px;
+  border-radius: 50%;
+  background: #362c28;
 }
 
 .highlighted {
@@ -19,5 +19,5 @@
 }
 
 .unhighlighted {
-  background: #362c28;
+  background: #9fb78f;
 }

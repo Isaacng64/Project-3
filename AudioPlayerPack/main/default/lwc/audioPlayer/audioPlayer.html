@@ -1,3 +1,9 @@
 <template>
-    <lightning-slider value={volume} max="1" step="0.01" label="Volume" onchange={changeVolume}></lightning-slider>
+
+    <div class="background">
+        <p class="item">0%</p>
+        <input type="range" min="1" max="100" value={vVolume} class="slider item" oninput={handleSlider}>
+        <p class="item">100%</p>
+    </div>
+    
 </template>
