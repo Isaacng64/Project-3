@@ -1,0 +1,163 @@
+<template>
+	<!-- Template for the guitar component -->
+	<template if:true={guitarActive}>
+				<!-- Divs for button style. The outer div centers the buttons and adds padding between them and the carousel, the inner div keeps them on the same line -->
+				<div class="buttons">
+					<div class="dont-break">
+						<button class="button-stuff" style="padding-bottom: 10px;" onclick={handleLeftClick}>&laquo;</button>
+					</div>
+					<div class="dont-break">
+						<button class="button-stuff" style="padding-bottom: 10px;" onclick={handleRightClick}>&raquo;</button>
+					</div>
+				</div>
+				<!-- End of button style divs-->
+		<!-- Div holding the image carousel-->
+		<div class="carousel-holder">
+			<table class="carousel-holder" style="width: 5000px;">
+				<template iterator:it={guitarChords}>
+					<td key={it.value.index}>
+						<section style="display:inline;">
+							<div class="image-things">
+								<div class="let-it-end">
+									<img src={it.value.image} alt={it.value.alt} width="200" height="200" onclick={handleBlurb}>
+								</div>
+							</div>
+						</section>
+					</td>
+				</template>
+			</table>
+		</div>
+		<!-- End of images carousel-->
+
+<template if:true={toggleClick}>
+		<!-- Div holding the extra information about the chords -->
+		<div class="buttons" style="height: 45px;">
+			<template if:true={showTheThing}>
+				<p>This chord is in the {firstChordInfo} key, and is in the {firstKeyPositionInfo} position of that key!</p>
+				<p>Other chords in this key include: {firstOtherChordsSameKey}! </p>
+				<template if:true={secondKey}>
+					<p>This chord is also in the {secondChordInfo} key, and is in the {secondKeyPositionInfo} position of that key!</p>
+					<p>Other chords in this key include: {secondOtherChordsSameKey}!</p>
+				</template>
+				<template if:true={thirdKey}>
+					<p>This chord is also in the {thirdChordInfo} key, and is in the {thirdKeyPositionInfor} position of that key!</p>
+					<p>Other chords in this key include: {thirdOtherChordsSameKey}!</p>
+				</template>
+			</template>
+			<template if:true={noKey}>
+				<p> This chord is not in a key!</p>
+			</template>
+		</div>
+		<!-- End of div holding extra info -->
+	</template>
+	<!-- End of guitar template-->
+</template>
+
+	<!-- Template for the bass component-->
+	<template if:true={bassActive}>
+				<!-- Divs for button style. The outer div centers the buttons and adds padding between them and the carousel, the inner div keeps them on the same line -->
+				<div class="buttons">
+					<div class="dont-break">
+						<button class="button-stuff" style="padding-bottom: 10px;" onclick={handleLeftClick}>&laquo;</button>
+					</div>
+					<div class="dont-break">
+						<button class="button-stuff" style="padding-bottom: 10px;" onclick={handleRightClick}>&raquo;</button>
+					</div>
+				</div>
+				<!-- End of button style divs-->
+		<!-- Div holding the image carousel-->
+		<div class="carousel-holder">
+			<table class="carousel-holder" style="width: 5000px;">
+			<template iterator:it={bassChords}>
+				<td key={it.value.index}>
+					<section style="display:inline;">
+						<div class="image-things">
+							<div class="let-it-end">
+								<img src={it.value.image} alt={it.value.alt} width="200" height="200" onclick={handleBlurb}>
+							</div>
+						</div>
+					</section>
+				</td>
+			</template>
+		</table>
+		</div>
+		<!-- End of images carousel-->
+<template if:true={toggleClick}>
+		<!-- Div holding the extra information about the chords -->
+		<div class="buttons">
+			
+			<template if:true={showTheThing}>
+				<p>This chord is in the {firstChordInfo} key, and is in the {firstKeyPositionInfo} position of that key!</p>
+				<p>Other chords in this key include: {firstOtherChordsSameKey}! </p>
+				<template if:true={secondKey}>
+					<p>This chord is also in the {secondChordInfo} key, and is in the {secondKeyPositionInfo} position of that key!</p>
+					<p>Other chords in this key include: {secondOtherChordsSameKey}!</p>
+				</template>
+				<template if:true={thirdKey}>
+					<p>This chord is also in the {thirdChordInfo} key, and is in the {thirdKeyPositionInfor} position of that key!</p>
+					<p>Other chords in this key include: {thirdOtherChordsSameKey}!</p>
+				</template>
+			</template>
+			<template if:true={noKey}>
+				<p> This chord is not in a key!</p>
+			</template>
+			
+		</div>
+		<!-- End of div holding extra info -->
+</template>
+	</template>
+	<!-- End of bass template-->
+
+	<!-- Template for the piano component-->
+	<template if:true={pianoActive}>
+				<!-- Divs for button style. The outer div centers the buttons and adds padding between them and the carousel, the inner div keeps them on the same line -->
+				<div class="buttons">
+					<div class="dont-break">
+						<button class="button-stuff" style="padding-bottom: 10px;" onclick={handleLeftClick}>&laquo;</button>
+					</div>
+					<div class="dont-break">
+						<button class="button-stuff" style="padding-bottom: 10px;" onclick={handleRightClick}>&raquo;</button>
+					</div>
+				</div>
+				<!-- End of button style divs-->
+		<!-- Div holding the image carousel-->
+		<div class="carousel-holder">
+			<table class="carousel-holder" style="width: 5000px;">
+			<template iterator:it={pianoChords}>
+				<td key={it.value.index}>
+					<section style="display:inline;">
+						<div class="image-things">
+							<div class="let-it-end">
+								<img src={it.value.image} alt={it.value.alt} width="200" height="200" onclick={handleBlurb}>
+							</div>
+						</div>
+					</section>
+				</td>
+			</template>
+		</table>
+		</div>
+		<!-- End of images carousel-->
+
+		<!-- Div holding the extra information about the chords -->
+		<div class="buttons" style="height: 45px;">
+			<template if:true={showTheThing}>
+				<p>This chord is in the {firstChordInfo} key, and is in the {firstKeyPositionInfo} position of that key!</p>
+				<p>Other chords in this key include: {firstOtherChordsSameKey}! </p>
+				<template if:true={secondKey}>
+					<p>This chord is also in the {secondChordInfo} key, and is in the {secondKeyPositionInfo} position of that key!</p>
+					<p>Other chords in this key include: {secondOtherChordsSameKey}!</p>
+				</template>
+				<template if:true={thirdKey}>
+					<p>This chord is also in the {thirdChordInfo} key, and is in the {thirdKeyPositionInfor} position of that key!</p>
+					<p>Other chords in this key include: {thirdOtherChordsSameKey}!</p>
+				</template>
+			</template>
+			<template if:true={noKey}>
+				<p> This chord is not in a key!</p>
+			</template>
+		</div>
+		<!-- End of div holding extra info -->
+
+	</template>
+	<!-- End of piano template-->
+</template>
