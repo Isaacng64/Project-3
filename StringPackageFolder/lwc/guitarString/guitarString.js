@@ -20,8 +20,7 @@ export default class GuitarString extends LightningElement {
     strum() {
         let noteToPlay = [parseInt(this.currentFret), this.stringNumber];
         this.dispatchEvent(new CustomEvent('playguitarnote', {detail: noteToPlay, bubbles: true, composed: true}));
-        console.log('strumming' + noteToPlay);
-
+        console.log('strumming' + noteToPlay)
         /*let playNote = audioPlayerNote(this.currentFret, null, null, this.stringNumber);
 
         this.template.querySelector('c-audio-player').playPiano(playNote); */
