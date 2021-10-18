@@ -1,5 +1,30 @@
-.Container{
+.container{
   background-color: #9FB78F;
   border: hidden;
   border-radius: 10px;
+}
+
+.side-bar{
+background-color: #4e5245;
+width: 200px; 
+height: 800px;
+border: 2px solid #D4FCC3;
+border-radius: 10px;
+margin: 20px 0px 0px 0px;
+}
+
+.side-bar-button{
+  border: 2px solid #D4FCC3;
+  height: 180px;
+  margin: 10px;
+  background-color: #9FB78F;
+  border-radius: 10px;
+  font-size: 24px;
+  text-align: center;
+  padding: 35px;
+}
+
+.side-bar-button:hover{
+background-color: #362C28;
+color: white;
 }
