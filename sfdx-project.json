@@ -1,17 +1,40 @@
 {
     "packageDirectories": [
         {
+            "path": "PianoInstrument",
+            "package": "PianoPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true,
+            "dependencies": [
+                {
+                    "package": "AudioPlayerPackage",
+                    "versionNumber": "0.1.0.NEXT"
+                },
+                {
+                    "package": "music-utilities@0.1.0.1"
+                }
+            ]
+        },
+        {
             "path": "AudioPlayerPack",
             "package": "AudioPlayerPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true
+            "default": false
+        },
+        {
+            "path": "music-utilities",
+            "package": "music-utilities",
+            "versionName": "ver 0.1",
+            "versionNumber": "music-utilities@0.1.0.1",
+            "default": false
         }
     ],
-    "name": "p3",
+    "name": "Project-3",
     "namespace": "",
-    "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "51.0",
+    "sfdcLoginUrl": "https://resourceful-moose-q6thfr-dev-ed.my.salesforce.com/",
+    "sourceApiVersion": "52.0",
     "packageAliases": {
         "AudioPlayerPackage": "0Ho5f000000TN3BCAW",
         "AudioPlayerPackage@0.1.0-1": "04t5f000000dBEuAAM",
@@ -20,6 +43,9 @@
         "AudioPlayerPackage@0.1.0-4": "04t5f000000dHwsAAE",
         "AudioPlayerPackage@0.1.0-5": "04t5f000000dHwxAAE",
         "AudioPlayerPackage@0.1.0-6": "04t5f000000dIoxAAE",
-        "AudioPlayerPackage@0.1.0-7": "04t5f000000dJxiAAE"
+        "AudioPlayerPackage@0.1.0-7": "04t5f000000dJxiAAE",
+        "PianoPackage": "0Ho5f0000008OXwCAM",
+        "music-utilities": "0Ho5f0000008OPWCA2",
+        "music-utilities@0.1.0-1": "04t5f000000tn2vAAA"
     }
 }
