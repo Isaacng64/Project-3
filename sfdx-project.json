@@ -1,15 +1,22 @@
 {
     "packageDirectories": [
+        
+        { "path" : "AudioPlayerPack",
+            "package": "AudioPlayerPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true
+                },
+    
         {
             "path": "PianoInstrument",
             "package": "PianoPackage",
             "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": true,
+            "versionNumber": "0.1.0.1",
+            "default": false,
             "dependencies": [
                 {
-                    "package": "AudioPlayerPackage",
-                    "versionNumber": "0.1.0.NEXT"
+                    "package": "AudioPlayerPackage@0.1.0.2"
                 },
                 {
                     "package": "music-utilities@0.1.0.1"
@@ -20,8 +27,8 @@
             "path": "PianoDatabase",
             "package": "PianoDatabase",
             "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": true,
+            "versionNumber": "0.1.0.1",
+            "default": false,
             "dependencies": [
                 {
                     "package": "AudioPlayerPackage",
@@ -36,36 +43,23 @@
             "package": "GuitarPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true,
+            "default": false,
             "dependencies": [
                 {
                 "package": "AudioPlayerPackage",
                 "versionNumber": "0.1.0.NEXT"
                }]},
-        { "path" : "AudioPlayerPack",
-            "package": "AudioPlayerPackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": false
-                },
         {
             "path": "music-utilities",
             "package": "music-utilities",
             "versionName": "ver 0.1",
             "versionNumber": "music-utilities@0.1.0.1",
             "default": false
-        },
-        {
-            "path": "Package",
-            "package": "ChordBook",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.2",
-            "default": false
         }
     ],
     "name": "Project-3",
     "namespace": "",
-    "sfdcLoginUrl": "https://www.salesforce.com/",
+    "sfdcLoginUrl": "https://cunning-wolf-l4gda9-dev-ed.my.salesforce.com/",
     "packageAliases": {
         "AudioPlayerPackage": "0Ho5f000000TN3BCAW",
         "AudioPlayerPackage@0.1.0-1": "04t5f000000dBEuAAM",
@@ -76,11 +70,9 @@
         "AudioPlayerPackage@0.1.0-6": "04t5f000000dIoxAAE",
         "AudioPlayerPackage@0.1.0-7": "04t5f000000dJxiAAE",
         "PianoPackage": "0Ho5f0000008OXwCAM",
+        "PianoPackage@0.1.0-1": "04t5f000000tv6HAAQ",
         "music-utilities": "0Ho5f0000008OPWCA2",
         "music-utilities@0.1.0-1": "04t5f000000tn2vAAA",
-        "ChordBook": "0Ho5f0000008OXrCAM",
-        "ChordBook@0.1.0-1": "04t5f000000tp8DAAQ",
-        "ChordBook@0.1.0-2": "04t5f000000tuA9AAI",
         "StringInstrumentPackage": "0Ho5f000000CahrCAC",
         "GuitarPackage": "0Ho5f000000CahwCAC",
         "PianoDatabase@0.1.0-2": "04t5f000000Uo7qAAC",
