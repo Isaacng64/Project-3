@@ -1,6 +1,6 @@
 import { createElement } from "lwc";
 import CommonUtils from "c/commonUtils";
-import autoplayer from "c/autoplayer";
+import Autoplayer from "c/autoplayer";
 
 describe("c-autoplayer", () => {
     afterEach(() => {
@@ -9,5 +9,22 @@ describe("c-autoplayer", () => {
         document.body.removeChild(document.body.firstChild);
       }
     });
+
+    it("Display Update Tests", () => {
+      const element = createElement("c-autoplayer", {
+        is: Autoplayer
+      });
+
+      document.body.appendChild(element);
+
+      let inputTextList = element.shadowRoot.querySelectorAll("lightning-input");
+
+      expect(inputTextList.length).toBe(1);
+
+
+    });
+
+
+    
 
 });
