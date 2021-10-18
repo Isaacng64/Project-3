@@ -6,7 +6,7 @@ import pianoRes from '@salesforce/resourceUrl/Piano';
 import guitarRes from '@salesforce/resourceUrl/Guitar';
 import bassRes from '@salesforce/resourceUrl/Bass';
 
-export {buildLocalAudioPlayers, buildLocalGuitarPlayers /*buildLocalBassPlayers*/}
+export {buildLocalAudioPlayers, buildLocalGuitarPlayers, buildLocalBassPlayers}
 
 
 function buildLocalAudioPlayers(dictAuto, dictManual){
@@ -51,8 +51,9 @@ function buildLocalGuitarPlayers(dictAuto, dictManual){
         }
 
     });
+}
 
-/*function buildLocalBassPlayers(dictAuto, dictManual){
+function buildLocalBassPlayers(dictAuto, dictManual){
 
     dictManual["bass"] = {};
     dictAuto["bass"] = {};
@@ -71,4 +72,4 @@ function buildLocalGuitarPlayers(dictAuto, dictManual){
             dictManual.bass[note] = new PlayerWrapper(new Audio(path));
         }
     });
-}*/}
+}
