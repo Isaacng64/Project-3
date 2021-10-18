@@ -17,7 +17,8 @@ export default class AudioPlayer extends LightningElement {
   clientNotesManual = {}; /* just note that this isn't really used anywhere yet, not removing it though */
   metronomePlayer;
 
-  volume = 0.5;
+  volume = 0.15;
+  vVolume = this.volume * 100; /* to set the default viewed volume on slider as the true default volume */
 
   currentlyPlaying = [];
 
@@ -25,7 +26,7 @@ export default class AudioPlayer extends LightningElement {
     super();
     buildLocalAudioPlayers(this.clientNotesAuto, this.clientNotesManual);
     buildLocalGuitarPlayers(this.clientNotesAuto, this.clientNotesManual);
-    //buildLocalBassPlayers(this.clientNotesAuto, this.clientNotesManual);
+    buildLocalBassPlayers(this.clientNotesAuto, this.clientNotesManual);
     this.metronomePlayer = new Audio(metronome);
 
     console.log(this.clientNotesAuto);

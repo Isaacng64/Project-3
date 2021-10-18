@@ -27,4 +27,9 @@ export default class Soundboard extends LightningElement {
   autoPlayHandle(event) {
     this.nextNotes.push(event.detail);
   }
+
+
+  playbass(){ //test
+    this.template.querySelector("c-audio-player").playBass("E", 5, 2);
+  }
 }
