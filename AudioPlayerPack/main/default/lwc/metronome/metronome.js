@@ -1,104 +1,137 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api, track } from "lwc";
 
 export default class Metronome extends LightningElement {
+  constructor() {
+    super();
+    this.setTempo(160);
+  }
 
-    constructor(){
-        super();
-        this.setTempo(160);
+  intervalObj;
+  bpm = 0;
+  currentVolume = 0;
+
+  metroCounter = 1;
+  counterMax = 4;
+  @api
+  counterMaxLocked = false;
+  currentSubBeat = 0;
+
+  active = false;
+  muted = false;
+  mutedString = "Mute";
+
+  setTempo(bpm) {
+    clearInterval(this.intervalObj);
+
+    this.intervalObj = setInterval(
+      this.subTick.bind(this),
+      this.bpm2ms(bpm) / 4
+    );
+
+    this.bpm = bpm;
+  }
+
+  subTick() {
+    if (this.active == true) {
+      console.log("subtick " + this.metroCounter);
+
+      this.currentSubBeat++;
+      if (this.currentSubBeat > 4) {
+        this.currentSubBeat = 1;
+      }
+      if (this.currentSubBeat == 1) {
+        this.selfTick();
+      }
+
+      let e = new CustomEvent("subtick");
+      this.dispatchEvent(e);
     }
+  }
 
-    intervalObj;
-    metroCounter = 1;
-    bpm = 0;
-    currentVolume = 0;
-    counterMax = 4;
-    active = false;
-    muted = false;
-    mutedString = 'Mute';
+  selfTick() {
+    if (this.active == true) {
+      console.log("tick " + this.metroCounter);
 
-    setTempo(bpm){
-        clearInterval(this.intervalObj);
+      this.metroCounter += 1;
+      if (this.metroCounter > this.counterMax) {
+        this.metroCounter = 1;
+      }
 
-        this.intervalObj = setInterval(this.selfTick.bind(this), this.bpm2ms(bpm));
-
-        this.bpm = bpm; 
+      this.template
+        .querySelector("c-beat-pattern-ui")
+        .highlightBeat(this.metroCounter - 1);
+      this.currentVolume = this.template
+        .querySelector("c-beat-pattern-ui")
+        .getTempList()[this.metroCounter - 1];
+      if (this.muted) {
+        this.currentVolume = 0;
+      }
+      let e = new CustomEvent("tick", { detail: this.currentVolume });
+      this.dispatchEvent(e);
     }
+  }
 
-    selfTick(){
+  bpm2ms(bpm) {
+    // beats per minute (which is a frequency) converted to a period in milliseconds (T = 1 / f)
+    return (1000.0 * 60.0) / bpm;
+  }
 
-        if (this.active == true) {
-            console.log('tick ' + this.metroCounter);
+  faster() {
+    this.bpm += 1;
+    this.setTempo(this.bpm);
+  }
 
-            this.metroCounter += 1;
-            if (this.metroCounter > this.counterMax){
-                this.metroCounter = 1;
-            }
+  slower() {
+    this.bpm -= 1;
+    this.setTempo(this.bpm);
+  }
 
-            this.currentVolume = this.template.querySelector('c-beat-pattern-ui').getTempList()[this.metroCounter - 1];
-            if (this.muted) {
-                this.currentVolume = 0;
-            }
-            let e = new CustomEvent('tick', {detail : this.currentVolume});
-            this.dispatchEvent(e);
-        }
-    }
+  faster10() {
+    this.bpm += 10;
+    this.setTempo(this.bpm);
+  }
 
-    counterMaxUpdate() {
-        editBeats(event.target.value);
-    }
+  slower10() {
+    this.bpm -= 10;
+    this.setTempo(this.bpm);
+  }
 
-    bpm2ms(bpm){
-        // beats per minute (which is a frequency) converted to a period in milliseconds (T = 1 / f)
-        return 1000.0 * 60.0/bpm;
+  moreBeats() {
+    if (this.counterMax < 8) {
+      this.editBeats(this.counterMax + 1);
     }
+  }
 
-    faster(){
-        this.bpm += 1;
-        this.setTempo(this.bpm);
+  lessBeats() {
+    if (this.counterMax > 0) {
+      this.editBeats(this.counterMax - 1);
     }
-    
-    slower(){
-        this.bpm -= 1;
-        this.setTempo(this.bpm);
-    }
+  }
 
-    faster10(){
-        this.bpm += 10;
-        this.setTempo(this.bpm);
+  editBeats(num) {
+    if (!this.counterMaxLocked) {
+      this.counterMax = num;
+      this.template
+        .querySelector("c-beat-pattern-ui")
+        .setBeatsTotal(this.counterMax);
     }
-    
-    slower10(){
-        this.bpm -= 10;
-        this.setTempo(this.bpm);
-    }
+  }
 
-    moreBeats(){
-        this.editBeats(this.counterMax + 1);
-    }
-    
-    lessBeats(){
-        this.editBeats(this.counterMax - 1);
-    }
+  toggleMute() {
+    this.muted = !this.muted;
+    this.mutedString = this.muted ? "Unmute" : "Mute";
+  }
 
-    editBeats(num) {
-        this.counterMax = num;
-        this.template.querySelector('c-beat-pattern-ui').setBeatsTotal(this.counterMax);
-    }
+  @api
+  start() {
+    this.active = true;
+    this.metroCounter = 0;
+    this.currentSubBeat = 0;
+    this.setTempo(this.bpm);
+  }
 
-    toggleMute() {
-        this.muted = !this.muted;
-        this.mutedString = this.muted ? 'Unmute' : 'Mute';
-    }
-
-    start() {
-        this.active = true;
-        this.metroCounter = 0;
-        this.setTempo(this.bpm);
-    }
-
-    stopMetronome() {
-        this.active = false;
-        //this.metroCounter = 0;
-    }
-    
+  @api
+  stopMetronome() {
+    this.active = false;
+  }
 }
