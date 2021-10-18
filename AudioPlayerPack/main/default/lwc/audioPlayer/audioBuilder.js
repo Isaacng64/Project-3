@@ -52,7 +52,7 @@ function buildLocalGuitarPlayers(dictAuto, dictManual){
 
     });
 
-}
+export {buildLocalAudioPlayers, buildLocalGuitarPlayers}
 
 function buildLocalBassPlayers(dictAuto, dictManual){
 

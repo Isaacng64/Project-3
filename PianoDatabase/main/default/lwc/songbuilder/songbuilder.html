@@ -1,0 +1,145 @@
+<template>
+	<div id="builder" style="height: 725px; width: 1018px; background: #6b715c; margin: auto; position: relative; border-radius: 3px;">
+		<div class="slds-float_left">
+			<button onclick={addOctave}>Octave +</button>
+			<button onclick={subOctave}>Octave -</button>
+		</div>
+		<div class="slds-float_right">
+			<button onclick={addNewMeasure}>Add Measure</button>
+			<button onclick={removeMeasure}>Remove Measure</button>
+		</div>
+		<div class="slds-align_absolute-center">
+			<button onclick={startPlaying}>Play Song</button>
+			<button onclick={startLoading}>Load Song</button>
+			<button onclick={startSaving}>Save Song</button>
+			<button onclick={newSong}>New Song</button>
+		</div>
+		<template if:true={playing}>
+			<div style="z-index: -5; width: 50%; margin-right: auto; margin-left: auto; margin-top: 5px;"><c-audio-player></c-audio-player></div>
+			<div style="width: 500px; height: 100px; margin-right: auto; margin-left: auto; margin-top: 25px;">
+				<c-metronome onsubtick={handleTick}></c-metronome>
+			</div>
+		</template>
+		<template if:true={loading}>
+			<lightning-input class="slds-align_absolute-center inputBox" type="text" name="Loading" label="Enter a song name: " onchange={handleLoadInputChange}>
+			</lightning-input>
+			<lightning-button-group class="slds-align_absolute-center">
+				<lightning-button label="Search" onclick={loadAllSongs} class="enterButton"></lightning-button>
+			</lightning-button-group>
+			<template if:true={listOfSongs.length}>
+				<div class="scrollh" style="width: 400px; height: 100px; margin-top: 15px; margin-left: auto; margin-right: auto; padding: 10px;">
+					<template for:each={listOfSongs} for:item="song">
+						<div key={song.songID} style="border-bottom: solid">
+							<p key={song.songName}><span style="font-size: 22px; vertical-align: center;"><b>{song.songName}</b></span>
+								<lightning-button-group class="slds-float_right">
+									<lightning-button name={song.songID} label="Load" onclick={loadSong}>
+									</lightning-button>
+								</lightning-button-group>
+							</p>
+						</div>
+					</template>
+				</div>
+			</template>
+		</template>
+		<template if:true={saving}>
+			<lightning-input class="slds-align_absolute-center inputBox" type="text" name="Saving" label="Enter a song name: " onchange={handleSaveInputChange}>
+			</lightning-input>
+			<lightning-button-group class="slds-align_absolute-center">
+				<lightning-button label="Save" onclick={saveSong} class="enterButton"></lightning-button>
+			</lightning-button-group>
+		</template>
+		<div style="width: 100%; display: table; position: absolute; bottom: 0; left: 0;">
+			<div style="display: table-row; width: 100%;">
+				<div style="width: 1.5%; display: table-cell;">
+					<table class="piano">
+						<tr class="roll">
+							<td class="keys cCell">C4</td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys cCell">C3</td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys blackkey"></td>
+						</tr>
+						<tr class="roll">
+							<td class="keys cCell">C2</td>
+						</tr>
+					</table>
+				</div>
+				<div  class="scroll" style="width: 1000px; height: 420px;">
+				<div style="display: table-cell;">
+					<lightning-layout multiple-rows="false">
+						<template for:each={dataForDynamicComponentCreation} for:item="item">
+							<c-songbuildermeasure key={item.requiredKey} measure-id={item.measureid} song-id={songId} curr-octave={octave} loaded-notes={item.LoadedNotes}>
+							</c-songbuildermeasure>
+						</template>
+					</lightning-layout>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</template>
