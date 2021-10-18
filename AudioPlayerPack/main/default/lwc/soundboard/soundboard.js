@@ -1,5 +1,7 @@
 import { LightningElement } from "lwc";
 
+/* Container element for the audioPlayer, metronome, and autoplayer components to work together */
+
 export default class Soundboard extends LightningElement {
   nextNotes = [];
 

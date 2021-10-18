@@ -104,4 +104,11 @@ export default class AudioPlayer extends LightningElement {
           this.currentlyPlaying[i].setVolume(this.volume);
       }
   }
+
+
+  /* for testing */
+  @api
+  getCurPlaying(){
+    return this.currentlyPlaying;
+  }
 }
