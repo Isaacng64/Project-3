@@ -4,7 +4,7 @@ import { PlayerWrapper } from "./playerWrapper";
 
 import pianoRes from '@salesforce/resourceUrl/Piano';
 import guitarRes from '@salesforce/resourceUrl/Guitar';
-//import bassRes from '@salesforce/resourceUrl/Bass';
+import bassRes from '@salesforce/resourceUrl/Bass';
 
 export {buildLocalAudioPlayers, buildLocalGuitarPlayers /*buildLocalBassPlayers*/}
 
