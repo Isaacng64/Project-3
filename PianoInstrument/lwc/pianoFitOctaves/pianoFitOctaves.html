@@ -2,14 +2,24 @@
     <!-- <c-basic-utils></c-basic-utils> -->
     <lightning-layout horizontal-align="center">
     <main class="slds-grid_vertical slds-grid_align-center" >
-        <!-- Information about wich key and Octave are displayed -->
+        <!-- Information about wich key and Octave are displayed 
         <div class="slds-col">
-            The note is: {note} and Last Octave is : {numOctave}
+            The note is: {note} - The Chord is: {chordText} - The Last Octave is : {numOctave}
         </div>
+        -->
         <!-- Buttons to interact dynamically with the Piano -->
         <div class="slds-col">
-            <a class="slds-button slds-button_destructive" onclick={decreaseOctave}> - </a>
-            <a class="slds-button slds-button_success" onclick={addOctave}> + </a>
+            
+                <a class="slds-button slds-button_destructive" onclick={decreaseOctave}> - </a>
+                <a class="slds-button slds-button_success" onclick={addOctave}> + </a>
+            
+        </div>
+        <!-- Basic Chords -->
+        <div class="slds-col uipiano slds-grid_align-center">
+            <!-- This Div will hold the Ui for the Piano Instrument-->
+            <template for:each={pianoChords} for:item="chord">
+                <c-piano-chord key={chord.id} chord={chord} onkeyclickchord={handleClickChord}></c-piano-chord>
+            </template>           
         </div>
         <!-- Octaves to be Displayed in the Piano -->
         <div class="uipiano">

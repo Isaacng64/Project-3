@@ -1,0 +1,20 @@
+.major { 
+    width: 4rem; 
+    height: 1.5rem;
+    border-radius: 25px;
+    background-color: #9FB78F;
+    color: #000000;
+    text-align: center;
+    padding: 2px;
+    margin: 2px;
+}
+.minor { 
+    width: 4rem; 
+    height: 1.5rem;
+    border-radius: 25px;
+    background-color: #FFF5B2;
+    color: #000000;
+    text-align: center;
+    padding: 2px;
+    margin: 2px;
+}

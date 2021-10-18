@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import { pianoNotes } from 'c/pianoNotes';
+import { pianoNotes, chordPiano } from 'c/pianoNotes';
 /* the import is required to construct a new AudioPlayerNote */ 
 import { AudioPlayerNote } from 'c/commonUtils';
 import { basicUtils } from 'c/basicUtils';
@@ -8,6 +8,7 @@ export default class PianoInstrument extends LightningElement {
     
     //Variable to show the Key
     note = 'Click the Key';
+    chordText;
 
     // Octaves to Display in the Piano, dynamically changed
     numOctave = 2;
@@ -21,6 +22,7 @@ export default class PianoInstrument extends LightningElement {
 
     // Slice of the number of the Octaves to Show (3)
     piano = pianoNotes.slice(this.firstKey, this.lastKey);
+    pianoChords = [...chordPiano];
 
     // Function that will Add One Octave
     addOctave() {
@@ -58,7 +60,6 @@ export default class PianoInstrument extends LightningElement {
     is sent as event details (evt.detail) and broken up into variables note, name, and octave. 
     */
     handleKeyClickCE(evt) {
-
         // detail will hold the information of the Key
         let currentNote = evt.detail;
         // Detail of the Key
@@ -73,6 +74,20 @@ export default class PianoInstrument extends LightningElement {
         /* querySelector is used to access playPiano element of the audioPlayer js file using the created AudioPlayerNote*/
         this.template.querySelector("c-audio-player").playPiano(playNote);
 
+    }
+
+    handleClickChord(evt){
+        // detail will hold the information of the Chord
+        let currentChord = evt.detail;
+        this.chordText = currentChord.name + '(' + currentChord.keys.first + ', ' + currentChord.keys.second + ', ' + currentChord.keys.third + ')';
+        // Detail of the Key
+        let playNoteA = new AudioPlayerNote(null, currentChord.keys.first, this.octaveOne, null)
+        let playNoteB = new AudioPlayerNote(null, currentChord.keys.second, this.octaveOne, null)
+        let playNoteC = new AudioPlayerNote(null, currentChord.keys.third, this.octaveOne, null)
+        console.log(currentChord.name + ' - ' + currentChord.keys.first + ' - ' + currentChord.keys.second + ' - ' + currentChord.keys.third + ' - ' + this.octaveOne);
+        this.template.querySelector("c-audio-player").playPiano(playNoteA);
+        this.template.querySelector("c-audio-player").playPiano(playNoteB);
+        this.template.querySelector("c-audio-player").playPiano(playNoteC);
     }
 
     /* 
