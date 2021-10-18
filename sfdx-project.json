@@ -29,6 +29,13 @@
             "versionName": "ver 0.1",
             "versionNumber": "music-utilities@0.1.0.1",
             "default": false
+        },
+        {
+            "path": "Package",
+            "package": "ChordBook",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true
         }
     ],
     "name": "Project-3",
@@ -46,6 +53,9 @@
         "AudioPlayerPackage@0.1.0-7": "04t5f000000dJxiAAE",
         "PianoPackage": "0Ho5f0000008OXwCAM",
         "music-utilities": "0Ho5f0000008OPWCA2",
-        "music-utilities@0.1.0-1": "04t5f000000tn2vAAA"
+        "music-utilities@0.1.0-1": "04t5f000000tn2vAAA",
+        "ChordBook": "0Ho5f0000008OXrCAM",
+        "ChordBook@0.1.0-1": "04t5f000000tp8DAAQ",
+        "ChordBook@0.1.0-2": "04t5f000000tuA9AAI"
     }
 }
