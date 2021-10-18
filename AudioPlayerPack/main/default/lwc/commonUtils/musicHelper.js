@@ -136,7 +136,6 @@ function clampBounds(name, octave) {
   }
 }
 
-
 function stdNote2components(stdNote) {
   if (stdNote) {
     let name;
