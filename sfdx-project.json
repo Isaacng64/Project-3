@@ -5,7 +5,7 @@
             "package": "AudioPlayerPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true
+            "default": false
         },
         {
             "path": "PianoInstrument",
@@ -64,6 +64,36 @@
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": false
+        },
+        {
+            "path": "workshop-app",
+            "package": "workshop-app",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true,
+            "dependencies": [
+                {
+                    "package": "AudioPlayerPackage@0.1.0.7"
+                },
+                {
+                    "package": "PianoPackage@0.1.0.1"
+                },
+                {
+                    "package": "music-utilities@0.1.0-1"
+                },
+                {
+                    "package": "0Ho5f000000CahwCAC"
+                },
+                {
+                    "package": "0Ho5f000000CahrCAC"
+                },
+                {
+                    "package": "PianoDatabase@0.1.0-5"
+                },
+                {
+                    "package": "ChordBook@0.1.0-1"
+                }
+            ]
         }
     ],
     "name": "Project-3",
@@ -88,6 +118,7 @@
         "PianoDatabase@0.1.0-4": "04t5f000000Uq1xAAC",
         "PianoDatabase@0.1.0-5": "04t5f000000Uq6FAAS",
         "ChordBook": "0Ho5f0000008OYBCA2",
-        "ChordBook@0.1.0-1": "04t5f000000twAzAAI"
+        "ChordBook@0.1.0-1": "04t5f000000twAzAAI",
+        "workshop-app": "0Ho5f0000008OYGCA2"
     }
 }
