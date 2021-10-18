@@ -1,0 +1,19 @@
+<template>
+  <div class="slds-grid slds-grid_align-space">
+    <template
+      for:each={volumesList}
+      for:item="instance"
+      for:index="indexNum"
+      key={index}
+    >
+      <div
+        key={index}
+        class="slds-col outer"
+        data-item={indexNum}
+        onclick={clickVolumeHandler}
+      >
+        <div data-item={indexNum} class="inner unhighlighted"></div>
+      </div>
+    </template>
+  </div>
+</template>

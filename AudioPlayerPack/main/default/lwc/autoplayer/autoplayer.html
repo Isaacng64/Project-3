@@ -1,0 +1,17 @@
+<template>
+
+    <div>
+        <h3></h3>
+        <lightning-input type="string" value="Ab1" name="inputNote" label="Input Note" id="inputNote" onchange={changeInputNote}></lightning-input>
+        <button class="textButton" onclick={addInputNoteToChord}>Add note to chord</button>
+        <button class="textButton" onclick={clearInputChord}>Clear current chord</button>
+        <p id="chordDisplay">Current chord: {displayInputChord}</p>
+        <button class="textButton" onclick={addInputChordToChordProgression}>Add chord to chord progression</button>
+        <button class="textButton" onclick={truncateChordProgression}>Remove last chord from progression</button>
+        <p id="chordProgressionDisplay">Current chord progression: {displayCurrChordProgression}</p>
+    </div>
+    <div>
+        <h3></h3>
+
+    </div>
+</template>

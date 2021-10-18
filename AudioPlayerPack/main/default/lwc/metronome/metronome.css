@@ -1,0 +1,25 @@
+.outer {
+  width: 500px;
+  padding: 10px;
+  border-style: solid;
+  border-color: #6b715c;
+  background: #362c28;
+}
+
+label {
+  color: #d4fcc3;
+}
+
+button {
+  color: #000000;
+  background: #9fb78f;
+}
+
+button.symbol-button {
+  width: 45px;
+  font-weight: bold;
+}
+
+button.text-button {
+  width: 60px;
+}
