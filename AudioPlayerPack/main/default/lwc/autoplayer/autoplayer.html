@@ -1,8 +1,9 @@
 <template>
 
-    <div>
+    <div class="outer">
         <h3></h3>
-        <lightning-input type="string" value="Ab1" name="inputNote" label="Input Note" id="inputNote" onchange={changeInputNote}></lightning-input>
+        <p id="inputLabel">Input Note Here:</p>
+        <lightning-input type="string" value="Ab1" name="inputNote" label=" " variant="label-hidden" id="inputNote" onchange={changeInputNote}></lightning-input>
         <button class="textButton" onclick={addInputNoteToChord}>Add note to chord</button>
         <button class="textButton" onclick={clearInputChord}>Clear current chord</button>
         <p id="chordDisplay">Current chord: {displayInputChord}</p>
