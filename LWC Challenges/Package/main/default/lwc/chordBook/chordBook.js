@@ -205,11 +205,14 @@ export default class App extends LightningElement {
     this.thirdKey = false;
     let imgs = this.template.querySelectorAll('img');
     let lastImg = imgs[imgs.length - 1].src;
+    let lastAlt = imgs[imgs.length - 1].alt;
 
     for(let i = imgs.length-1; i > 0; i--) {
       imgs[i].src = imgs[i-1].src;
+      imgs[i].alt = imgs[i-1].alt;
     }
     imgs[0].src = lastImg;
+    imgs[0].alt = lastAlt;
   }
 
   handleRightClick() {
@@ -218,11 +221,14 @@ export default class App extends LightningElement {
     this.thirdKey = false;
     let imgs = this.template.querySelectorAll('img');
     let firstImg = imgs[0].src;
+    let firstAlt = imgs[0].alt;
 
     for(let i = 0; i < imgs.length - 1; i++) {
       imgs[i].src = imgs[i+1].src;
+      imgs[i].alt = imgs[i+1].alt;
     }
     imgs[imgs.length-1].src = firstImg;
+    imgs[imgs.length-1].alt = firstAlt;
   }
   /* End of chord functions */
 
@@ -246,7 +252,7 @@ export default class App extends LightningElement {
     {name: 'B major', alt: 'A picture of a B Major chord', image: guitarB, firstKey: 'B', firstKeyPosition: '1st', firstKeyOtherChords: 'C#, D#, E, F#, G#, A#', secondKey: 'F#', secondKeyPosition: '4th', secondKeyOtherChords: 'F#, G#m, A#m, C#, D#m', thirdKey: 'E', thirdKeyPosition: '5th', thirdKeyOtherChords: 'E, F#m, G#m, A, C#m'},
     {name: 'C major', alt: 'A picture of a C Major chord', image: guitarC, firstKey: 'C', firstKeyPosition: '1st', firstKeyOtherChords: 'F, G7, Am, Dm, E7', secondKey: 'G', secondKeyPosition: '4th', secondKeyOtherChords: 'G, D7, Em, Am, B7', thirdKey: 'E', thirdKeyPosition: '5th', thirdKeyOtherChords: 'E, F#m, G#m, A, C#m'},
     {name: 'C sharp major', alt: 'A picture of a C# Major chord', image: guitarCSharp, firstKey: 'C#', firstKeyPosition: '1st', firstKeyOtherChords: 'D#, E#, F#, G#, A#, B#'},
-    {name: 'D major', alt: 'A picture of a D Major chord', image: guitarD, firstKey: 'D', firstKeyPosition: '1st', firstKeyOtherChords: 'G, A7, Bm, Em, Gb7', secondKey: 'D', secondKeyPosition: '4th', secondKeyOtherChords: 'A, B, C#, E, F#, G#', thirdKey: 'G', thirdKeyPosition: '5th', thirdKeyOtherChords: 'G, Am, Bm, C, Em'},
+    {name: 'D major', alt: 'A picture of a D Major chord', image: guitarD, firstKey: 'D', firstKeyPosition: '1st', firstKeyOtherChords: 'G, A7, Bm, Em, Gb7', secondKey: 'A', secondKeyPosition: '4th', secondKeyOtherChords: 'A, B, C#, E, F#, G#', thirdKey: 'G', thirdKeyPosition: '5th', thirdKeyOtherChords: 'G, Am, Bm, C, Em'},
     {name: 'D sharp major', alt: 'A picture of a D# Major chord', image: guitarDSharp},
     {name: 'E major', alt: 'A picture of an E Major chord', image: guitarE, firstKey: 'E', firstKeyPosition: '1st', firstKeyOtherChords: 'F#, G#, A, B, C#, D#', secondKey: 'B', secondKeyPosition: '4th', secondKeyOtherChords: 'B, C#, D#, F#, G#, A#', thirdKey: 'A', thirdKeyPosition: '5th', thirdKeyOtherChords: 'A, Bm, C#m, D, F#m'},
     {name: 'F major', alt: 'A picture of an F Major chord', image: guitarF, firstKey: 'F', firstKeyPosition: '1st', firstKeyOtherChords: 'G, A, Bb, C, D, E', secondKey: 'C', secondKeyPosition: '4th', secondKeyOtherChords: 'C, D, E, G, A, B', thirdKey: 'Bb', thirdKeyPosition: '5th', thirdKeyOtherChords: 'Bb, Cm, Dm, Eb, Gm'},
