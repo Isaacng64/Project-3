@@ -11,7 +11,7 @@ export default class GuitarFret extends LightningElement {
 
   @api fretImg = fretImage;
   @api currentFret;
-  @api currentString = 'A2';
+  @api currentString = 'A';
   @api pressed = false;
   pressedFretImg1 = fretPressedImg1;
   pressedFretImg2 = fretPressedImg2;
@@ -29,17 +29,17 @@ export default class GuitarFret extends LightningElement {
       this.dispatchEvent(new CustomEvent('passfret', {detail: 0}));
     }
 
-    if(this.currentString == 'E2' && this.pressed==true){
+    if(this.currentString == 'E1' && this.pressed==true){
       this.fretImg = this.pressedFretImg1;
-    } else if(this.currentString == 'A2' && this.pressed==true){
+    } else if(this.currentString == 'A' && this.pressed==true){
       this.fretImg = this.pressedFretImg2;
-    } else if(this.currentString == 'D3' && this.pressed==true){
+    } else if(this.currentString == 'D' && this.pressed==true){
       this.fretImg = this.pressedFretImg3;
-    } else if(this.currentString == 'G3' && this.pressed==true){
+    } else if(this.currentString == 'G' && this.pressed==true){
       this.fretImg = this.pressedFretImg4;
-    } else if(this.currentString == 'B3' && this.pressed==true){
+    } else if(this.currentString == 'B' && this.pressed==true){
       this.fretImg = this.pressedFretImg5;
-    } else if(this.currentString == 'E4' && this.pressed==true){
+    } else if(this.currentString == 'E2' && this.pressed==true){
       this.fretImg = this.pressedFretImg6;
     } else if(this.pressed == false){
       this.fretImg = fretImage;

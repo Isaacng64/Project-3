@@ -1,11 +1,10 @@
 import { LightningElement, api } from 'lwc';
 import strumImage from '@salesforce/resourceUrl/strum';
 import fretImage from '@salesforce/resourceUrl/fret';
-/* import { AudioPlayerNote } from 'c/commonUtils'; */
 
 export default class GuitarString extends LightningElement {
 
-    frets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
+    frets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
 
     currentFret = 0;
     openString = 0;
@@ -18,13 +17,9 @@ export default class GuitarString extends LightningElement {
     }
 
     strum() {
-        let noteToPlay = [parseInt(this.currentFret), this.stringNumber];
-        this.dispatchEvent(new CustomEvent('playguitarnote', {detail: noteToPlay, bubbles: true, composed: true}));
-        console.log('strumming' + noteToPlay);
-
-        /*let playNote = audioPlayerNote(this.currentFret, null, null, this.stringNumber);
-
-        this.template.querySelector('c-audio-player').playPiano(playNote); */
+        let noteToPlay = [this.stringNumber, this.currentFret];
+        this.dispatchEvent(new CustomEvent('playguitarnote', {detail: noteToPlay}));
+        console.log('strumming: ' + noteToPlay);
     }
 
     handlePressed(event){
