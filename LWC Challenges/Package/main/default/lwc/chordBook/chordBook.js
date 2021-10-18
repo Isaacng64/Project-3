@@ -36,19 +36,19 @@ export default class App extends LightningElement {
 /* Functions changing what the active instrument is, and deactivating inactive ones */
 /* Maybe in the future there could be a drop down list of chord books for the user to pick from? 
    In this iteration though we were just told to have it be resopnsive so it's just responsive for now*/
-  activateGuitar(/*something passed in from parent*/){
+  activateGuitar(/*something passed in from parent*/) {
     guitarActive  = true;
     bassActive    = false;
     pianoActive   = false;
   }
 
-  activateBass(/*something passed in from parent*/){
+  activateBass(/*something passed in from parent*/) {
   guitarActive  = false;
   bassActive    = true;
   pianoActive   = false;
   }
     
-  activatePiano(/*something passed in from parent*/){
+  activatePiano(/*something passed in from parent*/) {
     guitarActive  = false;
     bassActive    = false;
     pianoActive   = true;
@@ -56,109 +56,129 @@ export default class App extends LightningElement {
 /* End of instruments function */
 
 /* function to handle the click functinality to dislay more information about the chords*/
-  handleBlurb(event){
+  handleBlurb(event) {
     this.toggleClick = !this.toggleClick;
     let div = event.target.alt;
-    if(this.guitarActive==true){
-      for (let i=0; i<this.guitarChords.length; i++)
-      {
-        if(this.guitarChords[i].alt == div){
-          if(this.guitarChords[i].firstKey == null){
+    if(this.guitarActive==true) {
+      /* code only gets here if the currently active instrument is guitar */
+      for (let i=0; i<this.guitarChords.length; i++) {
+        /* this measures each image in the object */
+        if(this.guitarChords[i].alt == div) {
+          /* This was the only way I could make the logic work, it measures the alt text in the object, and compares it to teh alt text of the event target */
+          if(this.guitarChords[i].firstKey == null) {
+            /* if the first key doesn't exist, code goes here */
             this.noKey = true;
             this.showTheThing = false;
           }else{
+            /* when an item gets clicked and makes it here it sets all the tracked values to those values within the objects, and turns on the values to show them in the html */
             this.noKey = false;
             this.showTheThing = true;
             this.firstChordInfo = this.guitarChords[i].firstKey;
             this.firstKeyPositionInfo = this.guitarChords[i].firstKeyPosition;
             this.firstOtherChordsSameKey = this.guitarChords[i].firstKeyOtherChords;
-            if(this.guitarChords[i].secondKey != null){
+            if(this.guitarChords[i].secondKey != null) {
+              /* code makes it here if there is a second key a chord is in, and does the same as above */
               this.secondKey = true;
               this.secondChordInfo = this.guitarChords[i].secondKey;
               this.secondKeyPositionInfo = this.guitarChords[i].secondKeyPosition;
               this.secondOtherChordsSameKey = this.guitarChords[i].secondKeyOtherChords;
-              if(this.guitarChords[i].thirdKey != null){
+              if(this.guitarChords[i].thirdKey != null) {
+                /* code gets here if there's a third key available */ 
                 this.thirdKey = true;
                 this.thirdChordInfo = this.guitarChords[i].thirdKey;
                 this.thirdKeyPositionInfor = this.guitarChords[i].thirdKeyPosition;
                 this.thirdOtherChordsSameKey = this.guitarChords[i].thirdKeyOtherChords;
               }else{
+                /* hides the third key section if a third key doesn't exist */
                 this.thirdKey = false;
               }
             }else{
+              /* hides the second key section if a second key doesn't exist */
               this.secondKey = false;
             }
-            
           }
         }
       } 
    }
-   else if (this.bassActive==true){
-     console.log("Help");
-    for (let i=0; i<this.bassChords.length; i++)
-    {
-      if(this.bassChords[i].alt == div){
-        if(this.bassChords[i].firstKey == null){
+   else if (this.bassActive==true) {
+     /* code gets here if the bass is the active instrument */
+    for (let i=0; i<this.bassChords.length; i++) {
+      /* measures each image in the object */
+      if(this.bassChords[i].alt == div) {
+        /* compares alt text of object to alt text of image */
+        if(this.bassChords[i].firstKey == null) {
+          /* if the first key doesn't exist it ends up here */
           this.noKey = true;
           this.showTheThing = false;
         }else{
-          console.log("hi");
+          /* when an item gets clicked and makes it here it sets all the tracked values to those values within the objects, and turns on the values to show them in the html */
           this.noKey = false;
           this.showTheThing = true;
           this.firstChordInfo = this.bassChords[i].firstKey;
           this.firstKeyPositionInfo = this.bassChords[i].firstKeyPosition;
           this.firstOtherChordsSameKey = this.bassChords[i].firstKeyOtherChords;
-          if(this.bassChords[i].secondKey != null){
+          if(this.bassChords[i].secondKey != null) {
+             /* code makes it here if there is a second key a chord is in, and does the same as above */
             this.secondKey = true;
             this.secondChordInfo = this.bassChords[i].secondKey;
             this.secondKeyPositionInfo = this.bassChords[i].secondKeyPosition;
             this.secondOtherChordsSameKey = this.bassChords[i].secondKeyOtherChords;
-            if(this.bassChords[i].thirdKey != null){
+            if(this.bassChords[i].thirdKey != null) {
+              /* code gets here if there's a third key available */ 
               this.thirdKey = true;
               this.thirdChordInfo = this.bassChords[i].thirdKey;
               this.thirdKeyPositionInfor = this.bassChords[i].thirdKeyPosition;
               this.thirdOtherChordsSameKey = this.bassChords[i].thirdKeyOtherChords;
             }else{
+              /* hides the third key section if a third key doesn't exist */
               this.thirdKey = false;
             }
           }else{
+            /* hides the third key section if a second key doesn't exist */
             this.secondKey = false;
           }
         }
       }
-    } 
+     } 
    }
-   else if(this.pianoActive==true)
-   {
-    for (let i=0; i<this.pianoChords.length; i++)
-    {
-      if(this.pianoChords[i].alt == div){
-        if(this.pianoChords[i].firstKey == null){
+   else if(this.pianoActive==true) {
+     /* code gets here when the piano is active */
+    for (let i=0; i<this.pianoChords.length; i++) {
+      /* measures each item in teh piano array */ 
+      if(this.pianoChords[i].alt == div) {
+        /* compares event target alt text to array alt text */
+        if(this.pianoChords[i].firstKey == null) {
+          /* hides info if there's no first key */
           this.noKey = true;
           this.showTheThing = false;
-        }else{
+        }else {
+          /* when an item gets clicked and makes it here it sets all the tracked values to those values within the objects, and turns on the values to show them in the html */
           this.noKey = false;
           this.showTheThing = true;
           this.firsthordInfo = this.pianoChords[i].firstKey;
           this.firstKeyPositionInfo = this.pianoChords[i].firstKeyPosition;
           this.firstOtherChordsSameKey = this.pianoChords[i].firstKeyOtherChords;
-          if(this.pianoChords[i].secondKey != null){
+          if(this.pianoChords[i].secondKey != null) {
+             /* code makes it here if there is a second key a chord is in, and does the same as above */
             this.secondKey = true;
             this.secondChordInfo = this.pianoChords[i].secondKey;
             this.secondKeyPositionInfo = this.pianoChords[i].secondKeyPosition;
             this.secondOtherChordsSameKey = this.pianoChords[i].secondKeyOtherChords;
-            if(this.pianoChords[i].thirdKey != null){
+            if(this.pianoChords[i].thirdKey != null) {
+               /* code makes it here if there is a third key a chord is in, and does the same as above */
               this.thirdKey = true;
               this.thirdChordInfo = this.pianoChords[i].thirdKey;
               this.thirdKeyPositionInfor = this.pianoChords[i].thirdKeyPosition;
               this.thirdOtherChordsSameKey = this.pianoChords[i].thirdKeyOtherChords;
-            }else{
+            }else {
+              /* hides the third key section if a second key doesn't exist */
               this.thirdKey = false;
               this.thirdChordInfo = this.pianoChords[i].thirdKey;
               this.thirdKeyPositionInfor = this.pianoChords[i].thirdKeyPosition;
               this.thirdOtherChordsSameKey = this.pianoChords[i].thirdKeyOtherChords;
             }
-          }else{
+          }else {
+            /* hides the third key section if a third key doesn't exist */
             this.secondKey = false;
           }
         }
@@ -168,38 +188,38 @@ export default class App extends LightningElement {
 }
 
 /* These functions handle the currently 'active' chord and add a class to it to make it stand out more */
-  renderedCallback(){
+  renderedCallback() {
     let imgs = this.template.querySelectorAll('img');
-    for(let i = 0; i < imgs.length; i++){
+    for(let i = 0; i < imgs.length; i++) {
 
-      if(i == Math.floor(imgs.length/(imgs.length) + 1)){
+      if(i == Math.floor(imgs.length/(imgs.length) + 1)) {
         imgs[i].classList.add('focus-on-me'); 
       }
     }
   }
 
 /* These functions handle the buttons to adjust the 'active' chord, moving it left and right */
-  handleLeftClick(){
+  handleLeftClick() {
     this.showTheThing = false;
     this.secondKey = false;
     this.thirdKey = false;
     let imgs = this.template.querySelectorAll('img');
     let lastImg = imgs[imgs.length - 1].src;
 
-    for(let i = imgs.length-1; i > 0; i--){
+    for(let i = imgs.length-1; i > 0; i--) {
       imgs[i].src = imgs[i-1].src;
     }
     imgs[0].src = lastImg;
   }
 
-  handleRightClick(){
+  handleRightClick() {
     this.showTheThing = false;
     this.secondKey = false;
     this.thirdKey = false;
     let imgs = this.template.querySelectorAll('img');
     let firstImg = imgs[0].src;
 
-    for(let i = 0; i < imgs.length - 1; i++){
+    for(let i = 0; i < imgs.length - 1; i++) {
       imgs[i].src = imgs[i+1].src;
     }
     imgs[imgs.length-1].src = firstImg;
@@ -221,7 +241,7 @@ export default class App extends LightningElement {
 
 /* These arrays just hold information for each of the instruments, the images are pulled from the orgs static resources, I made the images myself */   
   guitarChords = [
-    {name: 'A major', alt: 'A picture of an A Major chord', image: guitarA, firstKey: 'A', firstKeyPosition: '1st', firstKeyOtherChords: 'B, C#, D, E, F#', secondKey: 'E', secondKeyPosition: '4th', secondKeyOtherChords: 'E, F#, G#, B, C#', thirdKey: "D", thirdKeyPosition: "5th", thirdKeyOtherChords: 'D, Em, F#b, G, Bm'},
+    {name: 'A major', alt: 'A picture of an A Major chord', image: guitarA, firstKey: 'A', firstKeyPosition: '1st', firstKeyOtherChords: 'B, C#, D, E, F#', secondKey: 'E', secondKeyPosition: '4th', secondKeyOtherChords: 'E, F#, G#, B, C#', thirdKey: 'D', thirdKeyPosition: '5th', thirdKeyOtherChords: 'D, Em, F#b, G, Bm'},
     {name: 'A sharp major', alt: 'A picture of an A# Major chord', image: guitarASharp},
     {name: 'B major', alt: 'A picture of a B Major chord', image: guitarB, firstKey: 'B', firstKeyPosition: '1st', firstKeyOtherChords: 'C#, D#, E, F#, G#, A#', secondKey: 'F#', secondKeyPosition: '4th', secondKeyOtherChords: 'F#, G#m, A#m, C#, D#m', thirdKey: 'E', thirdKeyPosition: '5th', thirdKeyOtherChords: 'E, F#m, G#m, A, C#m'},
     {name: 'C major', alt: 'A picture of a C Major chord', image: guitarC, firstKey: 'C', firstKeyPosition: '1st', firstKeyOtherChords: 'F, G7, Am, Dm, E7', secondKey: 'G', secondKeyPosition: '4th', secondKeyOtherChords: 'G, D7, Em, Am, B7', thirdKey: 'E', thirdKeyPosition: '5th', thirdKeyOtherChords: 'E, F#m, G#m, A, C#m'},
@@ -234,22 +254,22 @@ export default class App extends LightningElement {
     {name: 'G major', alt: 'A picture of a G Major chord', image: guitarG, firstKey: 'G', firstKeyPosition: '1st', firstKeyOtherChords: 'A, B, C, D, E, F#', secondKey: 'D', secondKeyPosition: '4th', secondKeyOtherChords: 'D, E, F#, A, B, C#', thirdKey: 'C', thirdKeyPosition: '5th', thirdKeyOtherChords: 'C, Dm, Em, F, Am'},
     {name: 'G sharp major', alt: 'A picture of a G# Major chord', image: guitarGSharp, firstKey: 'Ab', firstKeyPosition: '1st', firstKeyOtherChords: 'Bb, C, Db, Eb, F, G, Ab'},
     /* end of guitar major and start of guitar minor chords */
-    {name: 'A minor', alt: 'A picture of an A minor chord', image: guitarAMinor, firstKey: 'C', firstKeyPosition: '6th', firstKeyOtherChords: 'C, Dm, Em, F, G', secondKey: 'F', secondKeyPosition: '3rd', secondKeyOtherChords: 'F, Gm, Bb, C, Dm', thirdKey: 'G', thirdKeyPosition: "2nd", thirdKeyOtherChords: 'G, Bm, C, D, Em'},
-    {name: 'A sharp minor', alt: 'A picture of an A# Minor chord', image: guitarASharpMinor, firstKey: 'C#', firstKeyPosition: '6th', firstKeyOtherChords: 'C#, D#m, E#m, F#, G#', secondKey: 'F#', secondKeyPosition: '3rd', secondKeyOtherChords: 'F#, G#m, B, C#, D#m', thirdKey: "Ab", thirdKeyPosition: "2nd", thirdKeyOtherChords: 'Bbm, Cm, Db, Eb, Fm'},
-    {name: 'B minor', alt: 'A picture of a B Minor chord', image: guitarBMinor, firstKey: 'A', firstKeyPosition: '2nd', firstKeyOtherChords: 'A, C#m, D, E, F#m', secondKey: 'G', secondKeyPosition: '3rd', secondKeyOtherChords: 'G, Am, C, D, Em', thirdKey: "D", thirdKeyPosition: "6th", thirdKeyOtherChords: 'D, Em, F#m, G, A'},
-    {name: 'C minor', alt: 'A picture of a C Minor chord', image: guitarCMinor, firstKey: 'Bb', firstKeyPosition: '2nd', firstKeyOtherChords: 'Bb, Dm, Eb, F, Gm', secondKey: 'Ab', secondKeyPosition: '3rd', secondKeyOtherChords: 'Ab, Bbm, Db, Eb, Fm', thirdKey: "Eb", thirdKeyPosition: "6th", thirdKeyOtherChords: 'Eb, Fm, Gm, Ab, Bb'},
-    {name: 'C sharp minor', alt: 'A picture of a C# Minor chord', image: guitarCSharpMinor, firstKey: 'B', firstKeyPosition: '2nd', firstKeyOtherChords: 'B, D#m, E, F#, G#m', secondKey: 'A', secondKeyPosition: '3rd', secondKeyOtherChords: 'A, Bm, D, E, F#m', thirdKey: "E", thirdKeyPosition: "6th", thirdKeyOtherChords: 'E, F#m, G#m, A, B'},
-    {name: 'D minor', alt: 'A picture of a D Minor chord', image: guitarDMinor, firstKey: 'C', firstKeyPosition: '2nd', firstKeyOtherChords: 'C, Em, F, G, Am', secondKey: 'Bb', secondKeyPosition: '3rd', secondKeyOtherChords: 'Bb, Cm, Eb, F, Gm', thirdKey: "F", thirdKeyPosition: "6th", thirdKeyOtherChords: 'D, Em, F#m, G, A'},
-    {name: 'D sharp minor', alt: 'A picture of a D# Minor chord', image: guitarDSharpMinor, firstKey: 'C#', firstKeyPosition: '2nd', firstKeyOtherChords: 'C#, E#m, F#, G#, A#m', secondKey: 'B', secondKeyPosition: '3rd', secondKeyOtherChords: 'B, C#m, E, F#, G#m', thirdKey: "F#", thirdKeyPosition: "6th", thirdKeyOtherChords: 'F#, G#m, A#m, B, C#'},
-    {name: 'E minor', alt: 'A picture of an E Minor chord', image: guitarEMinor, firstKey: 'D', firstKeyPosition: '2nd', firstKeyOtherChords: 'D, F#m, G, A, Bm', secondKey: 'C', secondKeyPosition: '3rd', secondKeyOtherChords: 'C, Dm, F, G, Am', thirdKey: "G", thirdKeyPosition: "6th", thirdKeyOtherChords: 'G, Am, Bm, C, D'},
-    {name: 'F minor', alt: 'A picture of a F Minor chord', image: guitarFMinor, firstKey: 'Eb', firstKeyPosition: '2nd', firstKeyOtherChords: 'Eb, Gm, Ab, Bb, Cm', secondKey: 'Db', secondKeyPosition: '3rd', secondKeyOtherChords: 'Db, Ebm, Gb, Ab, Bbm', thirdKey: "Ab", thirdKeyPosition: "6th", thirdKeyOtherChords: 'Ab, Bbm, Cm, Db, Eb, Fm'},
-    {name: 'F sharp minor', alt: 'A picture of a F# Minor chord', image: guitarFSharpMinor, firstKey: 'E', firstKeyPosition: '2nd', firstKeyOtherChords: 'E, G#m, A, B, C#m', secondKey: 'D', secondKeyPosition: '3rd', secondKeyOtherChords: 'D, Em, G, A, Bm', thirdKey: "A", thirdKeyPosition: "6th", thirdKeyOtherChords: 'A, Bm, C#m, D, E'},
-    {name: 'G minor', alt: 'A picture of a G Minor chord', image: guitarGMinor, firstKey: 'F', firstKeyPosition: '2nd', firstKeyOtherChords: 'F, Am, Bb, C, Dm', secondKey: 'Eb', secondKeyPosition: '3rd', secondKeyOtherChords: 'Eb, Fm, Ab, Bb, Cm', thirdKey: "Bb", thirdKeyPosition: "6th", thirdKeyOtherChords: 'Bb, Cm, Dm, Eb, F'},
-    {name: 'G sharp minor', alt: 'A picture of an G# Minor chord', image: guitarGSharpMinor, firstKey: 'F#', firstKeyPosition: '2nd', firstKeyOtherChords: 'F#, A#m, B, C#, D#m', secondKey: 'E', secondKeyPosition: '3rd', secondKeyOtherChords: 'E, F#m, A, B, C#m', thirdKey: "B", thirdKeyPosition: "6th", thirdKeyOtherChords: 'B, C#m, D#m, E, F#'}
+    {name: 'A minor', alt: 'A picture of an A minor chord', image: guitarAMinor, firstKey: 'C', firstKeyPosition: '6th', firstKeyOtherChords: 'C, Dm, Em, F, G', secondKey: 'F', secondKeyPosition: '3rd', secondKeyOtherChords: 'F, Gm, Bb, C, Dm', thirdKey: 'G', thirdKeyPosition: '2nd', thirdKeyOtherChords: 'G, Bm, C, D, Em'},
+    {name: 'A sharp minor', alt: 'A picture of an A# Minor chord', image: guitarASharpMinor, firstKey: 'C#', firstKeyPosition: '6th', firstKeyOtherChords: 'C#, D#m, E#m, F#, G#', secondKey: 'F#', secondKeyPosition: '3rd', secondKeyOtherChords: 'F#, G#m, B, C#, D#m', thirdKey: 'Ab', thirdKeyPosition: '2nd', thirdKeyOtherChords: 'Bbm, Cm, Db, Eb, Fm'},
+    {name: 'B minor', alt: 'A picture of a B Minor chord', image: guitarBMinor, firstKey: 'A', firstKeyPosition: '2nd', firstKeyOtherChords: 'A, C#m, D, E, F#m', secondKey: 'G', secondKeyPosition: '3rd', secondKeyOtherChords: 'G, Am, C, D, Em', thirdKey: 'D', thirdKeyPosition: '6th', thirdKeyOtherChords: 'D, Em, F#m, G, A'},
+    {name: 'C minor', alt: 'A picture of a C Minor chord', image: guitarCMinor, firstKey: 'Bb', firstKeyPosition: '2nd', firstKeyOtherChords: 'Bb, Dm, Eb, F, Gm', secondKey: 'Ab', secondKeyPosition: '3rd', secondKeyOtherChords: 'Ab, Bbm, Db, Eb, Fm', thirdKey: 'Eb', thirdKeyPosition: '6th', thirdKeyOtherChords: 'Eb, Fm, Gm, Ab, Bb'},
+    {name: 'C sharp minor', alt: 'A picture of a C# Minor chord', image: guitarCSharpMinor, firstKey: 'B', firstKeyPosition: '2nd', firstKeyOtherChords: 'B, D#m, E, F#, G#m', secondKey: 'A', secondKeyPosition: '3rd', secondKeyOtherChords: 'A, Bm, D, E, F#m', thirdKey: 'E', thirdKeyPosition: '6th', thirdKeyOtherChords: 'E, F#m, G#m, A, B'},
+    {name: 'D minor', alt: 'A picture of a D Minor chord', image: guitarDMinor, firstKey: 'C', firstKeyPosition: '2nd', firstKeyOtherChords: 'C, Em, F, G, Am', secondKey: 'Bb', secondKeyPosition: '3rd', secondKeyOtherChords: 'Bb, Cm, Eb, F, Gm', thirdKey: 'F', thirdKeyPosition: '6th', thirdKeyOtherChords: 'D, Em, F#m, G, A'},
+    {name: 'D sharp minor', alt: 'A picture of a D# Minor chord', image: guitarDSharpMinor, firstKey: 'C#', firstKeyPosition: '2nd', firstKeyOtherChords: 'C#, E#m, F#, G#, A#m', secondKey: 'B', secondKeyPosition: '3rd', secondKeyOtherChords: 'B, C#m, E, F#, G#m', thirdKey: 'F#', thirdKeyPosition: '6th', thirdKeyOtherChords: 'F#, G#m, A#m, B, C#'},
+    {name: 'E minor', alt: 'A picture of an E Minor chord', image: guitarEMinor, firstKey: 'D', firstKeyPosition: '2nd', firstKeyOtherChords: 'D, F#m, G, A, Bm', secondKey: 'C', secondKeyPosition: '3rd', secondKeyOtherChords: 'C, Dm, F, G, Am', thirdKey: 'G', thirdKeyPosition: '6th', thirdKeyOtherChords: 'G, Am, Bm, C, D'},
+    {name: 'F minor', alt: 'A picture of a F Minor chord', image: guitarFMinor, firstKey: 'Eb', firstKeyPosition: '2nd', firstKeyOtherChords: 'Eb, Gm, Ab, Bb, Cm', secondKey: 'Db', secondKeyPosition: '3rd', secondKeyOtherChords: 'Db, Ebm, Gb, Ab, Bbm', thirdKey: 'Ab', thirdKeyPosition: '6th', thirdKeyOtherChords: 'Ab, Bbm, Cm, Db, Eb, Fm'},
+    {name: 'F sharp minor', alt: 'A picture of a F# Minor chord', image: guitarFSharpMinor, firstKey: 'E', firstKeyPosition: '2nd', firstKeyOtherChords: 'E, G#m, A, B, C#m', secondKey: 'D', secondKeyPosition: '3rd', secondKeyOtherChords: 'D, Em, G, A, Bm', thirdKey: 'A', thirdKeyPosition: '6th', thirdKeyOtherChords: 'A, Bm, C#m, D, E'},
+    {name: 'G minor', alt: 'A picture of a G Minor chord', image: guitarGMinor, firstKey: 'F', firstKeyPosition: '2nd', firstKeyOtherChords: 'F, Am, Bb, C, Dm', secondKey: 'Eb', secondKeyPosition: '3rd', secondKeyOtherChords: 'Eb, Fm, Ab, Bb, Cm', thirdKey: 'Bb', thirdKeyPosition: '6th', thirdKeyOtherChords: 'Bb, Cm, Dm, Eb, F'},
+    {name: 'G sharp minor', alt: 'A picture of an G# Minor chord', image: guitarGSharpMinor, firstKey: 'F#', firstKeyPosition: '2nd', firstKeyOtherChords: 'F#, A#m, B, C#, D#m', secondKey: 'E', secondKeyPosition: '3rd', secondKeyOtherChords: 'E, F#m, A, B, C#m', thirdKey: 'B', thirdKeyPosition: '6th', thirdKeyOtherChords: 'B, C#m, D#m, E, F#'}
   ];
 
   bassChords = [
-    {name: 'A major', alt: 'A picture of an A Major chord', image: bassA, firstKey: 'A', firstKeyPosition: '1st', firstKeyOtherChords: 'B, C#, D, E, F#', secondKey: 'E', secondKeyPosition: '4th', secondKeyOtherChords: 'E, F#, G#, B, C#', thirdKey: "D", thirdKeyPosition: "5th", thirdKeyOtherChords: 'D, Em, F#b, G, Bm'},
+    {name: 'A major', alt: 'A picture of an A Major chord', image: bassA, firstKey: 'A', firstKeyPosition: '1st', firstKeyOtherChords: 'B, C#, D, E, F#', secondKey: 'E', secondKeyPosition: '4th', secondKeyOtherChords: 'E, F#, G#, B, C#', thirdKey: 'D', thirdKeyPosition: '5th', thirdKeyOtherChords: 'D, Em, F#b, G, Bm'},
     {name: 'A sharp major', alt: 'A picture of an A# Major chord', image: bassASharp},
     {name: 'B major', alt: 'A picture of a B Major chord', image: bassB, firstKey: 'B', firstKeyPosition: '1st', firstKeyOtherChords: 'C#, D#, E, F#, G#, A#', secondKey: 'F#', secondKeyPosition: '4th', secondKeyOtherChords: 'F#, G#m, A#m, C#, D#m', thirdKey: 'E', thirdKeyPosition: '5th', thirdKeyOtherChords: 'E, F#m, G#m, A, C#m'},
     {name: 'C major', alt: 'A picture of a C Major chord', image: bassC, firstKey: 'C', firstKeyPosition: '1st', firstKeyOtherChords: 'F, G7, Am, Dm, E7', secondKey: 'G', secondKeyPosition: '4th', secondKeyOtherChords: 'G, D7, Em, Am, B7', thirdKey: 'E', thirdKeyPosition: '5th', thirdKeyOtherChords: 'E, F#m, G#m, A, C#m'},
@@ -262,22 +282,22 @@ export default class App extends LightningElement {
     {name: 'G major', alt: 'A picture of a G Major chord', image: bassG, firstKeyPosition: '1st', firstKeyOtherChords: 'A, B, C, D, E, F#', secondKey: 'D', secondKeyPosition: '4th', secondKeyOtherChords: 'D, E, F#, A, B, C#', thirdKey: 'C', thirdKeyPosition: '5th', thirdKeyOtherChords: 'C, Dm, Em, F, Am'},
     {name: 'G sharp major', alt: 'A picture of a G# Major chord', image: bassGSharp, firstKey: 'Ab', firstKeyPosition: '1st', firstKeyOtherChords: 'Bb, C, Db, Eb, F, G, Ab'},
     /* End of bass major chords and start of bass minor chords */
-    {name: 'A minor', alt: 'A picture of an A minor chord', image: bassAMinor, firstKey: 'C', firstKeyPosition: '6th', firstKeyOtherChords: 'C, Dm, Em, F, G', secondKey: 'F', secondKeyPosition: '3rd', secondKeyOtherChords: 'F, Gm, Bb, C, Dm', thirdKey: 'G', thirdKeyPosition: "2nd", thirdKeyOtherChords: 'G, Bm, C, D, Em'},
-    {name: 'A sharp minor', alt: 'A picture of an A# Minor chord', image: bassASharpMinor, firstKey: 'C#', firstKeyPosition: '6th', firstKeyOtherChords: 'C#, D#m, E#m, F#, G#', secondKey: 'F#', secondKeyPosition: '3rd', secondKeyOtherChords: 'F#, G#m, B, C#, D#m', thirdKey: "Ab", thirdKeyPosition: "2nd", thirdKeyOtherChords: 'Bbm, Cm, Db, Eb, Fm'},
-    {name: 'B minor', alt: 'A picture of a B Minor chord', image: bassBMinor, firstKey: 'A', firstKeyPosition: '2nd', firstKeyOtherChords: 'A, C#m, D, E, F#m', secondKey: 'G', secondKeyPosition: '3rd', secondKeyOtherChords: 'G, Am, C, D, Em', thirdKey: "D", thirdKeyPosition: "6th", thirdKeyOtherChords: 'D, Em, F#m, G, A'},
-    {name: 'C minor', alt: 'A picture of a C Minor chord', image: bassCMinor, firstKey: 'Bb', firstKeyPosition: '2nd', firstKeyOtherChords: 'Bb, Dm, Eb, F, Gm', secondKey: 'Ab', secondKeyPosition: '3rd', secondKeyOtherChords: 'Ab, Bbm, Db, Eb, Fm', thirdKey: "Eb", thirdKeyPosition: "6th", thirdKeyOtherChords: 'Eb, Fm, Gm, Ab, Bb'},
-    {name: 'C sharp minor', alt: 'A picture of a C# Minor chord', image: bassCSharpMinor, firstKey: 'B', firstKeyPosition: '2nd', firstKeyOtherChords: 'B, D#m, E, F#, G#m', secondKey: 'A', secondKeyPosition: '3rd', secondKeyOtherChords: 'A, Bm, D, E, F#m', thirdKey: "E", thirdKeyPosition: "6th", thirdKeyOtherChords: 'E, F#m, G#m, A, B'},
-    {name: 'D minor', alt: 'A picture of a D Minor chord', image: bassDMinor, firstKey: 'C', firstKeyPosition: '2nd', firstKeyOtherChords: 'C, Em, F, G, Am', secondKey: 'Bb', secondKeyPosition: '3rd', secondKeyOtherChords: 'Bb, Cm, Eb, F, Gm', thirdKey: "F", thirdKeyPosition: "6th", thirdKeyOtherChords: 'D, Em, F#m, G, A'},
-    {name: 'D sharp minor', alt: 'A picture of a D# Minor chord', image: bassDSharpMinor, firstKey: 'C#', firstKeyPosition: '2nd', firstKeyOtherChords: 'C#, E#m, F#, G#, A#m', secondKey: 'B', secondKeyPosition: '3rd', secondKeyOtherChords: 'B, C#m, E, F#, G#m', thirdKey: "F#", thirdKeyPosition: "6th", thirdKeyOtherChords: 'F#, G#m, A#m, B, C#'},
-    {name: 'E minor', alt: 'A picture of an E Minor chord', image: bassEMinor, firstKey: 'D', firstKeyPosition: '2nd', firstKeyOtherChords: 'D, F#m, G, A, Bm', secondKey: 'C', secondKeyPosition: '3rd', secondKeyOtherChords: 'C, Dm, F, G, Am', thirdKey: "G", thirdKeyPosition: "6th", thirdKeyOtherChords: 'G, Am, Bm, C, D'},
-    {name: 'F minor', alt: 'A picture of a F Minor chord', image: bassFMinor, firstKey: 'Eb', firstKeyPosition: '2nd', firstKeyOtherChords: 'Eb, Gm, Ab, Bb, Cm', secondKey: 'Db', secondKeyPosition: '3rd', secondKeyOtherChords: 'Db, Ebm, Gb, Ab, Bbm', thirdKey: "Ab", thirdKeyPosition: "6th", thirdKeyOtherChords: 'Ab, Bbm, Cm, Db, Eb, Fm'},
-    {name: 'F sharp minor', alt: 'A picture of a F# Minor chord', image: bassFSharpMinor, firstKey: 'E', firstKeyPosition: '2nd', firstKeyOtherChords: 'E, G#m, A, B, C#m', secondKey: 'D', secondKeyPosition: '3rd', secondKeyOtherChords: 'D, Em, G, A, Bm', thirdKey: "A", thirdKeyPosition: "6th", thirdKeyOtherChords: 'A, Bm, C#m, D, E'},
-    {name: 'G minor', alt: 'A picture of a G Minor chord', image: bassGMinor, firstKey: 'F', firstKeyPosition: '2nd', firstKeyOtherChords: 'F, Am, Bb, C, Dm', secondKey: 'Eb', secondKeyPosition: '3rd', secondKeyOtherChords: 'Eb, Fm, Ab, Bb, Cm', thirdKey: "Bb", thirdKeyPosition: "6th", thirdKeyOtherChords: 'Bb, Cm, Dm, Eb, F'},
-    {name: 'G sharp minor', alt: 'A picture of an G# Minor chord', image: bassGSharpMinor, firstKey: 'F#', firstKeyPosition: '2nd', firstKeyOtherChords: 'F#, A#m, B, C#, D#m', secondKey: 'E', secondKeyPosition: '3rd', secondKeyOtherChords: 'E, F#m, A, B, C#m', thirdKey: "B", thirdKeyPosition: "6th", thirdKeyOtherChords: 'B, C#m, D#m, E, F#'}
+    {name: 'A minor', alt: 'A picture of an A minor chord', image: bassAMinor, firstKey: 'C', firstKeyPosition: '6th', firstKeyOtherChords: 'C, Dm, Em, F, G', secondKey: 'F', secondKeyPosition: '3rd', secondKeyOtherChords: 'F, Gm, Bb, C, Dm', thirdKey: 'G', thirdKeyPosition: '2nd', thirdKeyOtherChords: 'G, Bm, C, D, Em'},
+    {name: 'A sharp minor', alt: 'A picture of an A# Minor chord', image: bassASharpMinor, firstKey: 'C#', firstKeyPosition: '6th', firstKeyOtherChords: 'C#, D#m, E#m, F#, G#', secondKey: 'F#', secondKeyPosition: '3rd', secondKeyOtherChords: 'F#, G#m, B, C#, D#m', thirdKey: 'Ab', thirdKeyPosition: '2nd', thirdKeyOtherChords: 'Bbm, Cm, Db, Eb, Fm'},
+    {name: 'B minor', alt: 'A picture of a B Minor chord', image: bassBMinor, firstKey: 'A', firstKeyPosition: '2nd', firstKeyOtherChords: 'A, C#m, D, E, F#m', secondKey: 'G', secondKeyPosition: '3rd', secondKeyOtherChords: 'G, Am, C, D, Em', thirdKey: 'D', thirdKeyPosition: '6th', thirdKeyOtherChords: 'D, Em, F#m, G, A'},
+    {name: 'C minor', alt: 'A picture of a C Minor chord', image: bassCMinor, firstKey: 'Bb', firstKeyPosition: '2nd', firstKeyOtherChords: 'Bb, Dm, Eb, F, Gm', secondKey: 'Ab', secondKeyPosition: '3rd', secondKeyOtherChords: 'Ab, Bbm, Db, Eb, Fm', thirdKey: 'Eb', thirdKeyPosition: '6th', thirdKeyOtherChords: 'Eb, Fm, Gm, Ab, Bb'},
+    {name: 'C sharp minor', alt: 'A picture of a C# Minor chord', image: bassCSharpMinor, firstKey: 'B', firstKeyPosition: '2nd', firstKeyOtherChords: 'B, D#m, E, F#, G#m', secondKey: 'A', secondKeyPosition: '3rd', secondKeyOtherChords: 'A, Bm, D, E, F#m', thirdKey: 'E', thirdKeyPosition: '6th', thirdKeyOtherChords: 'E, F#m, G#m, A, B'},
+    {name: 'D minor', alt: 'A picture of a D Minor chord', image: bassDMinor, firstKey: 'C', firstKeyPosition: '2nd', firstKeyOtherChords: 'C, Em, F, G, Am', secondKey: 'Bb', secondKeyPosition: '3rd', secondKeyOtherChords: 'Bb, Cm, Eb, F, Gm', thirdKey: 'F', thirdKeyPosition: '6th', thirdKeyOtherChords: 'D, Em, F#m, G, A'},
+    {name: 'D sharp minor', alt: 'A picture of a D# Minor chord', image: bassDSharpMinor, firstKey: 'C#', firstKeyPosition: '2nd', firstKeyOtherChords: 'C#, E#m, F#, G#, A#m', secondKey: 'B', secondKeyPosition: '3rd', secondKeyOtherChords: 'B, C#m, E, F#, G#m', thirdKey: 'F#', thirdKeyPosition: '6th', thirdKeyOtherChords: 'F#, G#m, A#m, B, C#'},
+    {name: 'E minor', alt: 'A picture of an E Minor chord', image: bassEMinor, firstKey: 'D', firstKeyPosition: '2nd', firstKeyOtherChords: 'D, F#m, G, A, Bm', secondKey: 'C', secondKeyPosition: '3rd', secondKeyOtherChords: 'C, Dm, F, G, Am', thirdKey: 'G', thirdKeyPosition: '6th', thirdKeyOtherChords: 'G, Am, Bm, C, D'},
+    {name: 'F minor', alt: 'A picture of a F Minor chord', image: bassFMinor, firstKey: 'Eb', firstKeyPosition: '2nd', firstKeyOtherChords: 'Eb, Gm, Ab, Bb, Cm', secondKey: 'Db', secondKeyPosition: '3rd', secondKeyOtherChords: 'Db, Ebm, Gb, Ab, Bbm', thirdKey: 'Ab', thirdKeyPosition: '6th', thirdKeyOtherChords: 'Ab, Bbm, Cm, Db, Eb, Fm'},
+    {name: 'F sharp minor', alt: 'A picture of a F# Minor chord', image: bassFSharpMinor, firstKey: 'E', firstKeyPosition: '2nd', firstKeyOtherChords: 'E, G#m, A, B, C#m', secondKey: 'D', secondKeyPosition: '3rd', secondKeyOtherChords: 'D, Em, G, A, Bm', thirdKey: 'A', thirdKeyPosition: '6th', thirdKeyOtherChords: 'A, Bm, C#m, D, E'},
+    {name: 'G minor', alt: 'A picture of a G Minor chord', image: bassGMinor, firstKey: 'F', firstKeyPosition: '2nd', firstKeyOtherChords: 'F, Am, Bb, C, Dm', secondKey: 'Eb', secondKeyPosition: '3rd', secondKeyOtherChords: 'Eb, Fm, Ab, Bb, Cm', thirdKey: 'Bb', thirdKeyPosition: '6th', thirdKeyOtherChords: 'Bb, Cm, Dm, Eb, F'},
+    {name: 'G sharp minor', alt: 'A picture of an G# Minor chord', image: bassGSharpMinor, firstKey: 'F#', firstKeyPosition: '2nd', firstKeyOtherChords: 'F#, A#m, B, C#, D#m', secondKey: 'E', secondKeyPosition: '3rd', secondKeyOtherChords: 'E, F#m, A, B, C#m', thirdKey: 'B', thirdKeyPosition: '6th', thirdKeyOtherChords: 'B, C#m, D#m, E, F#'}
   ];
 
   pianoChords = [
-    {name: 'A major', alt: 'A picture of an A Major chord', image: pianoA,firstKey: 'A', firstKeyPosition: '1st', firstKeyOtherChords: 'B, C#, D, E, F#', secondKey: 'E', secondKeyPosition: '4th', secondKeyOtherChords: 'E, F#, G#, B, C#', thirdKey: "D", thirdKeyPosition: "5th", thirdKeyOtherChords: 'D, Em, F#b, G, Bm'},
+    {name: 'A major', alt: 'A picture of an A Major chord', image: pianoA,firstKey: 'A', firstKeyPosition: '1st', firstKeyOtherChords: 'B, C#, D, E, F#', secondKey: 'E', secondKeyPosition: '4th', secondKeyOtherChords: 'E, F#, G#, B, C#', thirdKey: 'D', thirdKeyPosition: '5th', thirdKeyOtherChords: 'D, Em, F#b, G, Bm'},
     {name: 'A sharp major', alt: 'A picture of an A# Major chord', image: pianoASharp},
     {name: 'B major', alt: 'A picture of a B Major chord', image: pianoB, firstKey: 'B', firstKeyPosition: '1st', firstKeyOtherChords: 'C#, D#, E, F#, G#, A#', secondKey: 'F#', secondKeyPosition: '4th', secondKeyOtherChords: 'F#, G#m, A#m, C#, D#m', thirdKey: 'E', thirdKeyPosition: '5th', thirdKeyOtherChords: 'E, F#m, G#m, A, C#m'},
     {name: 'C major', alt: 'A picture of a C Major chord', image: pianoC, firstKey: 'C', firstKeyPosition: '1st', firstKeyOtherChords: 'F, G7, Am, Dm, E7', secondKey: 'G', secondKeyPosition: '4th', secondKeyOtherChords: 'G, D7, Em, Am, B7', thirdKey: 'E', thirdKeyPosition: '5th', thirdKeyOtherChords: 'E, F#m, G#m, A, C#m'},
@@ -290,18 +310,18 @@ export default class App extends LightningElement {
     {name: 'G major', alt: 'A picture of a G Major chord', image: pianoG, firstKeyPosition: '1st', firstKeyOtherChords: 'A, B, C, D, E, F#', secondKey: 'D', secondKeyPosition: '4th', secondKeyOtherChords: 'D, E, F#, A, B, C#', thirdKey: 'C', thirdKeyPosition: '5th', thirdKeyOtherChords: 'C, Dm, Em, F, Am'},
     {name: 'G sharp major', alt: 'A picture of a G# Major chord', image: pianoGSharp, firstKey: 'Ab', firstKeyPosition: '1st', firstKeyOtherChords: 'Bb, C, Db, Eb, F, G, Ab'},
     /* End of piano major chords and start of piano minor chords */
-    {name: 'A minor', alt: 'A picture of an A minor chord', image: pianoAMinor, firstKey: 'C', firstKeyPosition: '6th', firstKeyOtherChords: 'C, Dm, Em, F, G', secondKey: 'F', secondKeyPosition: '3rd', secondKeyOtherChords: 'F, Gm, Bb, C, Dm', thirdKey: 'G', thirdKeyPosition: "2nd", thirdKeyOtherChords: 'G, Bm, C, D, Em'},
-    {name: 'A sharp minor', alt: 'A picture of an A# Minor chord', image: pianoASharpMinor, firstKey: 'C#', firstKeyPosition: '6th', firstKeyOtherChords: 'C#, D#m, E#m, F#, G#', secondKey: 'F#', secondKeyPosition: '3rd', secondKeyOtherChords: 'F#, G#m, B, C#, D#m', thirdKey: "Ab", thirdKeyPosition: "2nd", thirdKeyOtherChords: 'Bbm, Cm, Db, Eb, Fm'},
-    {name: 'B minor', alt: 'A picture of a B Minor chord', image: pianoBMinor, firstKey: 'A', firstKeyPosition: '2nd', firstKeyOtherChords: 'A, C#m, D, E, F#m', secondKey: 'G', secondKeyPosition: '3rd', secondKeyOtherChords: 'G, Am, C, D, Em', thirdKey: "D", thirdKeyPosition: "6th", thirdKeyOtherChords: 'D, Em, F#m, G, A'},
-    {name: 'C minor', alt: 'A picture of a C Minor chord', image: pianoCMinor, firstKey: 'Bb', firstKeyPosition: '2nd', firstKeyOtherChords: 'Bb, Dm, Eb, F, Gm', secondKey: 'Ab', secondKeyPosition: '3rd', secondKeyOtherChords: 'Ab, Bbm, Db, Eb, Fm', thirdKey: "Eb", thirdKeyPosition: "6th", thirdKeyOtherChords: 'Eb, Fm, Gm, Ab, Bb'},
-    {name: 'C sharp minor', alt: 'A picture of a C# Minor chord', image: pianoCSharpMinor, firstKey: 'B', firstKeyPosition: '2nd', firstKeyOtherChords: 'B, D#m, E, F#, G#m', secondKey: 'A', secondKeyPosition: '3rd', secondKeyOtherChords: 'A, Bm, D, E, F#m', thirdKey: "E", thirdKeyPosition: "6th", thirdKeyOtherChords: 'E, F#m, G#m, A, B'},
-    {name: 'D minor', alt: 'A picture of a D Minor chord', image: pianoDMinor, firstKey: 'C', firstKeyPosition: '2nd', firstKeyOtherChords: 'C, Em, F, G, Am', secondKey: 'Bb', secondKeyPosition: '3rd', secondKeyOtherChords: 'Bb, Cm, Eb, F, Gm', thirdKey: "F", thirdKeyPosition: "6th", thirdKeyOtherChords: 'D, Em, F#m, G, A'},
-    {name: 'D sharp minor', alt: 'A picture of a D# Minor chord', image: pianoDSharpMinor, firstKey: 'C#', firstKeyPosition: '2nd', firstKeyOtherChords: 'C#, E#m, F#, G#, A#m', secondKey: 'B', secondKeyPosition: '3rd', secondKeyOtherChords: 'B, C#m, E, F#, G#m', thirdKey: "F#", thirdKeyPosition: "6th", thirdKeyOtherChords: 'F#, G#m, A#m, B, C#'},
-    {name: 'E minor', alt: 'A picture of an E Minor chord', image: pianoEMinor, firstKey: 'D', firstKeyPosition: '2nd', firstKeyOtherChords: 'D, F#m, G, A, Bm', secondKey: 'C', secondKeyPosition: '3rd', secondKeyOtherChords: 'C, Dm, F, G, Am', thirdKey: "G", thirdKeyPosition: "6th", thirdKeyOtherChords: 'G, Am, Bm, C, D'},
-    {name: 'F minor', alt: 'A picture of a F Minor chord', image: pianoFMinor, firstKey: 'Eb', firstKeyPosition: '2nd', firstKeyOtherChords: 'Eb, Gm, Ab, Bb, Cm', secondKey: 'Db', secondKeyPosition: '3rd', secondKeyOtherChords: 'Db, Ebm, Gb, Ab, Bbm', thirdKey: "Ab", thirdKeyPosition: "6th", thirdKeyOtherChords: 'Ab, Bbm, Cm, Db, Eb, Fm'},
-    {name: 'F sharp minor', alt: 'A picture of a F# Minor chord', image: pianoFSharpMinor, firstKey: 'E', firstKeyPosition: '2nd', firstKeyOtherChords: 'E, G#m, A, B, C#m', secondKey: 'D', secondKeyPosition: '3rd', secondKeyOtherChords: 'D, Em, G, A, Bm', thirdKey: "A", thirdKeyPosition: "6th", thirdKeyOtherChords: 'A, Bm, C#m, D, E'},
-    {name: 'G minor', alt: 'A picture of a G Minor chord', image: pianoGMinor, firstKey: 'F', firstKeyPosition: '2nd', firstKeyOtherChords: 'F, Am, Bb, C, Dm', secondKey: 'Eb', secondKeyPosition: '3rd', secondKeyOtherChords: 'Eb, Fm, Ab, Bb, Cm', thirdKey: "Bb", thirdKeyPosition: "6th", thirdKeyOtherChords: 'Bb, Cm, Dm, Eb, F'},
-    {name: 'G sharp minor', alt: 'A picture of an G# Minor chord', image: pianoGSharpMinor, firstKey: 'F#', firstKeyPosition: '2nd', firstKeyOtherChords: 'F#, A#m, B, C#, D#m', secondKey: 'E', secondKeyPosition: '3rd', secondKeyOtherChords: 'E, F#m, A, B, C#m', thirdKey: "B", thirdKeyPosition: "6th", thirdKeyOtherChords: 'B, C#m, D#m, E, F#'}
+    {name: 'A minor', alt: 'A picture of an A minor chord', image: pianoAMinor, firstKey: 'C', firstKeyPosition: '6th', firstKeyOtherChords: 'C, Dm, Em, F, G', secondKey: 'F', secondKeyPosition: '3rd', secondKeyOtherChords: 'F, Gm, Bb, C, Dm', thirdKey: 'G', thirdKeyPosition: '2nd', thirdKeyOtherChords: 'G, Bm, C, D, Em'},
+    {name: 'A sharp minor', alt: 'A picture of an A# Minor chord', image: pianoASharpMinor, firstKey: 'C#', firstKeyPosition: '6th', firstKeyOtherChords: 'C#, D#m, E#m, F#, G#', secondKey: 'F#', secondKeyPosition: '3rd', secondKeyOtherChords: 'F#, G#m, B, C#, D#m', thirdKey: 'Ab', thirdKeyPosition: '2nd', thirdKeyOtherChords: 'Bbm, Cm, Db, Eb, Fm'},
+    {name: 'B minor', alt: 'A picture of a B Minor chord', image: pianoBMinor, firstKey: 'A', firstKeyPosition: '2nd', firstKeyOtherChords: 'A, C#m, D, E, F#m', secondKey: 'G', secondKeyPosition: '3rd', secondKeyOtherChords: 'G, Am, C, D, Em', thirdKey: 'D', thirdKeyPosition: '6th', thirdKeyOtherChords: 'D, Em, F#m, G, A'},
+    {name: 'C minor', alt: 'A picture of a C Minor chord', image: pianoCMinor, firstKey: 'Bb', firstKeyPosition: '2nd', firstKeyOtherChords: 'Bb, Dm, Eb, F, Gm', secondKey: 'Ab', secondKeyPosition: '3rd', secondKeyOtherChords: 'Ab, Bbm, Db, Eb, Fm', thirdKey: 'Eb', thirdKeyPosition: '6th', thirdKeyOtherChords: 'Eb, Fm, Gm, Ab, Bb'},
+    {name: 'C sharp minor', alt: 'A picture of a C# Minor chord', image: pianoCSharpMinor, firstKey: 'B', firstKeyPosition: '2nd', firstKeyOtherChords: 'B, D#m, E, F#, G#m', secondKey: 'A', secondKeyPosition: '3rd', secondKeyOtherChords: 'A, Bm, D, E, F#m', thirdKey: 'E', thirdKeyPosition: '6th', thirdKeyOtherChords: 'E, F#m, G#m, A, B'},
+    {name: 'D minor', alt: 'A picture of a D Minor chord', image: pianoDMinor, firstKey: 'C', firstKeyPosition: '2nd', firstKeyOtherChords: 'C, Em, F, G, Am', secondKey: 'Bb', secondKeyPosition: '3rd', secondKeyOtherChords: 'Bb, Cm, Eb, F, Gm', thirdKey: 'F', thirdKeyPosition: '6th', thirdKeyOtherChords: 'D, Em, F#m, G, A'},
+    {name: 'D sharp minor', alt: 'A picture of a D# Minor chord', image: pianoDSharpMinor, firstKey: 'C#', firstKeyPosition: '2nd', firstKeyOtherChords: 'C#, E#m, F#, G#, A#m', secondKey: 'B', secondKeyPosition: '3rd', secondKeyOtherChords: 'B, C#m, E, F#, G#m', thirdKey: 'F#', thirdKeyPosition: '6th', thirdKeyOtherChords: 'F#, G#m, A#m, B, C#'},
+    {name: 'E minor', alt: 'A picture of an E Minor chord', image: pianoEMinor, firstKey: 'D', firstKeyPosition: '2nd', firstKeyOtherChords: 'D, F#m, G, A, Bm', secondKey: 'C', secondKeyPosition: '3rd', secondKeyOtherChords: 'C, Dm, F, G, Am', thirdKey: 'G', thirdKeyPosition: '6th', thirdKeyOtherChords: 'G, Am, Bm, C, D'},
+    {name: 'F minor', alt: 'A picture of a F Minor chord', image: pianoFMinor, firstKey: 'Eb', firstKeyPosition: '2nd', firstKeyOtherChords: 'Eb, Gm, Ab, Bb, Cm', secondKey: 'Db', secondKeyPosition: '3rd', secondKeyOtherChords: 'Db, Ebm, Gb, Ab, Bbm', thirdKey: 'Ab', thirdKeyPosition: '6th', thirdKeyOtherChords: 'Ab, Bbm, Cm, Db, Eb, Fm'},
+    {name: 'F sharp minor', alt: 'A picture of a F# Minor chord', image: pianoFSharpMinor, firstKey: 'E', firstKeyPosition: '2nd', firstKeyOtherChords: 'E, G#m, A, B, C#m', secondKey: 'D', secondKeyPosition: '3rd', secondKeyOtherChords: 'D, Em, G, A, Bm', thirdKey: 'A', thirdKeyPosition: '6th', thirdKeyOtherChords: 'A, Bm, C#m, D, E'},
+    {name: 'G minor', alt: 'A picture of a G Minor chord', image: pianoGMinor, firstKey: 'F', firstKeyPosition: '2nd', firstKeyOtherChords: 'F, Am, Bb, C, Dm', secondKey: 'Eb', secondKeyPosition: '3rd', secondKeyOtherChords: 'Eb, Fm, Ab, Bb, Cm', thirdKey: 'Bb', thirdKeyPosition: '6th', thirdKeyOtherChords: 'Bb, Cm, Dm, Eb, F'},
+    {name: 'G sharp minor', alt: 'A picture of an G# Minor chord', image: pianoGSharpMinor, firstKey: 'F#', firstKeyPosition: '2nd', firstKeyOtherChords: 'F#, A#m, B, C#, D#m', secondKey: 'E', secondKeyPosition: '3rd', secondKeyOtherChords: 'E, F#m, A, B, C#m', thirdKey: 'B', thirdKeyPosition: '6th', thirdKeyOtherChords: 'B, C#m, D#m, E, F#'}
   ];
 }
 

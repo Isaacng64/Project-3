@@ -1,0 +1,20 @@
+{
+    "packageDirectories": [
+        {
+            "path": "Package",
+            "package": "ChordBook",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true
+        }
+    ],
+    "name": "help",
+    "namespace": "",
+    "sfdcLoginUrl": "https://wise-impala-824xro-dev-ed.my.salesforce.com/",
+    "sourceApiVersion": "52.0",
+    "packageAliases": {
+        "ChordBook": "0Ho5f0000008OXrCAM",
+        "ChordBook@0.1.0-1": "04t5f000000tp8DAAQ",
+        "ChordBook@0.1.0-2": "04t5f000000tuA9AAI"
+    }
+}

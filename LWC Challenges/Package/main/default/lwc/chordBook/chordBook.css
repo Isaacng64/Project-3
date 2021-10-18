@@ -12,26 +12,27 @@ img:hover{ cursor: pointer; }
 .button-stuff{
     width: 50px;
     height: 50px;
-    background: #3d0c0c;
     font-size: 40px;
-    color: pink;
-    border-radius: 2px;
-    border-color: black;
     line-height: 25px;
+    background: #3d0c0c;
+    color: #ffc0cb;
+    border-color: #000;
+    border-radius: 2px;
+    padding-bottom: 10px;
 }
 
 /* adds some space between each image and keeps them on one line */
 .image-things{
     display:inline;
+    width: 300px;
     padding-left: 10px;
     padding-right: 10px;
-    width: 300px;
 }
 
-/* Also keeps the carousel on one line */
+/* Also keeps the carousel on one line, excuse the name I was at my wits end trying to figure out why this wasn't working */
 .let-it-end{ 
-    text-align: center;
     position: relative;
+    text-align: center;
  }
 
 /* keeps the whole carousel on one line and allows it to run off the screen without wrapping */
@@ -41,14 +42,12 @@ img:hover{ cursor: pointer; }
 }
 
 /* puts the buttons in the center of the screen and adds some padding between them and the carousel */
-.buttons{
-    text-align: center;
-}
+.buttons{ text-align: center; }
 
 /* gives the current item in the carousel a bigger display */
 .focus-on-me{
-    display: inline;
     position: relative;
+    display: inline;
     transform: scale(1.15); 
 }
 
