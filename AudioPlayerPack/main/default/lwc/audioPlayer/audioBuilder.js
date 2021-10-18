@@ -6,7 +6,7 @@ import pianoRes from '@salesforce/resourceUrl/Piano';
 import guitarRes from '@salesforce/resourceUrl/Guitar';
 //import bassRes from '@salesforce/resourceUrl/Bass';
 
-export {buildLocalAudioPlayers, buildLocalGuitarPlayers, buildLocalBassPlayers}
+export {buildLocalAudioPlayers, buildLocalGuitarPlayers /*buildLocalBassPlayers*/}
 
 
 function buildLocalAudioPlayers(dictAuto, dictManual){
@@ -52,9 +52,9 @@ function buildLocalGuitarPlayers(dictAuto, dictManual){
 
     });
 
-export {buildLocalAudioPlayers, buildLocalGuitarPlayers, buildLocalBassPlayers}
+    export {buildLocalAudioPlayers, buildLocalGuitarPlayers}
 
-function buildLocalBassPlayers(dictAuto, dictManual){
+/*function buildLocalBassPlayers(dictAuto, dictManual){
 
     dictManual["bass"] = {};
     dictAuto["bass"] = {};
@@ -65,21 +65,12 @@ function buildLocalBassPlayers(dictAuto, dictManual){
             dictAuto.bass[note] = [];
             dictManual.bass[note] = [];
         }
-
-        /* number of frets! */
         for(let i = 0; i < 23; i++){
 
-
-
-            /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
             let path = bassRes + "/E-Standard" + "/" + note + "/" + String(i) + ".mp3";
-            /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
 
             dictAuto.bass[note][i] = new PlayerWrapper(new Audio(path));
             dictManual.bass[note] = new PlayerWrapper(new Audio(path));
         }
-
     });
-
-}
+}*/}
