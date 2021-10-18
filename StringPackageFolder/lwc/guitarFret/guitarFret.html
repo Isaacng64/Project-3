@@ -1,4 +1,9 @@
 <template>
+  <!--
+    This is the base lwc component for the guitar component. It is one image stored in the 
+    SF static resources. It holds the currentFret number that the component is out of 22, and
+    it holds what string component the fret component is a part of. 
+  -->
   <div>
     <img src={fretImg} onclick={setFret} alt="Image of a fret on a guitar instrument.">
   </div>

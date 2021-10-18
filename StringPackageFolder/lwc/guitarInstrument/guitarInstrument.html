@@ -1,4 +1,10 @@
 <template>
+  <!--
+    This component is the overall intrsument component that holds six string components. The last 
+    list item per string is the audio player component which plays a note from the specified 
+    currentFret and stringNumber. The audio player component is from a seperate package in this project,
+    both are required for music to be played from the instrument component.
+  -->
   <ul class="slds-list_vertical">
     <template for:each={tuning} for:item="string">
       <li key={string}>

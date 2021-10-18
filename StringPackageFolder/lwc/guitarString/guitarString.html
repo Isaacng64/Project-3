@@ -1,4 +1,10 @@
 <template>
+  <!--
+    This component is a slds horizontal list of 22 fret components. It also contains an image at
+    the end of the list that represents the string of the guitar that should be strummed to 
+    generate a sound. That image is stored in the SF static resources. It holds the "stringNumber"
+    which is one of six specified notes.
+  -->
   <div>
     <ul class="slds-list_horizontal">
       <template for:each={frets} for:item="fret">
@@ -7,7 +13,7 @@
         </li>
       </template>
       <li class="strum">
-        <img src={strumImg} onclick={strum} onmouseover={strum}>
+        <img src={strumImg} onclick={strum} onmouseover={strum} alt="Image of a string on a guitar instrument.">
       </li>
     </ul>
   </div>
