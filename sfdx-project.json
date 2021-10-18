@@ -73,7 +73,7 @@
             "default": true,
             "dependencies": [
                 {
-                    "package": "AudioPlayerPackage@0.1.0.7"
+                    "package": "AudioPlayerPackage@0.1.0.9"
                 },
                 {
                     "package": "PianoPackage@0.1.0.1"
@@ -108,6 +108,8 @@
         "AudioPlayerPackage@0.1.0-5": "04t5f000000dHwxAAE",
         "AudioPlayerPackage@0.1.0-6": "04t5f000000dIoxAAE",
         "AudioPlayerPackage@0.1.0-7": "04t5f000000dJxiAAE",
+        "AudioPlayerPackage@0.1.0-8": "04t5f000000dKhcAAE",
+        "AudioPlayerPackage@0.1.0-9": "04t5f000000dKyDAAU",
         "PianoPackage": "0Ho5f0000008OXwCAM",
         "PianoPackage@0.1.0-1": "04t5f000000tv6HAAQ",
         "music-utilities": "0Ho5f0000008OPWCA2",
@@ -120,5 +122,6 @@
         "ChordBook": "0Ho5f0000008OYBCA2",
         "ChordBook@0.1.0-1": "04t5f000000twAzAAI",
         "workshop-app": "0Ho5f0000008OYGCA2"
+
     }
 }

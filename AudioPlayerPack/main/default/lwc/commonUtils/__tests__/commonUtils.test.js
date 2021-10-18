@@ -1,6 +1,6 @@
 import { createElement } from "lwc";
 import CommonUtils from "c/commonUtils";
-import { musicHelper } from "c/commonUtils";
+import { sharp2flat, stdNote2components } from "c/commonUtils";
 import { AudioPlayerNote } from "../audioPlayerNote";
 
 describe("c-common-utils", () => {
@@ -87,4 +87,48 @@ describe("c-common-utils", () => {
     expect(b.name).toBe("Ab");
     expect(b.octave).toBe(4);
   });
+
+
+  it('Test sharp2flat with all the sharps', () => {
+    let sharps = ["C#", "D#", "F#", "G#", "A#"];
+    sharps.forEach((sharp) => {
+      let result = sharp2flat(sharp);
+      expect(result.charAt(1)).toBe('b');
+    });
+
+    let corner1 = "C#";
+    let corner2 = "A#";
+
+    let result1 = sharp2flat(corner1);
+    let result2 = sharp2flat(corner2);
+
+    expect(result1).toBe("Db");
+    expect(result2).toBe("Bb");
+    
+  });
+
+  it('Test stdNote2components', () => {
+    let notes = ["C5", "D6", "F7", "G3", "A0"];
+
+    notes.forEach((note) => {
+      let result = stdNote2components(note);
+      expect(result.octave).toBe(note.charAt(1));
+      expect(result.name).toBe(note.charAt(0));
+    });
+
+  });
+
+  it('Test stdNote2components with sharps', () => {
+    /* This function itself does not clean inputs from sharp to flat, but that IS DONE in the AudioPlayerNote constructor */
+    let notes = ["Ab0", "A#0", "F#5", "G#6"];
+    let resultsNames = ["Ab", "A#", "F#", "G#"];
+
+    for(let i = 0; i < notes.length; i++){
+      let result = stdNote2components(notes[i]);
+      expect(result.octave).toBe(notes[i].charAt(2));
+      expect(result.name).toBe(resultsNames[i]);
+    }
+  });
+
+
 });
