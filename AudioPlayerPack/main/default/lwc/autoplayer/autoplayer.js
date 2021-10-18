@@ -247,6 +247,8 @@ export default class Autoplayer extends LightningElement {
   }
 
   displayHeldFret(stringNum, fretNum) {
-    //call instruments function to set current fret here
+    console.log(stringNum + ' = string, fret = '  + fretNum);
+    let e = new CustomEvent("holdfrets", { detail: {stringNum, fretNum} });
+    this.dispatchEvent(e);
   }
 }
