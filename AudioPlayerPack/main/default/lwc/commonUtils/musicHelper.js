@@ -1,4 +1,6 @@
-export { sharp2flat, offset2note, note2freq, stdNote2components };
+import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
+
+export { sharp2flat, offset2note, note2freq, stdNote2components, index2note2, note2index, isValidNote };
 
 /* Utility class to smooth any particular API features out with the audioplayer and soundboard suite */
 
@@ -71,31 +73,69 @@ function index2noteH(index) {
 }
 /* written for the autostrummer */
 function index2note2(index) {
-  returnString = "";
+  let returnString = "";
   returnString += notes[index % 12];
   returnString += Math.floor(index / 12);
   return returnString;
+}
+/* written for the autostrummer, takes note string and returns integer */
+function note2index(note){
+    let returnInt = 0;
+    if (note.length === 2){
+        let noteStrPart = note.substr(0, 1);
+        let noteOctave = parseInt(note.substr(1, 1));
+        returnInt += notes.indexOf(noteStrPart);
+        returnInt += noteOctave*12;
+        if (returnInt <= 84){
+            return returnInt;
+        }
+    }
+    let noteStrPart = note.substr(0, 2);
+    let noteOctave = parseInt(note.substr(2, 1));
+    returnInt += notes.indexOf(noteStrPart);
+    returnInt += noteOctave*12;
+    if (returnInt <= 84){
+        return returnInt;
+    }
+    console.log("note2index function in music helper was provided invalid string.");
 }
 
 function indexOf(name) {
   return notes.indexOf(sharp2flat(name)); // notes.indexOf(name) - BASE_INDEX_PIANO;
 }
 
+function isValidNote(note){
+    let isRightLength = (note.length === 3 || note.length === 2);
+    let isLegalNote = false;
+    if (note.length === 3){
+      isLegalNote = notes.includes(note.substr(0, 2));
+    } else if (note.length === 2){
+      isLegalNote = notes.includes(note.substr(0, 1));
+    }
+    
+    let hasOctave = ((parseInt(note.substr(note.length-1, 1)) < 8));
+    return (isRightLength && isLegalNote && hasOctave);
+
+}
+
+
 function clampBounds(name, octave) {
-  /* Clamp piano key bounds because of our sound file extents  */
+  /* Clamp piano key bounds because of our sound file extents */
   /*
-    if (octave == 0){
-        if (notes.indexOf(name) < BASE_INDEX_PIANO){ // <3 lol
-            return notes[BASE_INDEX_PIANO];
-        }else{
-            return name;
-        }*/
+  if (octave == 0){
+      if (notes.indexOf(name) < BASE_INDEX_PIANO){ // <3 lol
+          return notes[BASE_INDEX_PIANO];
+      }else{
+          return name;
+      }
+    }*/
   if (octave == 7) {
     return "C";
   } else {
     return name;
   }
 }
+
 
 function stdNote2components(stdNote) {
   if (stdNote) {
