@@ -47,7 +47,7 @@ function buildLocalGuitarPlayers(dictAuto, dictManual){
         for(let i = 0; i < 23; i++){
             let path = guitarRes + "/E-Standard" + "/" + note + "/" + String(i) + ".mp3";
             dictAuto.guitar[note][i] = new PlayerWrapper(new Audio(path));
-            dictManual.guitar[note] = new PlayerWrapper(new Audio(path));
+            dictManual.guitar[note][i] = new PlayerWrapper(new Audio(path));
         }
 
     });
@@ -77,7 +77,7 @@ function buildLocalBassPlayers(dictAuto, dictManual){
 
 
             dictAuto.bass[note][i] = new PlayerWrapper(new Audio(path));
-            dictManual.bass[note] = new PlayerWrapper(new Audio(path));
+            dictManual.bass[note][i] = new PlayerWrapper(new Audio(path));
         }
 
     });
