@@ -1,13 +1,12 @@
 {
     "packageDirectories": [
-        
-        { "path" : "AudioPlayerPack",
+        {
+            "path": "AudioPlayerPack",
             "package": "AudioPlayerPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": true
-                },
-    
+        },
         {
             "path": "PianoInstrument",
             "package": "PianoPackage",
@@ -39,21 +38,31 @@
                 }
             ]
         },
-        {   "path": "StringPackageFolder",
+        {
+            "path": "StringPackageFolder",
             "package": "GuitarPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": false,
             "dependencies": [
                 {
-                "package": "AudioPlayerPackage",
-                "versionNumber": "0.1.0.NEXT"
-               }]},
+                    "package": "AudioPlayerPackage",
+                    "versionNumber": "0.1.0.NEXT"
+                }
+            ]
+        },
         {
             "path": "music-utilities",
             "package": "music-utilities",
             "versionName": "ver 0.1",
             "versionNumber": "music-utilities@0.1.0.1",
+            "default": false
+        },
+        {
+            "path": "ChordBook",
+            "package": "ChordBook",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
             "default": false
         }
     ],
@@ -77,6 +86,7 @@
         "GuitarPackage": "0Ho5f000000CahwCAC",
         "PianoDatabase@0.1.0-2": "04t5f000000Uo7qAAC",
         "PianoDatabase@0.1.0-4": "04t5f000000Uq1xAAC",
-        "PianoDatabase@0.1.0-5": "04t5f000000Uq6FAAS"
+        "PianoDatabase@0.1.0-5": "04t5f000000Uq6FAAS",
+        "ChordBook": "0Ho5f0000008OYBCA2"
     }
 }
