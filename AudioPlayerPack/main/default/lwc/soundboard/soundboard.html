@@ -1,6 +1,13 @@
 <template>
     
     <ul>
+
+        <li>
+            <div>
+                <c-audio-player></c-audio-player>
+            </div>
+        </li>
+        <br/>
         <li>
             <div>
                 <c-metronome ontick={tickHandle}></c-metronome>
@@ -11,11 +18,7 @@
                 <c-autoplayer onautoplay={autoPlayHandle}></c-autoplayer>
             </div>
         </li>
-        <li>
-            <div>
-                <c-audio-player></c-audio-player>
-            </div>
-        </li>
+
     </ul>
 
 </template>

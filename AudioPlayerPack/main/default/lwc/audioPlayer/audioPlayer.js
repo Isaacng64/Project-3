@@ -98,11 +98,13 @@ export default class AudioPlayer extends LightningElement {
       this.currentlyPlaying = newCurrentlyPlaying;
   }
 
-  changeVolume(event){
-      this.volume = event.target.value;
-      for(let i = 0; i < this.currentlyPlaying.length; i++){
-          this.currentlyPlaying[i].setVolume(this.volume);
-      }
+
+  handleSlider(event){
+    //console.log(event.target.value / 100.0);
+    this.volume = event.target.value / 100.0;
+    for(let i = 0; i < this.currentlyPlaying.length; i++){
+      this.currentlyPlaying[i].setVolume(this.volume);
+  }
   }
 
 
