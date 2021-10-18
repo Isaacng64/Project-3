@@ -8,26 +8,16 @@
             "default": true,
             "dependencies": [
                 {
-                    "package": "AudioPlayerPackage",
-                    "versionNumber": "0.1.0.NEXT"
-                },
-                {
-                    "package": "music-utilities@0.1.0.1"
+                    "package": "AudioPlayerPack",
+                    "versionNumber": "0.1.0.LATEST"
                 }
             ]
         },
         {
             "path": "AudioPlayerPack",
-            "package": "AudioPlayerPackage",
+            "package": "AudioPlayerPack",
             "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": false
-        },
-        {
-            "path": "music-utilities",
-            "package": "music-utilities",
-            "versionName": "ver 0.1",
-            "versionNumber": "music-utilities@0.1.0.1",
+            "versionNumber": "0.1.0.LATEST",
             "default": false
         }
     ],
@@ -37,7 +27,8 @@
     "sourceApiVersion": "52.0",
     "packageAliases": {
         "PianoPackage": "0Ho5f0000008OXwCAM",
-        "music-utilities": "0Ho5f0000008OPWCA2",
-        "music-utilities@0.1.0-1": "04t5f000000tn2vAAA"
+        "AudioPlayerPack": "0Ho5f0000008OY6CAM",
+        "AudioPlayerPack@0.1.0-1": "04t5f000000tv24AAA",
+        "PianoPackage@0.1.0-1": "04t5f000000tv6HAAQ"
     }
 }

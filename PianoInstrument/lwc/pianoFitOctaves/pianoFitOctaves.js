@@ -2,7 +2,6 @@ import { LightningElement } from 'lwc';
 import { pianoNotes, chordPiano } from 'c/pianoNotes';
 /* the import is required to construct a new AudioPlayerNote */ 
 import { AudioPlayerNote } from 'c/commonUtils';
-import { basicUtils } from 'c/basicUtils';
 
 export default class PianoInstrument extends LightningElement {
     
