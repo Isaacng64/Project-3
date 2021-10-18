@@ -6,7 +6,7 @@ import pianoRes from '@salesforce/resourceUrl/Piano';
 import guitarRes from '@salesforce/resourceUrl/Guitar';
 //import bassRes from '@salesforce/resourceUrl/Bass';
 
-export {buildLocalAudioPlayers, buildLocalGuitarPlayers, buildLocalAudioPlayers}
+export {buildLocalAudioPlayers, buildLocalGuitarPlayers, buildLocalBassPlayers}
 
 
 function buildLocalAudioPlayers(dictAuto, dictManual){
@@ -52,7 +52,7 @@ function buildLocalGuitarPlayers(dictAuto, dictManual){
 
     });
 
-export {buildLocalAudioPlayers, buildLocalGuitarPlayers}
+export {buildLocalAudioPlayers, buildLocalGuitarPlayers, buildLocalBassPlayers}
 
 function buildLocalBassPlayers(dictAuto, dictManual){
 
