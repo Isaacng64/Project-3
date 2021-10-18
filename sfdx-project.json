@@ -73,7 +73,7 @@
             "default": true,
             "dependencies": [
                 {
-                    "package": "AudioPlayerPackage@0.1.0.7"
+                    "package": "AudioPlayerPackage@0.1.0.9"
                 },
                 {
                     "package": "PianoPackage@0.1.0.1"
