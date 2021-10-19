@@ -6,7 +6,8 @@ Please note that AudioPlayer documentation will be held in the AudioPlayer docum
 
 #### Components and Classes:
 
-	##### Key Component:
+
+##### Key Component:
 		
 		 #talk about properties of the class and its construction here before api exposed methods
 		
