@@ -91,7 +91,7 @@
                     "package": "PianoDatabase@0.1.0-5"
                 },
                 {
-                    "package": "ChordBook@0.1.0-1"
+                    "package": "ChordBook@0.1.0-2"
                 }
             ]
         }
@@ -121,7 +121,7 @@
         "PianoDatabase@0.1.0-5": "04t5f000000Uq6FAAS",
         "ChordBook": "0Ho5f0000008OYBCA2",
         "ChordBook@0.1.0-1": "04t5f000000twAzAAI",
-        "workshop-app": "0Ho5f0000008OYGCA2"
-
+        "workshop-app": "0Ho5f0000008OYGCA2",
+        "ChordBook@0.1.0-2": "04t5f000000twaUAAQ"
     }
 }

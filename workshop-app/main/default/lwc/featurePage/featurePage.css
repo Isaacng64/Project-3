@@ -1,0 +1,11 @@
+.flip{
+  transform: scaleY(-1);
+}
+
+.c-book{
+  background-color: #4e5245;
+  border: 3px solid #EDFF86;
+  border-radius: 10px;
+  width: 100%;
+  padding: 4px;
+}

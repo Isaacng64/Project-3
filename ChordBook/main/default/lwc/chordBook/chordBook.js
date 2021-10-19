@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 
 export default class App extends LightningElement {
 /* Initializes the templates for each instrument to not display by default */
@@ -36,22 +36,25 @@ export default class App extends LightningElement {
 /* Functions changing what the active instrument is, and deactivating inactive ones */
 /* Maybe in the future there could be a drop down list of chord books for the user to pick from? 
    In this iteration though we were just told to have it be resopnsive so it's just responsive for now*/
-  activateGuitar(/*something passed in from parent*/){
-    guitarActive  = true;
-    bassActive    = false;
-    pianoActive   = false;
+  @api
+   activateGuitar(){
+    this.guitarActive  = true;
+    this.bassActive    = false;
+    this.pianoActive   = false;
+    console.log('Activated the guitar');
   }
-
-  activateBass(/*something passed in from parent*/){
-  guitarActive  = false;
-  bassActive    = true;
-  pianoActive   = false;
+  @api
+  activateBass(){
+  this.guitarActive  = false;
+  this.bassActive    = true;
+  this.pianoActive   = false;
   }
-    
-  activatePiano(/*something passed in from parent*/){
-    guitarActive  = false;
-    bassActive    = false;
-    pianoActive   = true;
+  @api
+  activatePiano(){
+    this.guitarActive  = false;
+    this.bassActive    = false;
+    this.pianoActive   = true;
+    console.log('Activated the piano');
   }
 /* End of instruments function */
 
