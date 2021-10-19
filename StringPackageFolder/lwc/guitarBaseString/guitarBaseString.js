@@ -1,40 +1,37 @@
 import { LightningElement, api } from 'lwc';
 import strumImage from '@salesforce/resourceUrl/strum'
+import fretImage from '@salesforce/resourceUrl/fret_bass';
 
-export default class GuitarBaseString extends LightningElement 
-{    
+
+export default class GuitarString extends LightningElement {
+
     frets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 
     currentFret = 0;
     openString = 0;
     @api stringNumber;
-    @api strumImg = strumImage + '.png';
+    @api strumImg = strumImage;
 
-    setFretInString(event){
-        if (this.currentFret = event.detail) {
-            this.currentFret = 0;
-        } else {
-            this.currentFret = event.detail;
-        }
+    @api setFretInString(event){
+        this.currentFret = event.detail;
         this.dispatchEvent(new CustomEvent('passcurrentfret', {detail: [this.currentFret, this.stringNumber]}));
     }
 
-    @api
-    setOpenString(num) {
-        this.openString = num;
+    @api strum() {
+        let noteToPlay = [this.stringNumber, this.currentFret];
+        this.dispatchEvent(new CustomEvent('playbassnote', {detail: noteToPlay}));
+        console.log('strumming: ' + noteToPlay);
     }
 
-    tuneUp() {
-        this.setOpenString(parseInt(this.openString) + 1);
-    }
+    @api handlePressed(event){
+        let target = event.target;
+        let fretComponents = this.template.querySelectorAll('c-guitar-Base-fret');
+        for(let i = 0; i < fretComponents.length; i++){
+            if(fretComponents[i].currentFret != target.currentFret){
+                fretComponents[i].pressed = false;
+                fretComponents[i].fretImg = fretImage;
+            }
+        }
+      }
 
-    tuneDown() {
-        this.setOpenString(parseInt(this.openString) - 1);
-    }
-
-    strum() {
-        let noteToPlay = [parseInt(this.openString) + parseInt(this.currentFret), this.stringNumber];
-        this.dispatchEvent(new CustomEvent('playguitarnote', {detail: noteToPlay, bubbles: true, composed: true}));
-        console.log('strumming' + noteToPlay);
-    }
 }
