@@ -99,6 +99,7 @@
     "name": "Project-3",
     "namespace": "",
     "sfdcLoginUrl": "https://cunning-wolf-l4gda9-dev-ed.my.salesforce.com/",
+    "sourceApiVersion": "51.0",
     "packageAliases": {
         "AudioPlayerPackage": "0Ho5f000000TN3BCAW",
         "AudioPlayerPackage@0.1.0-1": "04t5f000000dBEuAAM",
