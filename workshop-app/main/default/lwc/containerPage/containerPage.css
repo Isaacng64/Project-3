@@ -2,11 +2,15 @@
   background-color: #9FB78F;
   border: hidden;
   border-radius: 10px;
+  height: auto;
+  padding: 0px;
+  min-height: 1000px;
+  overflow: hidden;
 }
 
 .side-bar{
 background-color: #4e5245;
-width: 200px; 
+width: 11%; 
 height: auto;
 border: 3px solid #EDFF86;
 border-radius: 10px;
@@ -30,8 +34,8 @@ color: white;
 }
 
 .component{
-  width: 88%;
-  margin: 0px 0px 0px 10px;
+  width: 87%;
+  height: 100%;
   float: right;
   border: hidden;
   border-radius: 10px; 
