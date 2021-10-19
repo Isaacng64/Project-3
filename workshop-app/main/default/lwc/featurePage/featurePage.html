@@ -1,8 +1,8 @@
 <template>
+  <template if:true={nowGuitar}>
     <c-metronome></c-metronome>
-    <c-basic-utils></c-basic-utils>
-    <c-guitar-instrument></c-guitar-instrument>
-    <c-songbuilder></c-songbuilder>
-    <c-chord-book></c-chord-book>
-    <c-piano-fit-octaves></c-piano-fit-octaves>
+    <div class = "flip"><c-guitar-instrument></c-guitar-instrument></div></template>
+    <template if:true={nowSongwriter}><c-songbuilder></c-songbuilder></template>
+    <template if:true={nowPiano}><c-piano-fit-octaves></c-piano-fit-octaves></template>
+    <div class = "c-book"><c-chord-book class = "chords"></c-chord-book></div>
 </template>
