@@ -156,14 +156,14 @@ export default class Autoplayer extends LightningElement {
             let octave = parseInt(note.substr(1, 1));
             this.dispatchEvent(new CustomEvent('autoplay', 
             {detail: 
-                new AudioPlayerNote(octave, noteStr, 0)
+                new AudioPlayerNote(0, noteStr, octave)
             }));
         } else {
           let noteStr = note.substr(0, 2);
           let octave = parseInt(note.substr(2, 1));
           this.dispatchEvent(new CustomEvent('autoplay', 
           {detail: 
-              new AudioPlayerNote(octave, noteStr, 0)
+              new AudioPlayerNote(0, noteStr, octave)
           }));
       }
     }
