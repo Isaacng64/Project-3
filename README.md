@@ -25,17 +25,17 @@ To-do list:
 * Allow for chord information to be pulled from org
 * Implement a search feature for Chord Book
 * Piano
-*   Integrate the music utilities for enhanced functionality
+   *   Integrate the music utilities for enhanced functionality
 * Guitar and Bass
-*   Implement string tuning (Guitar)
-*   Visual display of strumming (Guitar)
-*   Input for auto-strummer (Guitar)
+   *   Implement string tuning (Guitar)
+   *   Visual display of strumming (Guitar)
+   *   Input for auto-strummer (Guitar)
 * Song Builder
-*   Allow different rhythms
-*   Visual for keeping track of song as it plays
+   *   Allow different rhythms
+   *   Visual for keeping track of song as it plays
 *   Sound Player
-*     Synthesize Instrument notes
-*     Still allow samples for DJ fun
+   *     Synthesize Instrument notes
+   *     Still allow samples for DJ fun
 
 ## Getting Started
    
