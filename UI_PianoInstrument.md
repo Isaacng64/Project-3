@@ -11,11 +11,15 @@ Please note that AudioPlayer documentation will be held in the AudioPlayer docum
 		
 		 #talk about properties of the class and its construction here before api exposed methods
 		
-		The Key component 
+		The Key component is a child component for PianoFitOctaves. Main responsability it so create a visual piano key as a 
+		hyper link in a div. When the key is clicked the key component will dispatch a custom event, whos details will 
+		contain information of the key click
     
-    methods:
+    methods: 
     
-    clickHandler: 
+    	clickHandler():  
+		handles an onclick event, recives the componentkey variable to determine which piano key is clicked, and returns a 
+		custom event's event detail which includes all key information stored in PianoNotes for that key.
     
   ##### OctavesLayout Component:
 		
