@@ -1,0 +1,27 @@
+ChordBook Documentation:
+
+The Chord Book package is it's own component separate from the rest of the workshop to provide a visual reference for chord styles for the instruments, along with key reference information.
+
+Components and Classes:
+
+        The Chord Book has arrays of images iterated over, along with other relevent information for each of the instruments. It includes buttons to move it's carousel left and right accordingly. 
+        To keep things consistent, as the buttons get clicked, both the images and the alt text for the img tag gets shifted in its respective direction.
+        
+
+       handleRightClick() 
+         goes forward through the carousel and images.
+
+        handleLeftClick() 
+         goes backward through the carousel and images.
+
+        handleBlurb(event) 
+        toggles the text shown below an image, and assigns tracked variables data based on object info.
+
+        activateGuitar()
+        This function activates the guitar and deactivates other instruments when called by the parent
+
+        activateBass()
+        This function activates the bass and deactivates other instruments when called by the parent
+
+        activatePiano()
+        This function activates the piano and deactivates other instruments when called by the parent
