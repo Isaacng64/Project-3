@@ -33,9 +33,9 @@ To-do list:
 * Song Builder
    *   Allow different rhythms
    *   Visual for keeping track of song as it plays
-*   Sound Player
-   *     Synthesize Instrument notes
-   *     Still allow samples for DJ fun
+* Sound Player
+   * Synthesize Instrument notes
+   * Still allow samples for DJ fun
 
 ## Getting Started
    
