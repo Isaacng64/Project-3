@@ -1,9 +1,13 @@
 .outer {
     width: 500px;
-    padding: 10px;
-    border-style: solid;
-    border-color: #6b715c;
+    /*border-style: solid;
+    border-color: #6b715c;*/
+    border: 1px solid #EDFF86;
+    border-radius: 10px;
     background: #362c28;
+    padding: 8px 9px;
+    margin: 0px 0px 0px 20px;
+    display: inline-block;
   }
   
   label {
@@ -19,6 +23,12 @@
     width: 60px;
   }
 
+  button:hover {
+    background-color: #362C28;
+    color: #EDF886;
+    cursor: pointer;
+  }
+
   p {
-      color: #6b715c;
+      color: #d4fcc3;
   }

@@ -1,8 +1,11 @@
 .outer {
   width: 500px;
   padding: 10px;
+  /*
   border-style: solid;
-  border-color: #6b715c;
+  border-color: #6b715c;*/
+  border: 1px solid #EDFF86;
+  border-radius: 10px;
   background: #362c28;
 }
 
@@ -22,4 +25,10 @@ button.symbol-button {
 
 button.text-button {
   width: 60px;
+}
+
+button.text-button:hover, button.symbol-button:hover {
+  background-color: #362C28;
+  color: #EDF886;
+  cursor: pointer;
 }

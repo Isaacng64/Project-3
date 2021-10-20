@@ -21,16 +21,19 @@ margin: 20px 0px 0px 0px;
   border: 3px solid #EDFF86;
   height: 180px;
   margin: 10px;
-  background-color: #9FB78F;
   border-radius: 10px;
+  background-color: #9FB78F;
   font-size: 24px;
   text-align: center;
   padding: 50px 20px;
+  color: black;
 }
 
 .side-bar-button:hover{
+
 background-color: #362C28;
-color: white;
+color: #EDF886;
+cursor: pointer;
 }
 
 .component{

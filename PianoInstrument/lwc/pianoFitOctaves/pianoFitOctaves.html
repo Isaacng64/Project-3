@@ -10,8 +10,8 @@
         <!-- Buttons to interact dynamically with the Piano -->
         <div class="slds-col">
             
-                <a class="slds-button slds-button_destructive" onclick={decreaseOctave}> - </a>
-                <a class="slds-button slds-button_success" onclick={addOctave}> + </a>
+                <button class = "btn" onclick={decreaseOctave}> - </button>
+                <button class = "btn" onclick={addOctave}> + </button>
             
         </div>
         <!-- Basic Chords -->
@@ -36,7 +36,7 @@
                     </template>   
             </div>
             <div class="slds-col">   
-                <div class="uiother">
+                <div class="uiother" style = "margin: 20px 0px 0px 0px;">
                 <c-audio-player></c-audio-player>
                 </div>    
             </div>

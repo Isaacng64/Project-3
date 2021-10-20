@@ -12,11 +12,11 @@ img:hover{ cursor: pointer; }
 .button-stuff{
     width: 50px;
     height: 50px;
-    background: #3d0c0c;
+    background-color: #9FB78F;
     font-size: 40px;
-    color: pink;
-    border-radius: 2px;
-    border-color: black;
+    color: black;
+    border-radius: 10px;
+    border: 3px solid #EDFF86;
     line-height: 25px;
 }
 
@@ -43,6 +43,8 @@ img:hover{ cursor: pointer; }
 /* puts the buttons in the center of the screen and adds some padding between them and the carousel */
 .buttons{
     text-align: center;
+    font-size: 14px; 
+    color: white;
 }
 
 /* gives the current item in the carousel a bigger display */
@@ -54,6 +56,7 @@ img:hover{ cursor: pointer; }
 
 /* Expands buttons on hover over a short time */
 .button-stuff:hover{
-     transform: scale(1.25); 
-     transition: .25s;
+    background-color: #362C28;
+    color: #EDF886;
+    cursor: pointer;
 }

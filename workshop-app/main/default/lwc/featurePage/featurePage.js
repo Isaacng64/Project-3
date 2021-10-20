@@ -11,6 +11,9 @@ export default class FeaturePage extends LightningElement {
   @api
   nowSongwriter;
 
+  @api 
+  nowBass;
+
   initialized;
 
   connectedCallback(){
@@ -24,8 +27,10 @@ export default class FeaturePage extends LightningElement {
   setChordBook(changeTo){
     if(changeTo === 'Piano') {
     this.template.querySelector('.chords').activatePiano();
-    } else {
+    } else if (changeTo === 'Guitar'){
       this.template.querySelector('.chords').activateGuitar();
+    } else{
+      this.template.querySelector('.chords').activateBass();
     }
   }
 

@@ -1,4 +1,5 @@
 <template>
+    <div style="transform: scaleY(-1); margin: 20px 0px;">  <c-audio-player></c-audio-player></div>
     <ul class="slds-list_vertical">
         <template for:each={tuning} for:item="string">
             <li key={string}>
@@ -6,7 +7,6 @@
             </li>
         </template>
         <li>
-          <div style="transform: scaleY(-1);">  <c-audio-player></c-audio-player></div>
         </li>
     </ul>
 </template>

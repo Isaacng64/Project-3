@@ -1,20 +1,36 @@
 .major { 
     width: 4rem; 
-    height: 1.5rem;
-    border-radius: 25px;
+    height: 2rem;
+    border-radius: 10px;
     background-color: #9FB78F;
     color: #000000;
     text-align: center;
-    padding: 2px;
+    padding: 4px;
     margin: 2px;
+    border: 2px solid #EDFF86;
+    font-style: bold;
 }
 .minor { 
     width: 4rem; 
-    height: 1.5rem;
-    border-radius: 25px;
-    background-color: #FFF5B2;
+    height: 2rem;
+    border-radius: 10px;
+    background-color: #6B715C;
     color: #000000;
     text-align: center;
-    padding: 2px;
+    padding: 4px;
     margin: 2px;
+    border: 2px solid #EDFF86;
+    font-style: bold;
+}
+
+.minor:hover{
+    background-color: #362C28;
+    color: #EDF886;
+    cursor: pointer;
+}
+
+.major:hover{
+    background-color: #362C28;
+    color: #EDF886;
+    cursor: pointer;
 }
