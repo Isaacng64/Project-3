@@ -54,21 +54,20 @@ To-do list:
 
 ## Contributors
 
-> Sarah Gillogly
-> John Bush
-> Shawn Ijaz
-> William Edward
-> Isaac Lopez
-> Vicky Perez
-> Joseph Wertzberger
-> Andrew Wensley
-> Joe Linthicum
-> Ryan Macklin
-> Jordan Steltz
-> Joshua Jones
-> Josh Cohen
-> Bo Kang
-
+* Sarah Gillogly
+* John Bush
+* Shawn Ijaz
+* William Edward
+* Isaac Lopez
+* Vicky Perez
+* Joseph Wertzberger
+* Andrew Wensley
+* Joe Linthicum
+* Ryan Macklin
+* Jordan Steltz
+* Joshua Jones
+* Josh Cohen
+* Bo Kang
 
 ## License
 
