@@ -1,16 +1,16 @@
-### String Instrument UI Documentation:
+String Instrument UI Documentation:
 
 The String Instrument UI consists of 3 components each for both the guitar and the bass guitar. Each has a fret component, a string component,
 and a component for the full instrument. Please note that these components all depend on the Audio PLayer component, which is what actually plays
 the sound. Details on that can be found in the documentation for that package.
 
-	#### Components and Classes:
+	Components and Classes:
 
 
-		##### Instrument Component:
+		Instrument Component:
 
 
-		##### Fret Component:
+		Fret Component:
 		
     
-		##### String Component:
+		String Component:
