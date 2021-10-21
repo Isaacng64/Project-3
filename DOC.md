@@ -144,9 +144,6 @@ Components and Classes:
 			getTempList():
 				Getter for volumesList, used in at least the metronome component if you'd like to rename.
 				
-			play(beats : int):
-				Begins the sound playing for the duration of beats if specified, otherwise will just play the entire sound sample until manually stopped.
-				
 			clickVolumesHandler(event):
 				Handler for when the beat visual is clicked. Determines the index of the beat that's been clicked, calls louder() to increment it's volume by 0.25, then resizes the inner div for the beat to match the volume (after checking whether the inner or outer div was the target of the event).
 				
