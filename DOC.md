@@ -121,7 +121,115 @@ Components and Classes:
 			
 		buildLocalBassPlayers(dictAuto : Object&, dictManual : Object&):
 			Fills the objects with all of the Guitar sounds with sub-object by String and then an array by Fret.
+			
+	beatPatternUi:
 
+		Used to control the volumes of each beat for the metronome through a UI component.
+		
+		properites:
+			beatsTotal:
+				Total number of beats per measure in the current interface.
+			
+			volumesList:
+				Linear decimal array for the volume of each beat as a fraction of 0 to 1.
+				
+		methods:
+				
+			getBeatsTotal():
+				Getter for beatsTotal.
+				
+			setBeatsTotal(num):
+				Setter for beatsTotal.
+				
+			getTempList():
+				Getter for volumesList, used in at least the metronome component if you'd like to rename.
+				
+			play(beats : int):
+				Begins the sound playing for the duration of beats if specified, otherwise will just play the entire sound sample until manually stopped.
+				
+			clickVolumesHandler(event):
+				Handler for when the beat visual is clicked. Determines the index of the beat that's been clicked, calls louder() to increment it's volume by 0.25, then resizes the inner div for the beat to match the volume (after checking whether the inner or outer div was the target of the event).
+				
+			louder(current):
+				Increments the volume of the 'current' index of volumesList by 0.25, and resets it to 0 if it exceeds 1.
+				
+			resize(element, num):
+				Resizes the div defined by 'element' to the fraction defined by 'num'.
+				
+			changeUpdateEvent():
+				Fires an event to the parent when a change is made to volumesList.
+				
+			resizeVolumesList(num):
+				Creates a temporary list of length 'num', starting with the contents of volumesList and filling any remaining space with 0.25. Then replaces volumesList with the temporary list.
+				
+			highlightBeat(toHighlight):
+				Edits the class of the inner div for the specifed beat to 'highlighted', and changes the other inner divs to 'unhighlighted'. Called by the parent component.
+				
+	metronome:
+
+		Used to control the volumes of each beat for the metronome through a UI component.
+		
+		properites:
+			intervalObj:
+				Object holding the interval for setTempo.
+			
+			bpm:
+				Current beats per minute.
+				
+			currentVolume:
+				Volume to pass to the audioPlayer.
+				
+			metroCounter:
+				Current beat (starts with 1).
+				
+			counterMax:
+				Current maximum beats (corresponds to beatsTotal on beatPatternUi).
+				
+			counterMaxLocked:
+				Boolean determining whether the controls for number of beats load for the user. Controls will load if false, will be hidden if true.
+				
+			currentSubBeat:
+				Current quarter of a beat to send to the songbuilder. Ranges from 1 to 4.
+				
+			active:
+				Boolean determining whether metronome is currently outputting ticks.
+				
+			muted:
+				Boolean determining whether the volume of ticks is set to zeroe before audio is called.
+				
+			mutedString:
+				String variable to display on the mute button. Set to 'Mute' when muted == false, or 'Unmute' when muted = true.
+				
+		methods:
+			constructor():
+				Sets the current bpm to 160.
+				
+			setTempo(bpm):
+				Updates bpm to the input an binds subTick() do an interval equal to the a quarter of the interval between beats at the specified bpm.
+				
+			subTick():
+				Increments currentSubTick by 1, cycles back to 1 if it exceeds 4, then dispatches a 'subtick' event for the songbuilder. Calls selfTick() when currentSubTick reaches 1.
+				
+			selfTick():
+				Increments metroCounter by 1, cycles back to 1 if it exceeds counterMax. Calls highlightBeat on the beatPatternUi component for the current beat (metroCounter - 1), then sets currentVolume to the volume retrieved for the beat in beatPatternUi via getTempList(). Finally dispatches a 'tick' event with currentVolume as the sole detail.
+
+			bpm2ms(bpm):
+				Converts a beats per minute input into a time interval output in miliseconds.
+				
+			faster(), faster10(), slower(), slower10():
+				Increments or decrements bpm by either 1 or 10.
+				
+			moreBeats(), lessBeats(), editBeats(num):
+				Adjust counterMax, either by 1 or to a specified number, as long as it remains in the range of 0 to 7 inclusive, then passes it to the beatPatternUi component via setBeatsTotal().
+				
+			toggleMute():
+				Toggles 'muted' and sets mutedString to the opposite to display on the toggle button.
+				
+			start():
+				Sets the metronome to active, resets metroCounter and currentSubBeat to 0, then calls setTempo to start the metornome.
+				
+			stopMetronome():
+				Sets the metronome to false. Named differently from start() because 'stop' is a reserved keyword.
 	Soundboard:
 	
 		A container component for the Metronome, AudioPlayer and Autoplayer. It has no exposed methods but serves as the functional example of how
