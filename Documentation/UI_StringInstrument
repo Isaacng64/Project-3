@@ -8,9 +8,13 @@ the sound. Details on that can be found in the documentation for that package.
 
 
 		Instrument Component: This is the overall frame for each instrument.
-
+			currentFretAndString(): Calls the fret and string values selected from the other components.
+			playBass()/playGuitar(): Queries audio player to play note from selected fret and string.
 
 		Fret Component: This is the componenent for each individual fret on the bass and guitar components.
-		
+			setFret(): Selects fret that is clicked on.
     
 		String Component: This is the component for each individual string on the bass and guitar components.
+			setFretInString(): Assigns clicked fret to relevant string.
+			strum(): Strums guitar by mousing over appropriate strings.
+			handlePressed(): Allows fret to be held down by clicking on it.
