@@ -3,7 +3,7 @@ only contains the basicUtils component, which provides musically useful function
 as a starting point for what is possible, as it is far from feature complete. Currently, there is some basic support for setting up pitches defined as 
 integers, and using those integers to mathematically define chords. 
 
-properties: 
+basicUtils properties & functions: 
 
 noteList -  This is used internally as a resource to map notes to pitches in a flat notation. 
 
