@@ -1,0 +1,44 @@
+Music Utilities is a package that contains useful utilities and other functions that instruments and other components can utilize. Currently it 
+only contains the basicUtils component, which provides musically useful functionality targeted primarily to a piano or similar instrument. It should be seen
+as a starting point for what is possible, as it is far from feature complete. Currently, there is some basic support for setting up pitches defined as 
+integers, and using those integers to mathematically define chords. 
+
+properties: 
+
+noteList -  This is used internally as a resource to map notes to pitches in a flat notation. 
+
+pitchMap - This array contains our pitches once we've mapped them, using the index as the "pitch". Pitches are integers. 
+
+keySignature - When this is set, it will contain the notes in flat format that are valid for the current key signature. 
+
+keySignaturePitches - This gets set when the keySignature is set; it stores all of the integer values for valid pitches that exist in our pitch list. 
+
+setPitchMap(finalVal, flatNoteVal) - This function is used to set our pitchMap. First define our total number of pitches and pass that as an integer, and 
+follow that with the first note as a string in a flat format. (e.g. 'Bb' or 'D'). This MUST correspond to something in the noteList. 
+
+getNoteFromPitch(pitch) - This function returns the note in flat format corresponding to the supplied pitch. 
+
+getNotesFromPitches(pitches) - This function returns an array of strings in flat format corresponding to the supplied array of pitches. 
+
+getMajorTriad(pitch) - This function returns an array with three pitches that are a major chord with the supplied pitch as the base note; if we're near the 
+end of our pitchMap, the triad will become inverted if necessary. 
+
+getMinorTriad(pitch) - This function returns an array with three pitches that are a minor chord with the supplied pitch as the base note; if we're near the 
+end of our pitchMap, the triad will become inverted if necessary. 
+
+getDiminishedTriad(pitch) - This function returns an array with three pitches that are a diminished chord with the supplied pitch as the base note; if we're near the 
+end of our pitchMap, the triad will become inverted if necessary. 
+
+setKeySignature(flatNote) - This function takes a note in flat format to define a key signature. 
+
+setKeySignaturePitches() - This function is called by setKeySignature to define pitches that are valid for the current key. 
+
+getValidChordInKey(pitch) - This function returns a valid chord based on the supplied pitch provided that the supplied pitch is in the current key and a key has
+been set.
+
+convertToSharp(flatNote) - This function converts a note in flat format to a sharp format; this could be useful for displaying to a user. 
+
+convertToFlat(sharpNote) - This function converts a note in sharp format to flat format. 
+
+
+
