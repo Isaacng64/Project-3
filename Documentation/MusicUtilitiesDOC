@@ -3,6 +3,21 @@ only contains the basicUtils component, which provides musically useful function
 as a starting point for what is possible, as it is far from feature complete. Currently, there is some basic support for setting up pitches defined as 
 integers, and using those integers to mathematically define chords. 
 
+To use the basicUtils, first add the component to your html markup for the component that wishes to use its functionality. 
+Use this.template.querySelector('c-basic-utils').functionOrPropertyName() in the component's JavaScript to access api decorated functions or 
+properties and pass the appropriate parameters where necessary. The pitchMap must be defined to enjoy most of the functionality of this component. 
+
+You can use the renderedCallback for initialization like so:
+
+initialized; 
+
+renderedCallback(){
+if(!this.initialized) {
+this.template.querySelector('c-basic-utils').setPitchMap(73, 'C'); //These specific values are for the current version of the piano. 
+this.initialized = true; //The rendered callback can be called multiple times, so something like this pattern is required. 
+}
+}
+
 basicUtils properties & functions: 
 
 noteList -  This is used internally as a resource to map notes to pitches in a flat notation. 
