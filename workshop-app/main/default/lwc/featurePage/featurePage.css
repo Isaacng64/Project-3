@@ -1,0 +1,41 @@
+.flip{
+  transform: scaleY(-1);
+  width: 95%;
+  margin: 2%;
+}
+
+.top-div{
+  background-color: #4e5245;
+  border: 3px solid #EDFF86;
+  border-radius: 10px;
+  width: 100%;
+  padding: 5px; 
+  height: 250px;
+}
+
+.c-book{
+  background-color: #362C28;
+  border: 3px solid #EDFF86;
+  border-radius: 10px;
+  width: 100%;
+  padding: 5px;
+  min-height: 550px;
+  overflow: hidden;
+  margin: 2% 0% 0% 0%;
+}
+
+.auto-player{
+  float: right;
+  display: inline;
+  margin: 0px;
+}
+
+.mid-div{
+  background-color: #4e5245;
+  border: 3px solid #EDFF86;
+  border-radius: 10px;
+  width: 100%;
+  padding: 5px;
+  min-height: 300px;
+  margin: 2% 0%;
+}

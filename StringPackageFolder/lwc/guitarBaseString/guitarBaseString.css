@@ -1,0 +1,27 @@
+button {
+    width: 15px;
+    height: 15px;
+  }
+  
+  label {
+    font-size: 20px;
+  }
+  
+  .strum {
+    margin-top: -0.5em;
+  }
+/*li
+{
+    background-color: #744F33;
+    
+}*/
+/*background: linear-gradient(#D3D3D3, #D3D3D3) no-repeat center/2px 100%;*/
+
+/*
+lightning-button
+{
+    margin-top: -3px;
+    margin-bottom: -3px;
+    border-collapse: true;
+    background: linear-gradient(#a5a5a5, #a5a5a5) no-repeat center/2px 100%;
+}*/

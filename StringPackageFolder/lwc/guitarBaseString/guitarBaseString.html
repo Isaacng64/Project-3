@@ -1,0 +1,14 @@
+<template>
+    <div>
+    <ul class="slds-list_horizontal">
+        <template for:each={frets} for:item="fret">
+            <li key={fret}>
+                <c-guitar-base-fret onfretpressed={handlePressed} onpassfret={setFretInString} current-fret={fret} current-string={stringNumber}></c-guitar-base-fret>
+            </li>
+        </template>
+        <li class="strum">
+            <img src={strumImg} onclick={strum} onmouseover={strum}>
+        </li>
+    </ul>
+    </div>
+</template>

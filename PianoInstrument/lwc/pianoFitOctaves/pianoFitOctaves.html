@@ -1,0 +1,46 @@
+<template>
+    <!-- <c-basic-utils></c-basic-utils> -->
+    <lightning-layout horizontal-align="center">
+    <main class="slds-grid_vertical slds-grid_align-center" >
+        <!-- Information about wich key and Octave are displayed 
+        <div class="slds-col">
+            The note is: {note} - The Chord is: {chordText} - The Last Octave is : {numOctave}
+        </div>
+        -->
+        <!-- Buttons to interact dynamically with the Piano -->
+        <div class="slds-col">
+            
+                <button class = "btn" onclick={decreaseOctave}> - </button>
+                <button class = "btn" onclick={addOctave}> + </button>
+            
+        </div>
+        <!-- Basic Chords -->
+        <div class="slds-col uipiano slds-grid_align-center">
+            <!-- This Div will hold the Ui for the Piano Instrument-->
+            <template for:each={pianoChords} for:item="chord">
+                <c-piano-chord key={chord.id} chord={chord} onkeyclickchord={handleClickChord}></c-piano-chord>
+            </template>           
+        </div>
+        <!-- Octaves to be Displayed in the Piano -->
+        <div class="uipiano">
+            <c-octave-layout class="uioctave" componentoctave={octaveZero}></c-octave-layout>
+            <c-octave-layout class="uioctave" componentoctave={octaveOne}></c-octave-layout>
+            <c-octave-layout class="uioctave" componentoctave={octaveTwo}></c-octave-layout>
+        </div>
+        <!-- Render of the Piano  -->
+        <div class="slds-col">
+            <div class="uipiano">
+                <!-- This Div will hold the Ui for the Piano Instrument-->
+                    <template for:each={piano} for:item="note">
+                        <c-key key={note.key} componentkey={note} onkeyclickce={handleKeyClickCE}></c-key>
+                    </template>   
+            </div>
+            <div class="slds-col">   
+                <div class="uiother" style = "margin: 20px 0px 0px 0px;">
+                <c-audio-player></c-audio-player>
+                </div>    
+            </div>
+        </div>
+    </main>
+    </lightning-layout>
+</template>

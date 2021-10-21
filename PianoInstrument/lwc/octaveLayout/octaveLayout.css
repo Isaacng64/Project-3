@@ -1,0 +1,9 @@
+:host(.uioctave) { 
+    width: 13.5rem; 
+    height: 1.5rem; 
+    background-color: #9FB78F;
+    text-align: center;
+    color: #362C28;
+    padding: 0.25rem;
+    margin: 0.25rem;
+}

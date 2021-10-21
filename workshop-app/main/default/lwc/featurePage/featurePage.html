@@ -1,0 +1,10 @@
+<template>
+  <template if:true={nowGuitar}>
+    <div class = "top-div"><c-soundboard></c-soundboard></div><div style = "margin: 3% 0px 0px 0px;">
+    <div class = "mid-div"><div class = "flip"><c-guitar-instrument></c-guitar-instrument></div></div></div></template>
+    <template if:true={nowSongwriter}><c-songbuilder></c-songbuilder></template>
+    <template if:true={nowPiano}><div class = "top-div"><c-soundboard></c-soundboard></div><div class = "mid-div"><c-piano-fit-octaves></c-piano-fit-octaves></div></template>
+    <template if:true={nowBass}><div class = "top-div"><c-soundboard></c-soundboard></div><div style = "margin: 3% 0px 0px 0px;">
+      <div class = "mid-div"><div class = "flip"><c-guitar-base-instrument></c-guitar-base-instrument></div></div></div></template>
+    <div class = "c-book"><c-chord-book class = "chords"></c-chord-book></div>
+</template>

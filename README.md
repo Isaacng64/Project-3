@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Musician’s Workshop - Project 3
 
 ## Project Description
@@ -73,3 +74,6 @@ To-do list:
 
 This project uses the following license: [<license_name>](<link>).
 
+=======
+This Branch is to demo the pianon functinality to the client. To run successfuly use a local server and ensure the component is authorized by an org.
+>>>>>>> origin/Merge-Branch

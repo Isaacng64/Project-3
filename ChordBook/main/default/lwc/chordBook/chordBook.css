@@ -1,0 +1,62 @@
+/* changes the cursor when hovering over an image */
+img:hover{ cursor: pointer; }
+
+/* keeps the left and right buttons on the same line and adds some padding in between them */
+.dont-break{
+    display:inline;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+/* adds some style to the buttons */
+.button-stuff{
+    width: 50px;
+    height: 50px;
+    background-color: #9FB78F;
+    font-size: 40px;
+    color: black;
+    border-radius: 10px;
+    border: 3px solid #EDFF86;
+    line-height: 25px;
+}
+
+/* adds some space between each image and keeps them on one line */
+.image-things{
+    display:inline;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 300px;
+}
+
+/* Also keeps the carousel on one line */
+.let-it-end{ 
+    text-align: center;
+    position: relative;
+ }
+
+/* keeps the whole carousel on one line and allows it to run off the screen without wrapping */
+.carousel-holder{
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* puts the buttons in the center of the screen and adds some padding between them and the carousel */
+.buttons{
+    text-align: center;
+    font-size: 14px; 
+    color: white;
+}
+
+/* gives the current item in the carousel a bigger display */
+.focus-on-me{
+    display: inline;
+    position: relative;
+    transform: scale(1.15); 
+}
+
+/* Expands buttons on hover over a short time */
+.button-stuff:hover{
+    background-color: #362C28;
+    color: #EDF886;
+    cursor: pointer;
+}
