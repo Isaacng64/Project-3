@@ -7,10 +7,10 @@ the sound. Details on that can be found in the documentation for that package.
 	Components and Classes:
 
 
-		Instrument Component:
+		Instrument Component: This is the overall frame for each instrument.
 
 
-		Fret Component:
+		Fret Component: This is the componenent for each individual fret on the bass and guitar components.
 		
     
-		String Component:
+		String Component: This is the component for each individual string on the bass and guitar components.
