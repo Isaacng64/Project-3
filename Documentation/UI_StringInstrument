@@ -1,20 +1,34 @@
 String Instrument UI Documentation:
 
 The String Instrument UI consists of 3 components each for both the guitar and the bass guitar. Each has a fret component, a string component,
-and a component for the full instrument. Please note that these components all depend on the Audio PLayer component, which is what actually plays
+and a component for the full instrument. Please note that these components all depend on the Audio Player component, which is what actually plays
 the sound. Details on that can be found in the documentation for that package.
 
 	Components and Classes:
 
-
-		Instrument Component: This is the overall frame for each instrument.
-			currentFretAndString(): Calls the fret and string values selected from the other components.
-			playBass()/playGuitar(): Queries audio player to play note from selected fret and string.
-
-		Fret Component: This is the componenent for each individual fret on the bass and guitar components.
-			setFret(): Selects fret that is clicked on.
+		Instrument Component: This is the overall componet for bass and guitar instruments.
+		
+			currentFretAndString(): Event handler that catches the currentFret and stringNumber values from 
+			the event that is fired from the string component.
+			
+			playBass()/playGuitar(): Queries audio player to play note from the currentFret and stringNumber
+			values.
     
 		String Component: This is the component for each individual string on the bass and guitar components.
-			setFretInString(): Assigns clicked fret to relevant string.
-			strum(): Strums guitar by mousing over appropriate strings.
-			handlePressed(): Allows fret to be held down by clicking on it.
+		
+			setFretInString(): Handles an event by getting the detail from it and sets the information to the 
+			currentFret variable.
+			
+			strum(): This method gets the currentFret and stringNumber. This information is fired in a custom
+			event that is then handled with the instrument component's playBass()/playGuitar() method.
+			
+			handlePressed(): Handles the onclick event for a single fret component being pressed. It changes the
+			clicked on fret's image so that it is highlighted. It sets all other frets' images, those that 
+			weren't clicked, to the default fret image.
+			
+		Fret Component: This is the componenent for each individual fret on the bass and guitar components.
+		
+			setFret(): Changes the pressed Boolean for the individual fret when it is clicked on and updates the 
+			image for the individual fret based on the value of pressed and what string the fret is on. It also
+			fires a custom event that changes the currentFret value to 0 when pressed is false and to the number
+			of the fret when pressed is true.
