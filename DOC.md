@@ -167,7 +167,7 @@ Components and Classes:
 				
 	metronome:
 
-		Used to control the volumes of each beat for the metronome through a UI component.
+		Used to call an audio file through audioPlayer for metronome ticks at regular interval. Also dispatches events to control timing for autoplayer and songbuilder.
 		
 		properites:
 			intervalObj:
@@ -211,7 +211,7 @@ Components and Classes:
 				Increments currentSubTick by 1, cycles back to 1 if it exceeds 4, then dispatches a 'subtick' event for the songbuilder. Calls selfTick() when currentSubTick reaches 1.
 				
 			selfTick():
-				Increments metroCounter by 1, cycles back to 1 if it exceeds counterMax. Calls highlightBeat on the beatPatternUi component for the current beat (metroCounter - 1), then sets currentVolume to the volume retrieved for the beat in beatPatternUi via getTempList(). Finally dispatches a 'tick' event with currentVolume as the sole detail.
+				Increments metroCounter by 1, cycles back to 1 if it exceeds counterMax. Calls highlightBeat on the beatPatternUi component for the current beat (metroCounter - 1), then sets currentVolume to the volume retrieved for the beat in beatPatternUi via getTempList(). Finally dispatches a 'tick' event with currentVolume as the sole detail. This event is handled to play metronome ticks and trigger the autoplayer.
 
 			bpm2ms(bpm):
 				Converts a beats per minute input into a time interval output in miliseconds.
